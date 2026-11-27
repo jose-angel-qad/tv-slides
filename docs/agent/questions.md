@@ -67,3 +67,9 @@ Format per entry:
 - Options: show them with labels once defined; drop them.
 - Assumption used: dropped. Each asset shows its current (last finished) cycle against the target line; average cycle against target is the KPI. Shift units are whole numbers (INFO-22).
 - Where it shows: `src/slides/run-fast-cycles/`, `src/slides/shift-fast-cycles/`
+
+## Operations
+- Question: what are the units value (-390 EA) and the time next to the sunrise icon? Do Data sheets and Maintenance show counts?
+- Options: units against plan for the run; units against plan for the shift. The sunrise time may be the shift start or the run ETA.
+- Assumption used: units against plan for the run (signed, with status); the sunrise time is not shown, the ETA is. Open items are counted and listed by time open; breakdowns are negative, a lone data sheet is a warning.
+- Where it shows: `src/slides/operations/`

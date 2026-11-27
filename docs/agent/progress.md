@@ -105,3 +105,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: see "Run (Fast cycles), Shift (Fast cycles)" in questions.md.
+
+### Operations
+- Stories: Positive, Negative (Reliability and Compliance on), Reliability and Compliance off.
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card, Bar list, Line chart.
+- Created: none.
+- Checklist failures: INFO-23 partial (long product names wrap in the half-width chart card and shorten the chart); INFO-17 not applicable; INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. The list shows the 3 oldest items and "N more".
+- Open questions: units value and sunrise time (questions.md).
