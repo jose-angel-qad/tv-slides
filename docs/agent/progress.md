@@ -84,3 +84,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: Step flow chart (Data viz), with story and Docs section.
 - Checklist failures: INFO-17 not applicable; BRAND-09 (new component pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Long step names that wrap to three lines shorten the bars.
 - Open questions: WIP threshold (questions.md).
+
+### Cycles
+- Stories: Positive, Negative (overrun, rejected, no product, long names).
+- Reused: T2 List + support, Chart card, Bar list, KPI tile large, Stat tile, Chart legend item.
+- Created: none.
+- Checklist failures: INFO-17 not applicable (active cycles are hatched); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: active versus total cycle time, Rejected (questions.md). Only the active average is shown.

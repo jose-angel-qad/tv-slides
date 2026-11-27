@@ -55,3 +55,9 @@ Format per entry:
 - Options: a fixed WIP limit per location; the largest WIP is always the bottleneck; a WIP limit per step.
 - Assumption used: the numbers are WIP between steps; one WIP limit per location (mock 20). Below it the slide says work is flowing.
 - Where it shows: `src/slides/line-balance/`
+
+## Cycles
+- Question: what is the difference between active and total cycle time, and what does Rejected mean?
+- Options: active = time the asset runs, total = including load and unload; Rejected = the batch failed a check.
+- Assumption used: show only the active average cycle. Rejected is a warning (needs attention but not late); overrun is negative. Each asset has its own planned cycle; the mock uses one shared value.
+- Where it shows: `src/slides/cycles/`
