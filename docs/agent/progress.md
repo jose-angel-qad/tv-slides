@@ -21,3 +21,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Changed: Hourly bar chart (`format`, `tickFormat` props).
 - Checklist failures: INFO-19 (only 3 of the 6 data states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: none. The ETA tile is replaced by the average per finished hour, since a shift ends at a fixed time.
+
+### Hourly OEE
+- Stories: Positive (with an hour above 100%), Negative.
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card, Hourly bar chart, Chart legend item.
+- Created: shared slide body `src/slides/_shared/HourlyMetric.vue` (also used by Hourly counts and Units/man hour).
+- Checklist failures: INFO-19 (2 of 6 data states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: hero is shift OEE (Claude idea); key question kept. See questions.md.
