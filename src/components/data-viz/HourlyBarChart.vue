@@ -24,9 +24,14 @@ const props = withDefaults(
     currentIndex?: number
     width: number
     height: number
+    /** Formats values, ticks and the target. Defaults to whole counts; OEE passes one-decimal percent. */
+    format?: (n: number) => string
+    /** Formats y-axis ticks. Defaults to `format`. */
+    tickFormat?: (n: number) => string
   }>(),
-  { currentIndex: -1 },
+  { currentIndex: -1, format: (n: number) => formatCount(n) },
 )
+const fmt = (n: number) => props.format(n)
 
 // The target line is labeled at its right end ("Target" over the value). The label column is
 // sized to the target's digits, so there is no wasted space and larger targets (5,000) still fit.
@@ -43,7 +48,7 @@ const VALUE_GAP = 12
 const plotX = AXIS_W
 const targetLabelW = computed(() => {
   if (props.target == null) return 0
-  const digits = formatCount(props.target).length
+  const digits = fmt(props.target).length
   return LABEL_GAP + Math.max(86, Math.ceil(digits * 18)) // "Target" at 28 px ~ 86 px; digits at 28 px ~ 17 px
 })
 const plotW = computed(() => props.width - AXIS_W - targetLabelW.value)
@@ -106,11 +111,11 @@ const bars = computed(() =>
       current,
       future,
       below,
-      value: formatCount(p.value),
+      value: fmt(p.value),
       tick: current ? 'Now' : formatHour(p.hour),
       // Center of the value text: shifted right by half the icon when the icon is shown.
       valueX: below ? cx(i) + (ICON + ICON_GAP) / 2 : cx(i),
-      iconX: below ? cx(i) - (ICON + ICON_GAP + textWidth(formatCount(p.value))) / 2 : 0,
+      iconX: below ? cx(i) - (ICON + ICON_GAP + textWidth(fmt(p.value))) / 2 : 0,
       d: barPath(x, y(p.value), barW.value, baseline.value),
       top: y(p.value),
     }
@@ -145,7 +150,7 @@ const bars = computed(() =>
         stroke="var(--rz-color-data-axis)"
         stroke-width="2"
       />
-      <text :x="plotX - 20" :y="y(t)" text-anchor="end" class="axis">{{ formatCount(t) }}</text>
+      <text :x="plotX - 20" :y="y(t)" text-anchor="end" class="axis">{{ (props.tickFormat ?? fmt)(t) }}</text>
     </g>
 
     <!-- Bars -->
@@ -176,7 +181,7 @@ const bars = computed(() =>
     />
     <g v-if="props.target != null" class="target-label">
       <text :x="plotX + plotW + LABEL_GAP" :y="labelY - 15" class="target-caption">Target</text>
-      <text :x="plotX + plotW + LABEL_GAP" :y="labelY + 19" class="target-value">{{ formatCount(props.target) }}</text>
+      <text :x="plotX + plotW + LABEL_GAP" :y="labelY + 19" class="target-value">{{ fmt(props.target) }}</text>
     </g>
 
     <!-- Value labels, on top of everything with a surface-colored halo -->

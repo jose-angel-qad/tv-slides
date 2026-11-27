@@ -37,3 +37,22 @@ export function formatKpiCount(n: number, locale = LOCALE): string {
   if (Math.abs(n) < 100_000_000) return formatCount(n, locale)
   return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(n)
 }
+
+// Percentages: one decimal ("84.2%"). Whole percent for axis ticks ("80%").
+export const formatPercent = (n: number, locale = LOCALE) =>
+  new Intl.NumberFormat(locale, { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n / 100)
+export const formatPercentTick = (n: number, locale = LOCALE) =>
+  new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 }).format(n / 100)
+
+// Signed count ("+120", "-260").
+export const formatSigned = (n: number, locale = LOCALE) =>
+  new Intl.NumberFormat(locale, { maximumFractionDigits: 0, signDisplay: 'exceptZero' }).format(n)
+
+// Clock duration for cycle and step times: "4:05" (m:ss) or "1:02:05" (h:mm:ss).
+export function formatClock(seconds: number): string {
+  const s = Math.round(Math.abs(seconds))
+  const h = Math.floor(s / 3600)
+  const m = Math.floor((s % 3600) / 60)
+  const ss = String(s % 60).padStart(2, '0')
+  return h ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`
+}

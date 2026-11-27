@@ -4,6 +4,11 @@ import DocPage from './DocPage.vue'
 
 <template>
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
+    <h2>November 28, 2026: Overnight slides (pending approval)</h2>
+    <ul>
+      <li>Hourly bar chart: new optional <code>format</code> and <code>tickFormat</code> props, so OEE and rates show their unit (84.2%). Counts keep the default.</li>
+    </ul>
+
     <h2>November 28, 2026: Guidelines and figures</h2>
     <ul>
       <li>Added the Guidelines pages (Overview, Accessibility, Information design, Brand expression) in English and Spanish, with a Language switch in the Storybook toolbar.</li>
