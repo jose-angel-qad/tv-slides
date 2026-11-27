@@ -56,3 +56,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: Line chart (Data viz), with story and Docs section. (Bar list and T2 template were committed with Run speed, documented here.)
 - Checklist failures: INFO-17 not applicable to a line; BRAND-09 (new component pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: y axis unit (questions.md).
+
+### Pareto
+- Stories: Positive (few small losses), Negative (8 problems, top 7 shown, long name).
+- Reused: Chart card, Stat tile.
+- Created: T2 List + support template; Bar list (Data viz) first used here.
+- Checklist failures: INFO-04/INFO-05 not applicable (no target, no primary feedback); INFO-17 not applicable; BRAND-09 (new component and template pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: sub-locations and the missing status (questions.md).

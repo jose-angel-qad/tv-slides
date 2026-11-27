@@ -31,3 +31,9 @@ Format per entry:
 - Options: units per hour; units per minute; percent of target speed.
 - Assumption used: units per hour, sampled every 10 minutes, with a target rate line. Stops show as drops to zero.
 - Where it shows: `src/slides/counts/`
+
+## Pareto
+- Question: with sub-locations, show only the top groups or all of them? And should the slide have a primary status when losses have no target?
+- Options: one list of the top 7 for the location; one page per sub-location; a status against a loss budget.
+- Assumption used: one list of the top 7 problems by time lost for the location, with "N more not shown". No status anywhere (INFO-03: no target, stays neutral). Problem type is a text label, not a color.
+- Where it shows: `src/slides/pareto/`

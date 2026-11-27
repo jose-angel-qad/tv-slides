@@ -27,7 +27,8 @@
 .support {
   display: grid;
   grid-auto-rows: 380px;
-  align-content: start;
+  /* Top and bottom edges line up with the main card. */
+  align-content: space-between;
   gap: var(--rz-spacing-md);
 }
 </style>
