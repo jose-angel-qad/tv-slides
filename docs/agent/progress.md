@@ -154,3 +154,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Must show is partial by design (4 columns).
 - Open questions: which columns stay (questions.md).
+
+### Leaderboard
+- Stories: Positive (clear leader), Negative (tie for first), Start of shift (all at 0).
+- Reused: T2 List + support, Chart card, Bar list, Stat tile.
+- Created: none (points key is a Chart card with a list; it replaces the Points legend).
+- Checklist failures: INFO-04/INFO-05 (no target, no primary feedback, by design); INFO-17 not applicable; INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: how points are earned, hourly bars (questions.md).

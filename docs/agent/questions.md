@@ -111,3 +111,8 @@ Format per entry:
 - Options: keep shift OEE, start, average changeover and Victory Points (built); swap in ramp up, power hour, huddles or SKUs per persona; a second page of columns.
 - Assumption used: shift OEE (row hero), start in minutes late, average changeover against a 30 min target, Victory Points (neutral). Ramp up, power hour, huddles, SKUs and the counts sparkline are dropped. Start: on time or early is positive, late is negative.
 - Where it shows: `src/slides/scoreboard/`
+
+## Leaderboard
+- Question: how are points earned each hour (4, 2, 1, 0), and are the hourly bars needed here?
+- Assumption used: 4 above target, 2 on target, 1 close to target, 0 below target (labels to confirm). Hourly bars are dropped; each row says the gap to the leader and the last hour's points. Points are neutral: no status, no trophy, no brand red.
+- Where it shows: `src/slides/leaderboard/`
