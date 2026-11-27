@@ -61,3 +61,9 @@ Format per entry:
 - Options: active = time the asset runs, total = including load and unload; Rejected = the batch failed a check.
 - Assumption used: show only the active average cycle. Rejected is a warning (needs attention but not late); overrun is negative. Each asset has its own planned cycle; the mock uses one shared value.
 - Where it shows: `src/slides/cycles/`
+
+## Run (Fast cycles), Shift (Fast cycles)
+- Question: what do the colored dashes under each bar, the green count badge and "Avg. to target" mean? Should shift units be whole numbers?
+- Options: show them with labels once defined; drop them.
+- Assumption used: dropped. Each asset shows its current (last finished) cycle against the target line; average cycle against target is the KPI. Shift units are whole numbers (INFO-22).
+- Where it shows: `src/slides/run-fast-cycles/`, `src/slides/shift-fast-cycles/`
