@@ -147,3 +147,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Product names wrap to two or three lines in the progress column.
 - Open questions: sign convention, row order (questions.md).
+
+### Scoreboard
+- Stories: Positive (5 locations), Negative (8 locations, below target, metrics with no value yet).
+- Reused: T4 template, Chart card, Location table, Status value.
+- Created: none.
+- Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Must show is partial by design (4 columns).
+- Open questions: which columns stay (questions.md).

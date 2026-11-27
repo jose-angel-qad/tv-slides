@@ -105,3 +105,9 @@ Format per entry:
 - Question: does a negative value mean ahead or behind schedule, and should rows follow the process flow?
 - Assumption used: positive = ahead, negative = behind, always written in words ("14m ahead", "34m behind") so the sign never has to be read. Rows follow the process flow, upstream first; the order is configured, not sorted.
 - Where it shows: `src/slides/up-down-stream/`
+
+## Scoreboard
+- Question: which Scoreboard columns are required? INFO-09 allows 4 metric columns; the current slide has nine.
+- Options: keep shift OEE, start, average changeover and Victory Points (built); swap in ramp up, power hour, huddles or SKUs per persona; a second page of columns.
+- Assumption used: shift OEE (row hero), start in minutes late, average changeover against a 30 min target, Victory Points (neutral). Ramp up, power hour, huddles, SKUs and the counts sparkline are dropped. Start: on time or early is positive, late is negative.
+- Where it shows: `src/slides/scoreboard/`
