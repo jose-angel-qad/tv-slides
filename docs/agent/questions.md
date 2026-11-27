@@ -25,3 +25,9 @@ Format per entry:
 - Options: let the subtitle wrap to two lines (the 380 px tile has no room without shrinking the value); move the product name to a card where it can wrap; allow the ellipsis only in the tile.
 - Assumption used: new slides put the full product name where it can wrap (progress bar label, table cell) and keep the tile subtitle short (SKU, shift, start time). Run throughput is unchanged.
 - Where it shows: Run speed, Run dashboard, Up/Down stream.
+
+## Counts
+- Question: what unit does the vertical axis use, and is there a target rate?
+- Options: units per hour; units per minute; percent of target speed.
+- Assumption used: units per hour, sampled every 10 minutes, with a target rate line. Stops show as drops to zero.
+- Where it shows: `src/slides/counts/`

@@ -6,6 +6,8 @@ import DocPage from './DocPage.vue'
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
     <h2>November 28, 2026: Overnight slides (pending approval)</h2>
     <ul>
+      <li>Added Line chart (Data viz): one metric over time with labeled reference lines. Used by Counts.</li>
+      <li>Added Bar list (Data viz) and the T2 List + support template.</li>
       <li>Added Progress bar (Data display): completed of planned with an optional pace marker. Used by Run speed.</li>
       <li>Hourly bar chart: new optional <code>format</code> and <code>tickFormat</code> props, so OEE and rates show their unit (84.2%). Counts keep the default.</li>
     </ul>

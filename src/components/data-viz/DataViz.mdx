@@ -5,4 +5,22 @@ import * as DataVizStories from './DataViz.stories'
 
 <Story of={DataVizStories.HourlyBarGuide} />
 
+## Line chart
+
+One metric over time, in the same language as the Hourly bar chart. Pending approval.
+
+- One `data/neutral` line (4 px), optional area at 16%. Faint gridlines, about 4 y ticks, x labels on the hour.
+- Reference lines (target, control and spec limits) are dashed `text/secondary`, labeled at the right end with caption and value (INFO-16). Close labels are spread apart.
+- `zeroBased` (default) starts at zero; control charts turn it off. `flagOutside` marks points beyond the outer lines with the negative status icon.
+- Props: `points`, `width`, `height`, `lines`, `format`, `zeroBased`, `showPoints`, `flagOutside`, `area`, `xLabel`, `xEvery`.
+
+## Bar list
+
+Ranked or ordered horizontal bars: Pareto problems, Leaderboard points, top problems, cycle time per asset. Pending approval.
+
+- Row: label (Inter SemiBold 28, wraps, never cut) with an optional detail line, a 32 px bar on one shared scale from zero, and the value outside the bar (Geist SemiBold 32).
+- Bars `data/neutral`. Warning or negative rows color the bar and value with `status/{status}/content` and show the status icon (secondary feedback). In-progress rows are hatched.
+- Optional `target`: one dashed `text/secondary` line across every row; label it in the card legend.
+- Props: `rows` (`id`, `label`, `detail`, `value`, `valueText`, `status`, `inProgress`), `max`, `target`, `labelWidth`.
+
 <Stories />

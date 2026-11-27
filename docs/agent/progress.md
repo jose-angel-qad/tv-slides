@@ -49,3 +49,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: Progress bar (Data display), with story and Docs page.
 - Checklist failures: BRAND-09 (new component pending approval); INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: product name placement (questions.md, KPI tile). The race track and car are dropped.
+
+### Counts
+- Stories: Positive, Negative (stopped now).
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card, Chart legend item.
+- Created: Line chart (Data viz), with story and Docs section. (Bar list and T2 template were committed with Run speed, documented here.)
+- Checklist failures: INFO-17 not applicable to a line; BRAND-09 (new component pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: y axis unit (questions.md).
