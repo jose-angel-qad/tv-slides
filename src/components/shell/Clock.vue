@@ -31,6 +31,8 @@ const time = computed(() => formatTime(props.now))
 .time {
   font: var(--rz-tv-type-clock-time);
   letter-spacing: var(--rz-tv-tracking-clock-time);
+  /* Tabular: the time changes every minute on screen, so digits keep their width (A11Y-05). */
+  font-variant-numeric: var(--rz-tv-figures-clock-time);
   color: var(--rz-color-text-primary);
 }
 </style>

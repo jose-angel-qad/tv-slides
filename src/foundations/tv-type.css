@@ -5,7 +5,11 @@
  *
  * Global layer: sizes, line heights and tracking. Use them only to define text styles.
  * Semantic layer: one text style per role, --rz-tv-type-{role}, written as a `font` shorthand.
- * Figures are proportional (the font default): values change only when the slide changes.
+ * Figures are proportional by default (Guidelines A11Y-04): values change only when the slide changes.
+ * Tabular figures in two cases (A11Y-05), set with `font-variant-numeric: var(--rz-tv-figures-{role})`:
+ *   - the clock, which changes every minute while it is on screen;
+ *   - numbers in table columns that people compare top to bottom (Scoreboard, Shift Dashboard).
+ *     Any future table component uses --rz-tv-figures-table on its numeric cells.
  * Tracked styles set `letter-spacing` from --rz-tv-tracking-{role}.
  * Rule: line height >= font size.
  */
@@ -30,6 +34,14 @@
   --rz-tv-letter-spacing-tight: -0.02em;
   --rz-tv-letter-spacing-snug: -0.01em;
   --rz-tv-letter-spacing-none: 0em;
+
+  /* Figures */
+  --rz-tv-figures-proportional: proportional-nums;
+  --rz-tv-figures-tabular: tabular-nums;
+
+  /* Figures by role: tabular only where digits change on screen or line up in columns. */
+  --rz-tv-figures-clock-time: var(--rz-tv-figures-tabular);
+  --rz-tv-figures-table: var(--rz-tv-figures-tabular);
 
   /* KPI values (display). Proportional figures: they change only with the slide. */
   --rz-tv-type-kpi-primary-value: var(--rz-font-weight-bold) var(--rz-tv-font-size-2xl) / var(--rz-tv-line-height-2xl) var(--rz-font-family-display);

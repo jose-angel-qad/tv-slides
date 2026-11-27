@@ -4,6 +4,14 @@ import DocPage from './DocPage.vue'
 
 <template>
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
+    <h2>November 28, 2026: Guidelines and figures</h2>
+    <ul>
+      <li>Added the Guidelines pages (Overview, Accessibility, Information design, Brand expression) in English and Spanish, with a Language switch in the Storybook toolbar.</li>
+      <li>Added <code>--rz-tv-figures-proportional</code> and <code>--rz-tv-figures-tabular</code>, and the roles <code>--rz-tv-figures-clock-time</code> and <code>--rz-tv-figures-table</code>.</li>
+      <li>Clock time now uses tabular figures (A11Y-05). Every other style stays proportional. Future tables use tabular figures on numeric columns.</li>
+      <li>Added Noto Sans script fallbacks to the Geist and Inter font stacks.</li>
+    </ul>
+
     <h2>November 27, 2026: Type variables and text styles</h2>
     <ul>
       <li>Added the Figma variable collection <strong>TV type</strong>: <code>font/family/{display, text}</code>, <code>font/weight/{regular, medium, semibold, bold}</code>, <code>font/size/{sm, md, lg, xl, 2xl}</code> (28, 32, 44, 104, 136) and <code>font/line-height/{2xs, xs, sm, md, lg, xl, 2xl}</code> (34, 36, 40, 48, 52, 104, 136). Code mirrors them as <code>--rz-tv-font-size-*</code> and <code>--rz-tv-line-height-*</code>.</li>
