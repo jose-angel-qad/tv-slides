@@ -138,3 +138,9 @@ Format per entry:
 - Options: PM = preventive maintenance due, WO = open work orders, CL = checklist items open, OD = overdue tasks (assumed).
 - Assumption used: those meanings, spelled out in the headers, with assumed limits (PM 5, WO 10, CL 50, OD 1). At or above the limit is negative with its icon; below stays neutral. Five columns break INFO-09 (4 metric columns); dropping one count is an option.
 - Where it shows: `src/slides/maintenance-status/`
+
+## SPC dashboard (proposal)
+- Question: what does the slide show when it has data, one chart or a list of characteristics?
+- Options: a list of characteristics with their control status (built); one X-bar chart per location; the X-Bar R slide per characteristic.
+- Assumption used: a list, one row per characteristic, with control status (hero), latest value, control limits and Cpk against 1.33. The charts live on X-Bar R.
+- Where it shows: `src/slides/spc-dashboard/`

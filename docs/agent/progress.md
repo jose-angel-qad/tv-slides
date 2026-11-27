@@ -189,3 +189,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-09 (five columns); INFO-24 (abbreviations spelled out with assumed meanings); INFO-04/INFO-05 (no single main KPI); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: PM, WO, CL, OD and their limits (questions.md).
+
+### SPC dashboard (proposal, definition pending)
+- Stories: Positive (all in control), Negative (two out of control, Cpk below target, long name).
+- Reused: T4 template, Chart card, Location table, Status value.
+- Created: none (the "SPC statistics list" is a Location table composition).
+- Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: one chart or a list (questions.md).
