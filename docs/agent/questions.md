@@ -116,3 +116,8 @@ Format per entry:
 - Question: how are points earned each hour (4, 2, 1, 0), and are the hourly bars needed here?
 - Assumption used: 4 above target, 2 on target, 1 close to target, 0 below target (labels to confirm). Hourly bars are dropped; each row says the gap to the leader and the last hour's points. Points are neutral: no status, no trophy, no brand red.
 - Where it shows: `src/slides/leaderboard/`
+
+## News
+- Question: which item types exist, how long do items stay, and how many per page?
+- Assumption used: alert (warning icon), chat and high five (outlined icons); items from the last 24 hours; 4 per page, newest first, pages instead of a ticker.
+- Where it shows: `src/slides/news/`

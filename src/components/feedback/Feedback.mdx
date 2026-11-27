@@ -1,0 +1,16 @@
+import { Meta, Stories } from '@storybook/addon-docs/blocks'
+import * as FeedbackStories from './Feedback.stories'
+
+<Meta of={FeedbackStories} />
+
+# Feedback
+
+## Empty state message
+
+One wording and position for every slide with no data yet. Pending approval.
+
+- Centered in its container: outlined icon 64 px in `text/secondary`, a plain sentence in the card title role (Geist Medium 32), an optional detail line in body (Inter 28).
+- Empty is not zero (INFO-20). Use it only when there is no data, never for a zero value.
+- Props: `title`, `detail`, `icon` (default `inbox`).
+
+<Stories />

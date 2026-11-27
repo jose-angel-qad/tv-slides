@@ -161,3 +161,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none (points key is a Chart card with a list; it replaces the Points legend).
 - Checklist failures: INFO-04/INFO-05 (no target, no primary feedback, by design); INFO-17 not applicable; INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: how points are earned, hourly bars (questions.md).
+
+### News
+- Stories: Positive (one page of four items), Negative (no news yet).
+- Reused: T4 template, Chart card, Status icon.
+- Created: News item (Content), Empty state message (Feedback), six content icons in Material icon.
+- Checklist failures: BRAND-09 (new components pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-18, A11Y-19 not tested.
+- Open questions: item types and their icons (questions.md).

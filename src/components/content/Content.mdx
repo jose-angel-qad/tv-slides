@@ -1,0 +1,18 @@
+import { Meta, Stories } from '@storybook/addon-docs/blocks'
+import * as ContentStories from './Content.stories'
+
+<Meta of={ContentStories} />
+
+# Content
+
+Components for the Other slides (News, Company Update, Welcome). These screens may carry more brand (BRAND-03).
+
+## News item
+
+One alert, chat or high five. Pending approval.
+
+- 72 px tile on `surface/raised` with the type icon: alerts use the warning status icon, chats and high fives outlined content icons in `text/secondary`.
+- Meta line in body (Inter 28, `text/secondary`): type in words, author, time. Text in Inter SemiBold 32, wraps, never cut or scrolled (A11Y-15).
+- Props: `type` (`alert`, `chat`, `high-five`), `time`, `author`, `text`.
+
+<Stories />
