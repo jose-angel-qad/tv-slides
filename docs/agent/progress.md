@@ -140,3 +140,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Changed: Progress bar (label takes the free width before wrapping).
 - Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Product names wrap to two or three lines; with 8 long names the page would need fewer rows.
 - Open questions: quality circle and badge (questions.md).
+
+### Up/Down stream
+- Stories: Positive (ahead or on time), Negative (behind, a stopped line without ETA, long names).
+- Reused: T4 template, Chart card, Location table, Status value, Progress bar.
+- Created: none.
+- Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Product names wrap to two or three lines in the progress column.
+- Open questions: sign convention, row order (questions.md).

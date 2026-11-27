@@ -100,3 +100,8 @@ Format per entry:
 - Options: first-pass quality percent; count of rejected units; open quality checks.
 - Assumption used: first-pass quality percent with its status against a 98% target. The count badge is not shown.
 - Where it shows: `src/slides/run-dashboard/`
+
+## Up/Down stream
+- Question: does a negative value mean ahead or behind schedule, and should rows follow the process flow?
+- Assumption used: positive = ahead, negative = behind, always written in words ("14m ahead", "34m behind") so the sign never has to be read. Rows follow the process flow, upstream first; the order is configured, not sorted.
+- Where it shows: `src/slides/up-down-stream/`
