@@ -12,13 +12,16 @@ import { applyTokens, syncEditor } from './color-editor'
 import type { Mode } from '../src/foundations/tokens'
 import { storyGlobals } from '../src/components/_story/storyGlobals'
 import type { FooterTone } from '../src/components/shell/footer'
+import { DEFAULT_LANG, type LangCode } from '../src/stories/docs/Lang'
 
 applyTokens()
 
 // Docs pages follow the Theme toolbar too. MDX pages without stories never run the decorator,
 // so the theme is set on <html> from the globals events (docs-theme.css styles the docs chrome).
+// The Language global works the same way: <Lang> in MDX reads <html data-lang>.
 const setDocsTheme = (globals?: Record<string, unknown>) => {
   document.documentElement.dataset.theme = (globals?.theme as Mode | undefined) ?? 'dark'
+  document.documentElement.dataset.lang = (globals?.lang as LangCode | undefined) ?? DEFAULT_LANG
 }
 setDocsTheme()
 const channel = addons.getChannel()
@@ -63,6 +66,18 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    lang: {
+      description: 'Docs language',
+      toolbar: {
+        title: 'Language',
+        icon: 'globe',
+        items: [
+          { value: 'en', title: 'English' },
+          { value: 'es', title: 'Español' },
+        ],
+        dynamicTitle: true,
+      },
+    },
     colorEditor: {
       description: 'Color editor',
       toolbar: {
@@ -101,7 +116,7 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: 'dark', colorEditor: 'off', footerTone: 'default', safeArea: 'off' },
+  initialGlobals: { theme: 'dark', lang: DEFAULT_LANG, colorEditor: 'off', footerTone: 'default', safeArea: 'off' },
   decorators: [
     // Globals (theme, safe area) live in module-level refs so a toolbar change updates the
     // mounted story. Storybook re-runs the decorator on a globals change but keeps the Vue app,

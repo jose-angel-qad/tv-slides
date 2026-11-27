@@ -13,9 +13,16 @@
    *   text (Inter): what people read. Context lines, status text, axis labels, legend, footer.
    * Line height is always >= the font size (no cap-height trimming).
    * --rz-font-family is the body default and stays as an alias of the text family.
+   * Script fallbacks (Guidelines, Accessibility A11Y-16): Noto Sans for the 9 languages that Geist
+   * and Inter do not cover. They sit before system-ui and sans-serif, because a generic family
+   * matches first and would hide them. The font packages are not installed yet.
    */
-  --rz-font-family-text: 'Inter Variable', 'Inter', system-ui, sans-serif;
-  --rz-font-family-display: 'Geist Variable', 'Geist', 'Inter Variable', system-ui, sans-serif;
+  --rz-font-fallback-scripts: 'Noto Sans Arabic', 'Noto Sans Devanagari', 'Noto Sans Gujarati',
+    'Noto Sans Malayalam', 'Noto Sans Tamil', 'Noto Sans Myanmar', 'Noto Sans Thai', 'Noto Sans JP',
+    'Noto Sans SC';
+  --rz-font-family-text: 'Inter Variable', 'Inter', var(--rz-font-fallback-scripts), system-ui, sans-serif;
+  --rz-font-family-display: 'Geist Variable', 'Geist', 'Inter Variable', var(--rz-font-fallback-scripts),
+    system-ui, sans-serif;
   --rz-font-family: var(--rz-font-family-text);
 
   /* Brand. Logo only; never used on data. */

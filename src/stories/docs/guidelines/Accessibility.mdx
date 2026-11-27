@@ -1,59 +1,274 @@
 import { Meta } from '@storybook/addon-docs/blocks'
+import { Lang } from '../Lang'
+import checkCircleFill from '@material-symbols/svg-600/outlined/check_circle-fill.svg?raw'
+import warningFill from '@material-symbols/svg-600/outlined/warning-fill.svg?raw'
+import dangerousFill from '@material-symbols/svg-600/outlined/dangerous-fill.svg?raw'
+import remove from '@material-symbols/svg-600/outlined/remove.svg?raw'
 
 <Meta title="Guidelines/Accessibility" />
 
+export const Glyph = ({ svg, color }) => (
+  <span
+    style={{ display: 'inline-flex', width: 36, height: 36, color }}
+    dangerouslySetInnerHTML={{
+      __html: svg
+        .replace(/width="\d+"/, 'width="36"')
+        .replace(/height="\d+"/, 'height="36"')
+        .replace('<svg ', '<svg fill="currentColor" aria-hidden="true" '),
+    }}
+  />
+)
+
+<Lang en>
+
 # Accessibility
 
-Slides are read from far away, by everyone, on screens that never turn off. The minimum is WCAG 2.1 AA, with higher contrast for key values.
+Slides are read from far away, by everyone, on screens that stay on all day, in 30 languages. Our minimum is WCAG 2.1 AA, with extra contrast for key values.
+
+**The essentials**
+
+- Text must be big enough for the person farthest from the screen.
+- Use each color token for its intended job. Foundations already guarantees the contrast.
+- Never use color alone. Every status has its own icon.
 
 ## Legibility at distance
 
-| ID | Rule |
-| --- | --- |
-| A11Y-01 | Size for the farthest viewer, measured as cap height on the physical screen: text at least distance (ft) / 25, key values at least distance (ft) / 10. |
-| A11Y-02 | Never below 24 px on the 1920 x 1080 canvas. Use the type scale roles; they already meet this floor. |
-| A11Y-03 | Regular weight or heavier. Proportional figures: values change only when the slide changes, never live, and proportional figures use space better. |
+What matters is how big the letters look from where people stand. We measure the height of a capital letter, like "H", on the physical screen.
 
-Reference viewing distances and screen sizes are provisional until they are validated on real TVs in plants.
+| Rule | ID |
+| --- | --- |
+| For every 25 feet of distance, capital letters in text must be at least 1 inch tall on the screen. Key values need 1 inch for every 10 feet. | `A11Y-01` |
+| Never go below 24 px on the 1920 x 1080 canvas. | `A11Y-02` |
+| Use Regular weight or heavier. Thin weights disappear at a distance. | `A11Y-03` |
+
+| Viewing distance | Text, capital height | Key values, capital height |
+| --- | --- | --- |
+| 10 ft (3 m) | 0.4 in (1 cm) | 1 in (2.5 cm) |
+| 20 ft (6 m) | 0.8 in (2 cm) | 2 in (5 cm) |
+| 30 ft (9 m) | 1.2 in (3 cm) | 3 in (7.6 cm) |
+
+The roles in the type scale are sized for this. Distances and screen sizes in plants are still being confirmed on real TVs.
+
+## Numbers
+
+Slides refresh when they come back in the rotation, not while they are on screen, so digits do not jump. That lets us use proportional figures, which look better at large sizes.
+
+| Rule | ID |
+| --- | --- |
+| Use proportional figures by default. | `A11Y-04` |
+| Use tabular figures in two cases: the clock in the header, which changes every minute, and columns of numbers that people compare from top to bottom, like in Scoreboard or Shift Dashboard. | `A11Y-05` |
 
 ## Contrast
 
-| ID | Rule |
-| --- | --- |
-| A11Y-04 | Text 4.5:1. Key values 7:1. Bars, lines, icons, and the target line 3:1. Check both modes. |
-| A11Y-05 | No white text on saturated status fills. Use the matching on-fill token. |
-| A11Y-06 | No pure black or pure white surfaces. Use Foundations surfaces only. |
+Contrast is measured in Foundations, for every color token. If you use each token for its intended job, the contrast is already correct and you do not need to measure each slide.
 
-The color editor in the Storybook toolbar shows live contrast for every token pair.
+| Rule | ID |
+| --- | --- |
+| Use each color token for its intended job: text tokens on surfaces, and on-fill tokens only on top of their fill. | `A11Y-06` |
+| Foundations targets: 4.5:1 for text, 7:1 for key values, and 3:1 for bars, lines, icons, and the target line, in Light and Dark. | `A11Y-07` |
+| No white text on saturated status fills. Use the matching on-fill token. | `A11Y-08` |
+| No pure black or pure white surfaces. They cause glare on TVs. | `A11Y-09` |
+
+To check a token pair, use the color editor in the Storybook toolbar, or run `npm run tokens:check`.
 
 ## Color vision
 
-| ID | Rule |
-| --- | --- |
-| A11Y-07 | Color is never the only signal. Every status pairs color with its icon shape, plus a label when it fits. |
-| A11Y-08 | Status is not trend. Up and down arrows never use status colors. |
-| A11Y-09 | Check every slide in grayscale and with protanopia, deuteranopia, and tritanopia simulation (Chrome DevTools, Rendering, Emulate vision deficiencies). |
+About 1 in 12 men has some form of color blindness. A status that only changes color is invisible to them.
 
-| Status | Color | Icon |
-| --- | --- | --- |
-| Positive (at or above target) | Positive | Circle |
-| Warning (at risk) | Warning | Triangle |
-| Negative (below target or stopped) | Negative | Octagon |
-| Neutral (no target or no data) | Neutral | Dash |
+| Rule | ID |
+| --- | --- |
+| Color is never the only signal. Every status has its own icon shape, and a label when it fits. | `A11Y-10` |
+| Status icons come from Material Symbols: Outlined style, weight 600, filled. Navigation icons use the same style without fill. | `A11Y-11` |
+| Check every slide in grayscale and with color blindness simulation (Chrome DevTools, Rendering, Emulate vision deficiencies). | `A11Y-12` |
+
+| Icon | Status | When | Material Symbol | Settings |
+| --- | --- | --- | --- | --- |
+| <Glyph svg={checkCircleFill} color="var(--rz-color-status-positive-content)" /> | Positive | At or above target | `check_circle` | Fill on, weight 600, 36 px |
+| <Glyph svg={warningFill} color="var(--rz-color-status-warning-content)" /> | Warning | At risk | `warning` | Fill on, weight 600, 36 px |
+| <Glyph svg={dangerousFill} color="var(--rz-color-status-negative-content)" /> | Negative | Below target or stopped | `dangerous` | Fill on, weight 600, 36 px |
+| <Glyph svg={remove} color="var(--rz-color-text-secondary)" /> | Neutral | No target or no data | `remove` | Weight 600, 36 px |
+
+Sizes are in px on the 1920 x 1080 canvas. TV does not use dp. 36 px is the default; components can use a larger size.
 
 ## Motion
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| A11Y-10 | Nothing flashes or loops. |
-| A11Y-11 | Respect the device reduced motion setting: replace movement with an instant change or a crossfade. |
-| A11Y-12 | No auto-scrolling text people need to read. Use pages instead of a ticker. |
+| Nothing flashes or loops. | `A11Y-13` |
+| Respect the reduced motion setting of the device: replace movement with an instant change or a crossfade. | `A11Y-14` |
+| No text that scrolls on its own. If content does not fit, use pages. | `A11Y-15` |
+
+## Languages and scripts
+
+Redzone runs in 30 languages, including Arabic, which reads right to left, and several scripts that Geist and Inter do not include.
+
+| Rule | ID |
+| --- | --- |
+| Use the font stack from Foundations. It switches to the fallback font for languages that Geist and Inter do not cover. | `A11Y-16` |
+| Never fix the height of a text box. Thai, Burmese, Tamil, Malayalam, Hindi, and Gujarati have tall letters that get cut off. | `A11Y-17` |
+| Arabic mirrors the layout: alignment, reading order, previous and next buttons, and progress bars. Numbers, status icons, and logos do not mirror. | `A11Y-18` |
+| Short labels can double in length in some languages. Use flexible widths and wrap to two lines before cutting text. | `A11Y-19` |
+| No all-caps text. Many scripts have no capital letters, and some languages change letters when capitalized. | `A11Y-20` |
+
+**Covered by Geist and Inter (21 languages):** Czech, Dutch, English, French, German, Haitian Creole, Hungarian, Indonesian, Italian, Latvian, Lithuanian, Malay, Polish, Portuguese, Russian, Serbian, Slovak, Spanish, Turkish, Ukrainian, and Vietnamese.
+
+**Need a fallback font (9 languages):**
+
+| Language | Script | Fallback font |
+| --- | --- | --- |
+| Arabic | Arabic, right to left | Noto Sans Arabic |
+| Hindi | Devanagari | Noto Sans Devanagari |
+| Gujarati | Gujarati | Noto Sans Gujarati |
+| Malayalam | Malayalam | Noto Sans Malayalam |
+| Tamil | Tamil | Noto Sans Tamil |
+| Burmese | Myanmar | Noto Sans Myanmar |
+| Thai | Thai | Noto Sans Thai |
+| Japanese | Kanji and kana | Noto Sans JP |
+| Chinese | Simplified Chinese | Noto Sans SC |
+
+Noto Sans is free, comes in the weights we use, and was designed to sit well next to Latin fonts.
+
+**Pending decisions**
+
+- Which digits Arabic uses: Western (0 to 9) or Arabic-Indic.
+- Whether time charts flow right to left in Arabic. To review with an Arabic reader.
 
 ## Checklist
 
-- [ ] Text, key values, and chart marks meet their contrast ratio in Light and Dark.
-- [ ] No text is below 24 px, and no weight is lighter than Regular.
-- [ ] Every status has an icon shape, not only a color.
+- [ ] Text is readable from the farthest viewing point, and nothing is below 24 px.
+- [ ] Numbers are proportional, except the clock and columns compared top to bottom.
+- [ ] Every color token is used for its intended job.
+- [ ] Every status has its icon, not only a color.
 - [ ] The slide still reads in grayscale and with color blindness simulation.
-- [ ] No white text on a saturated fill, and no pure black or white surface.
 - [ ] Nothing flashes, loops, or scrolls on its own, and reduced motion works.
+- [ ] Text boxes grow with their content, and nothing is in all caps.
+- [ ] The slide works in Arabic, in the longest language, and in a tall script.
+
+</Lang>
+
+<Lang es>
+
+# Accessibility
+
+Los slides se leen de lejos, los ve todo el mundo, en pantallas encendidas todo el día y en 30 idiomas. Nuestro mínimo es WCAG 2.1 AA, con contraste adicional para los valores clave.
+
+**Lo esencial**
+
+- El texto debe ser lo bastante grande para la persona más lejana a la pantalla.
+- Usa cada token de color para su función. Foundations ya garantiza el contraste.
+- Nunca uses solo el color. Cada estado tiene su propio ícono.
+
+## Legibilidad a distancia
+
+Lo que importa es qué tan grandes se ven las letras desde donde está la gente. Medimos la altura de una letra mayúscula, como la "H", en la pantalla física.
+
+| Regla | ID |
+| --- | --- |
+| Por cada 25 pies de distancia, las mayúsculas del texto deben medir al menos 1 pulgada en la pantalla. Los valores clave necesitan 1 pulgada por cada 10 pies. | `A11Y-01` |
+| Nunca menos de 24 px en el lienzo de 1920 x 1080. | `A11Y-02` |
+| Usa peso Regular o más grueso. Los pesos delgados desaparecen a distancia. | `A11Y-03` |
+
+| Distancia de lectura | Texto, altura de mayúscula | Valores clave, altura de mayúscula |
+| --- | --- | --- |
+| 10 pies (3 m) | 0.4 in (1 cm) | 1 in (2.5 cm) |
+| 20 pies (6 m) | 0.8 in (2 cm) | 2 in (5 cm) |
+| 30 pies (9 m) | 1.2 in (3 cm) | 3 in (7.6 cm) |
+
+Los roles de la escala tipográfica ya están dimensionados para esto. Las distancias y tamaños de pantalla en planta aún se están confirmando en TVs reales.
+
+## Números
+
+Los slides se actualizan cuando vuelven a aparecer en la rotación, no mientras están en pantalla, así que los dígitos no brincan. Eso nos permite usar números proporcionales, que se ven mejor en tamaños grandes.
+
+| Regla | ID |
+| --- | --- |
+| Usa números proporcionales por defecto. | `A11Y-04` |
+| Usa números tabulares en dos casos: el reloj del header, que cambia cada minuto, y las columnas de números que se comparan de arriba a abajo, como en Scoreboard o Shift Dashboard. | `A11Y-05` |
+
+## Contraste
+
+El contraste se mide en Foundations, para cada token de color. Si usas cada token para su función, el contraste ya es correcto y no necesitas medir cada slide.
+
+| Regla | ID |
+| --- | --- |
+| Usa cada token de color para su función: los tokens de texto sobre superficies, y los tokens on-fill solo encima de su fill. | `A11Y-06` |
+| Metas de Foundations: 4.5:1 para texto, 7:1 para valores clave y 3:1 para barras, líneas, íconos y la línea de objetivo, en Light y Dark. | `A11Y-07` |
+| Nada de texto blanco sobre rellenos de estado saturados. Usa el token on-fill correspondiente. | `A11Y-08` |
+| Nada de superficies negro puro o blanco puro. Generan deslumbramiento en las TVs. | `A11Y-09` |
+
+Para revisar un par de tokens, usa el editor de color de la barra de Storybook o ejecuta `npm run tokens:check`.
+
+## Visión del color
+
+Cerca de 1 de cada 12 hombres tiene algún tipo de daltonismo. Para ellos, un estado que solo cambia de color es invisible.
+
+| Regla | ID |
+| --- | --- |
+| El color nunca es la única señal. Cada estado tiene su propia forma de ícono, y una etiqueta cuando cabe. | `A11Y-10` |
+| Los íconos de estado vienen de Material Symbols: estilo Outlined, peso 600, rellenos. Los íconos de navegación usan el mismo estilo sin relleno. | `A11Y-11` |
+| Revisa cada slide en escala de grises y con simulación de daltonismo (Chrome DevTools, Rendering, Emulate vision deficiencies). | `A11Y-12` |
+
+| Ícono | Estado | Cuándo | Material Symbol | Configuración |
+| --- | --- | --- | --- | --- |
+| <Glyph svg={checkCircleFill} color="var(--rz-color-status-positive-content)" /> | Positive | En el objetivo o arriba | `check_circle` | Relleno, peso 600, 36 px |
+| <Glyph svg={warningFill} color="var(--rz-color-status-warning-content)" /> | Warning | En riesgo | `warning` | Relleno, peso 600, 36 px |
+| <Glyph svg={dangerousFill} color="var(--rz-color-status-negative-content)" /> | Negative | Debajo del objetivo o detenido | `dangerous` | Relleno, peso 600, 36 px |
+| <Glyph svg={remove} color="var(--rz-color-text-secondary)" /> | Neutral | Sin objetivo o sin datos | `remove` | Peso 600, 36 px |
+
+Los tamaños están en px sobre el lienzo de 1920 x 1080. En TV no se usan dp. 36 px es el tamaño por defecto; los componentes pueden usar uno mayor.
+
+## Movimiento
+
+| Regla | ID |
+| --- | --- |
+| Nada parpadea ni se repite en bucle. | `A11Y-13` |
+| Respeta la configuración de movimiento reducido del dispositivo: reemplaza el movimiento por un cambio instantáneo o un fundido. | `A11Y-14` |
+| Nada de texto que se desplace solo. Si el contenido no cabe, usa páginas. | `A11Y-15` |
+
+## Idiomas y escrituras
+
+Redzone funciona en 30 idiomas, incluido el árabe, que se lee de derecha a izquierda, y varias escrituras que Geist e Inter no incluyen.
+
+| Regla | ID |
+| --- | --- |
+| Usa la pila de fuentes de Foundations. Cambia a la fuente de respaldo en los idiomas que Geist e Inter no cubren. | `A11Y-16` |
+| Nunca fijes la altura de una caja de texto. Tailandés, birmano, tamil, malayalam, hindi y gujarati tienen letras altas que se cortan. | `A11Y-17` |
+| El árabe espeja el layout: alineación, orden de lectura, botones de anterior y siguiente, y barras de progreso. Los números, los íconos de estado y los logos no se espejan. | `A11Y-18` |
+| En algunos idiomas las etiquetas cortas pueden duplicar su largo. Usa anchos flexibles y salta a dos líneas antes de cortar texto. | `A11Y-19` |
+| Nada de texto en mayúsculas. Muchas escrituras no tienen mayúsculas, y algunos idiomas cambian letras al pasarlas a mayúscula. | `A11Y-20` |
+
+**Cubiertos por Geist e Inter (21 idiomas):** alemán, checo, criollo haitiano, eslovaco, español, francés, húngaro, indonesio, inglés, italiano, letón, lituano, malayo, neerlandés, polaco, portugués, ruso, serbio, turco, ucraniano y vietnamita.
+
+**Necesitan fuente de respaldo (9 idiomas):**
+
+| Idioma | Escritura | Fuente de respaldo |
+| --- | --- | --- |
+| Árabe | Árabe, de derecha a izquierda | Noto Sans Arabic |
+| Hindi | Devanagari | Noto Sans Devanagari |
+| Gujarati | Gujarati | Noto Sans Gujarati |
+| Malayalam | Malayalam | Noto Sans Malayalam |
+| Tamil | Tamil | Noto Sans Tamil |
+| Birmano | Myanmar | Noto Sans Myanmar |
+| Tailandés | Tailandés | Noto Sans Thai |
+| Japonés | Kanji y kana | Noto Sans JP |
+| Chino | Chino simplificado | Noto Sans SC |
+
+Noto Sans es gratuita, tiene los pesos que usamos y fue diseñada para convivir bien con fuentes latinas.
+
+**Decisiones pendientes**
+
+- Qué dígitos usa el árabe: occidentales (0 a 9) o arábigo-índicos.
+- Si las gráficas de tiempo van de derecha a izquierda en árabe. A revisar con alguien que lea árabe.
+
+## Checklist
+
+- [ ] El texto se lee desde el punto más lejano, y nada mide menos de 24 px.
+- [ ] Los números son proporcionales, salvo el reloj y las columnas que se comparan de arriba a abajo.
+- [ ] Cada token de color se usa para su función.
+- [ ] Cada estado tiene su ícono, no solo un color.
+- [ ] El slide se sigue leyendo en escala de grises y con simulación de daltonismo.
+- [ ] Nada parpadea, se repite ni se desplaza solo, y el movimiento reducido funciona.
+- [ ] Las cajas de texto crecen con su contenido, y nada está en mayúsculas.
+- [ ] El slide funciona en árabe, en el idioma más largo y en una escritura alta.
+
+</Lang>

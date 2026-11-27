@@ -1,77 +1,216 @@
 import { Meta } from '@storybook/addon-docs/blocks'
+import { Lang } from '../Lang'
 
 <Meta title="Guidelines/Information design" />
 
+<Lang en>
+
 # Information design
 
-Each slide answers one question, and a person walking by gets the answer in under 5 seconds.
+Information design is how we decide what a slide shows, what stands out, and what stays quiet. The goal: a person walking by gets the answer in under 5 seconds.
 
-## One question
+**The essentials**
 
-| ID | Rule |
+- Every slide answers one question. The answer is the most prominent element on screen.
+- Only one status stands out per slide: the status of the main KPI.
+- If something does not help answer the question, remove it.
+
+## One question per slide
+
+| Rule | ID |
 | --- | --- |
-| INFO-01 | Start from the slide's key question on its spec page in **Slides**. |
-| INFO-02 | The answer is the largest element on screen. |
-| INFO-03 | Every key value shows its status and its gap to target, for example 92.8% OEE, 2.8 pts above target. |
+| Start from the slide's key question, on its page in **Slides**. | `INFO-01` |
+| The answer is the most prominent element on screen. | `INFO-02` |
+
+## Status and feedback
+
+Status tells people whether a value is good, at risk, or bad. Used everywhere, it becomes noise, so we use it with two levels of emphasis.
+
+| Rule | ID |
+| --- | --- |
+| A value with a target shows its status. A value without a target stays neutral. | `INFO-03` |
+| Show the gap to target (for example, 2.8 pts above target) only on the main KPI, and only when it helps people decide what to do. | `INFO-04` |
+| Use two levels of feedback. Primary feedback is the status of the main KPI: there is only one per slide, and it stands out the most. Secondary feedback is every other status: it stays smaller and quieter. This applies to new slides and new charts too. | `INFO-05` |
+| Status color goes only where attention is needed. Base data stays neutral. | `INFO-06` |
+
+| Level | What it is | How it looks | Components today |
+| --- | --- | --- | --- |
+| Primary | The status of the main KPI, which answers the slide's question | Filled band, large, one per slide | Status band, KPI tile large |
+| Secondary | Any other status: supporting KPIs, rows, chart bars | Icon and text, no fill, smaller | Status icon, Status line, status bars in charts |
 
 ## Hierarchy
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| INFO-04 | Same anatomy on every slide: header (title, context, freshness, navigation), hero (the answer), support, and footer (brand). |
-| INFO-05 | Single location: one hero plus up to three supporting facts. |
-| INFO-06 | Multiple location: up to 8 rows and 4 metric columns per page. Paginate; never shrink to fit. |
-| INFO-07 | Up to three text sizes per slide. |
-| INFO-08 | Keep row order stable so people find their line in the same place. Only the Leaderboard re-sorts. |
+| Every slide has the same parts: header (title, context, and navigation), hero (the answer), support, and footer (brand). | `INFO-07` |
+| One hero per slide. Everything else supports it and is clearly less prominent. The slide template defines how many supporting elements fit. | `INFO-08` |
+| Multiple location slides: up to 8 rows and 4 metric columns per page. If there is more, add pages. Never shrink to fit. | `INFO-09` |
+| Use only the roles in the Foundations type scale. They are already tested at distance. Do not create new sizes. | `INFO-10` |
+| Keep the row order stable so people find their line in the same place. Only the Leaderboard re-sorts. | `INFO-11` |
+| When space runs out, remove supporting content first. Never shrink text below its role. | `INFO-12` |
 
-## What to highlight
-
-| ID | Rule |
-| --- | --- |
-| INFO-09 | Status color only where it needs attention. Base data stays neutral. |
-| INFO-10 | When space runs out, remove support content first. Never reduce size below the minimum. |
-
-| Highlight | Keep quiet |
+| Make it stand out | Keep it quiet |
 | --- | --- |
 | The answer to the question | Labels and units |
 | Values below target | Values on target, when many are shown |
-| What changed or needs action | Context that never changes |
+| What changed or needs action | Context that rarely changes |
 
 ## Charts
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| INFO-11 | Show a number first. Use a chart only when its shape answers the question faster. |
-| INFO-12 | One neutral data color plus status colors. No pies, donuts, or gauges. |
-| INFO-13 | Label the target line with its value. Keep value labels off it. |
-| INFO-14 | Mark the current hour as in progress, so a partial bar does not read as a failure. |
-| INFO-15 | Label data directly. Few ticks, large labels. Bars start at zero. |
+| Show a number first. Add a chart only when its shape answers the question faster than the number. | `INFO-13` |
+| One neutral color for data, plus status colors. | `INFO-14` |
+| Prefer bars and lines. Use a pie, donut, or gauge only to show a part of a whole with 2 or 3 parts, or progress toward a single goal. Always show the number and label the parts directly. | `INFO-15` |
+| Label the target line with its value. Keep value labels off the line. | `INFO-16` |
+| Mark the current hour as in progress, so a partial bar does not look like a bad hour. | `INFO-17` |
+| Label data directly. Use few axis ticks with large labels. Bars start at zero. | `INFO-18` |
+
+**Why bars over pies, donuts, and gauges?** People compare lengths much more accurately than angles or areas. From across the floor, small slices and thin arcs disappear. And these charts usually need a color legend, which fails people with color blindness. That is why we limit them instead of banning them.
 
 ## Data states
 
-| ID | Rule |
+Slide data refreshes every time the slide appears in the rotation. It is current, but not real time.
+
+| Rule | ID |
 | --- | --- |
-| INFO-16 | Design every slide in: live, loading, empty, shift not started, stale, disconnected, and error. |
-| INFO-17 | Freshness is always visible in the header. Stale data is dimmed and shows its last update time. |
-| INFO-18 | Zero and empty are different. Explain empty in a plain sentence, for example 2nd shift starts at 6:00 AM. |
-| INFO-19 | Never show raw system messages or a blank screen. |
+| Design every slide in its six states. | `INFO-19` |
+| Zero and empty are different. Zero is data. Empty means there is no data yet, and it is explained in a plain sentence. | `INFO-20` |
+| Never show a raw system message or a blank screen. | `INFO-21` |
+
+| State | What the slide shows |
+| --- | --- |
+| With data | The slide as designed. |
+| Loading | The slide layout with a calm loading indicator. |
+| Empty | A plain sentence that explains why, for example "No runs yet on this line". |
+| Shift not started | When the shift starts, for example "2nd shift starts at 6:00 AM". |
+| Disconnected | The last data received, the network banner, and the time of the last update. |
+| Error | A plain sentence that the slide could not load. No technical messages. |
 
 ## Content
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| INFO-20 | Locale-aware numbers, dates, and times. Whole numbers for counts, one decimal for percentages and rates. Units always visible. |
-| INFO-21 | Leave room for 40% text expansion. Wrap to two lines; never truncate line or product names. |
-| INFO-22 | Sentence case and no unexplained abbreviations. Line and product names appear as entered. |
-| INFO-23 | Gamification stays, with one meaning per symbol. Zero points is neutral, and numbers lead over illustrations. |
+| Numbers, dates, and times follow the language of the screen. Whole numbers for counts, one decimal for percentages and rates. Units are always visible. | `INFO-22` |
+| The line name in the header can be shortened with an ellipsis. Product names are never cut: they wrap to two lines. | `INFO-23` |
+| Sentence case, and no abbreviations without an explanation. Line and product names appear as entered. | `INFO-24` |
+| Gamification stays, with one meaning per symbol. Zero points is neutral, and numbers always lead over illustrations. | `INFO-25` |
 
 ## Checklist
 
-- [ ] The key question is answered by the largest element on screen.
-- [ ] Every key value shows its status and gap to target.
-- [ ] Single location: one hero and up to three facts. Multiple location: up to 8 rows and 4 metric columns.
-- [ ] Three text sizes or fewer.
+- [ ] The answer to the key question is the most prominent element.
+- [ ] Only the main KPI has primary feedback. Every other status is secondary.
 - [ ] Status color appears only where attention is needed.
-- [ ] Charts have a labeled target, an in-progress current hour, and no pies or gauges.
-- [ ] All seven data states are designed.
-- [ ] Numbers and units are formatted, and no name is truncated.
+- [ ] One hero, and everything else is clearly less prominent.
+- [ ] Only type scale roles are used.
+- [ ] Charts have a labeled target, an in-progress current hour, and pies or gauges only where allowed.
+- [ ] All six data states are designed.
+- [ ] Numbers and units are formatted, and no product name is cut.
+
+</Lang>
+
+<Lang es>
+
+# Information design
+
+El diseño de información es cómo decidimos qué muestra un slide, qué destaca y qué queda en segundo plano. La meta: que una persona que pasa caminando tenga la respuesta en menos de 5 segundos.
+
+**Lo esencial**
+
+- Cada slide responde una pregunta. La respuesta es el elemento más destacado de la pantalla.
+- Solo un estado destaca por slide: el del KPI principal.
+- Si algo no ayuda a responder la pregunta, quítalo.
+
+## Una pregunta por slide
+
+| Regla | ID |
+| --- | --- |
+| Parte de la pregunta clave del slide, en su página dentro de **Slides**. | `INFO-01` |
+| La respuesta es el elemento más destacado de la pantalla. | `INFO-02` |
+
+## Estado y feedback
+
+El estado le dice a la gente si un valor va bien, en riesgo o mal. Si está en todas partes se vuelve ruido, por eso lo usamos con dos niveles de énfasis.
+
+| Regla | ID |
+| --- | --- |
+| Un valor con objetivo muestra su estado. Un valor sin objetivo queda neutral. | `INFO-03` |
+| Muestra la diferencia con el objetivo (por ejemplo, 2.8 pts above target) solo en el KPI principal, y solo cuando ayuda a decidir qué hacer. | `INFO-04` |
+| Usa dos niveles de feedback. El feedback primario es el estado del KPI principal: hay solo uno por slide y es el que más destaca. El feedback secundario es cualquier otro estado: queda más pequeño y discreto. Esto también aplica a slides y gráficas nuevas. | `INFO-05` |
+| El color de estado va solo donde se necesita atención. Los datos base quedan neutrales. | `INFO-06` |
+
+| Nivel | Qué es | Cómo se ve | Componentes hoy |
+| --- | --- | --- | --- |
+| Primario | El estado del KPI principal, que responde la pregunta del slide | Banda con relleno, grande, uno por slide | Status band, KPI tile large |
+| Secundario | Cualquier otro estado: KPIs de apoyo, filas, barras de gráficas | Ícono y texto, sin relleno, más pequeño | Status icon, Status line, barras de estado en gráficas |
+
+## Jerarquía
+
+| Regla | ID |
+| --- | --- |
+| Todos los slides tienen las mismas partes: header (título, contexto y navegación), hero (la respuesta), apoyo y footer (marca). | `INFO-07` |
+| Un solo hero por slide. Todo lo demás lo apoya y es claramente menos destacado. El template del slide define cuántos elementos de apoyo caben. | `INFO-08` |
+| Slides de varias ubicaciones: hasta 8 filas y 4 columnas de métricas por página. Si hay más, agrega páginas. Nunca reduzcas para que quepa. | `INFO-09` |
+| Usa solo los roles de la escala tipográfica de Foundations. Ya están probados a distancia. No crees tamaños nuevos. | `INFO-10` |
+| Mantén el orden de las filas para que la gente encuentre su línea en el mismo lugar. Solo el Leaderboard reordena. | `INFO-11` |
+| Cuando falta espacio, quita primero el contenido de apoyo. Nunca reduzcas un texto por debajo de su rol. | `INFO-12` |
+
+| Que destaque | Que quede en segundo plano |
+| --- | --- |
+| La respuesta a la pregunta | Etiquetas y unidades |
+| Valores debajo del objetivo | Valores en el objetivo, cuando se muestran muchos |
+| Lo que cambió o requiere acción | Contexto que casi no cambia |
+
+## Gráficas
+
+| Regla | ID |
+| --- | --- |
+| Muestra primero un número. Agrega una gráfica solo cuando su forma responde la pregunta más rápido que el número. | `INFO-13` |
+| Un color neutral para los datos, más los colores de estado. | `INFO-14` |
+| Prefiere barras y líneas. Usa pie, donut o gauge solo para mostrar parte de un todo con 2 o 3 partes, o el avance hacia una sola meta. Siempre muestra el número y etiqueta las partes directamente. | `INFO-15` |
+| Etiqueta la línea de objetivo con su valor. Mantén las etiquetas de valor fuera de la línea. | `INFO-16` |
+| Marca la hora actual como en progreso, para que una barra parcial no parezca una mala hora. | `INFO-17` |
+| Etiqueta los datos directamente. Pocas marcas en los ejes, con etiquetas grandes. Las barras empiezan en cero. | `INFO-18` |
+
+**¿Por qué barras en lugar de pies, donuts y gauges?** La gente compara largos con mucha más precisión que ángulos o áreas. Desde el otro lado de la planta, las rebanadas pequeñas y los arcos delgados desaparecen. Y estas gráficas suelen necesitar una leyenda de colores, que falla con personas daltónicas. Por eso las acotamos en lugar de prohibirlas.
+
+## Estados de datos
+
+Los datos del slide se actualizan cada vez que el slide aparece en la rotación. Son actuales, pero no en tiempo real.
+
+| Regla | ID |
+| --- | --- |
+| Diseña cada slide en sus seis estados. | `INFO-19` |
+| Cero y vacío son distintos. Cero es un dato. Vacío significa que aún no hay datos, y se explica con una frase sencilla. | `INFO-20` |
+| Nunca muestres un mensaje técnico del sistema ni una pantalla en blanco. | `INFO-21` |
+
+| Estado | Qué muestra el slide |
+| --- | --- |
+| Con datos | El slide tal como se diseñó. |
+| Loading | El layout del slide con un indicador de carga tranquilo. |
+| Empty | Una frase sencilla que explica por qué, por ejemplo "No runs yet on this line". |
+| Shift not started | Cuándo empieza el turno, por ejemplo "2nd shift starts at 6:00 AM". |
+| Disconnected | Los últimos datos recibidos, el banner de red y la hora de la última actualización. |
+| Error | Una frase sencilla que dice que el slide no pudo cargar. Sin mensajes técnicos. |
+
+## Contenido
+
+| Regla | ID |
+| --- | --- |
+| Números, fechas y horas siguen el idioma de la pantalla. Números enteros para conteos, un decimal para porcentajes y tasas. Las unidades siempre visibles. | `INFO-22` |
+| El nombre de la línea en el header se puede acortar con puntos suspensivos. Los nombres de producto nunca se cortan: saltan a dos líneas. | `INFO-23` |
+| Mayúscula solo al inicio de la frase, y nada de abreviaturas sin explicar. Los nombres de línea y producto aparecen tal como se capturaron. | `INFO-24` |
+| La gamificación se queda, con un solo significado por símbolo. Cero puntos es neutral, y los números siempre mandan sobre las ilustraciones. | `INFO-25` |
+
+## Checklist
+
+- [ ] La respuesta a la pregunta clave es el elemento más destacado.
+- [ ] Solo el KPI principal tiene feedback primario. Todos los demás estados son secundarios.
+- [ ] El color de estado aparece solo donde se necesita atención.
+- [ ] Un solo hero, y todo lo demás es claramente menos destacado.
+- [ ] Solo se usan roles de la escala tipográfica.
+- [ ] Las gráficas tienen objetivo etiquetado, hora actual en progreso, y pies o gauges solo donde se permiten.
+- [ ] Los seis estados de datos están diseñados.
+- [ ] Números y unidades tienen formato, y ningún nombre de producto se corta.
+
+</Lang>

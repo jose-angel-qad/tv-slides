@@ -12,32 +12,46 @@
   color: var(--rz-color-text-primary);
 }
 
-/* MDX tables (Guidelines rules), styled like the Foundations doc tables. */
+/* MDX tables (Guidelines): full width, header row on surface/raised, a divider between rows. */
 .sbdocs.sbdocs-wrapper table:not(.rz-doc *) {
+  display: table;
   width: 100%;
   border-collapse: collapse;
   font-family: var(--rz-font-family-text);
+  color: var(--rz-color-text-primary);
 }
 .sbdocs.sbdocs-wrapper :is(table tr, table tr:nth-of-type(2n)):not(.rz-doc *) {
   background: transparent;
   border: 0;
+  border-top: 1px solid var(--rz-color-border-subtle);
+}
+.sbdocs.sbdocs-wrapper table thead :is(tr, th):not(.rz-doc *) {
+  border-top: 0;
+  background: var(--rz-color-surface-raised);
 }
 .sbdocs.sbdocs-wrapper :is(table th, table td):not(.rz-doc *) {
-  padding: var(--rz-spacing-2xs) var(--rz-spacing-xs);
+  padding: var(--rz-spacing-xs) var(--rz-spacing-sm);
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
   border: 0;
-  border-top: 1px solid var(--rz-color-border-subtle);
   color: var(--rz-color-text-primary);
 }
 .sbdocs.sbdocs-wrapper table th:not(.rz-doc *) {
-  font-weight: 500;
-  border-top: 0;
-  color: var(--rz-color-text-secondary);
+  font-weight: var(--rz-font-weight-semibold);
 }
-/* Rule IDs (A11Y-01) stay on one line. */
-.sbdocs.sbdocs-wrapper table td:first-child:not(.rz-doc *) {
+/* Inline code in MDX text follows the theme. */
+.sbdocs.sbdocs-wrapper :is(p, li) code:not(.rz-doc *) {
+  color: var(--rz-color-text-primary);
+  background: var(--rz-color-surface-raised);
+  border-color: var(--rz-color-border-subtle);
+}
+/* Inline code in cells (rule IDs such as A11Y-01): smaller, secondary, on one line. */
+.sbdocs.sbdocs-wrapper table td code:not(.rz-doc *) {
+  font-size: 0.86em;
   white-space: nowrap;
+  color: var(--rz-color-text-secondary);
+  background: transparent;
+  border: 0;
 }
 .sbdocs.sbdocs-wrapper :is(table a, p a, li a):not(.rz-doc *) {
   color: var(--rz-color-data-neutral);

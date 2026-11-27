@@ -1,62 +1,138 @@
 import { Meta } from '@storybook/addon-docs/blocks'
+import { Lang } from '../Lang'
 
 <Meta title="Guidelines/Brand expression" />
 
+<Lang en>
+
 # Brand expression
 
-Slides run all day on factory TVs that employees, customers, and visitors see. Every slide is also a brand display: on brand by default, modern, and polished. The brand frames the data and never competes with it.
+Redzone TV is often the first thing people see on the plant floor. It should look like the best software in the building: clean, confident, and current. A display that makes teams proud and makes visitors ask what it is.
+
+Every slide is also a brand display, seen all day by employees, customers, and visitors. The brand frames the data and never competes with it.
+
+**The essentials**
+
+- The brand lives in the footer, never on data.
+- Modern comes from Foundations tokens, generous space, and one component for each job.
+- Every slide should look like part of the same set as Run Throughput.
 
 ## Where the brand lives
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| BRAND-01 | The footer is dedicated to the brand. It is a business and commercial requirement, and it never shows data or status. |
-| BRAND-02 | Use the footer variants defined in the Footer brand bar component. Do not create new ones per slide. |
-| BRAND-03 | Screens without data can carry more brand: pairing, loading, shift not started, empty states, Company Update, and Welcome. |
+| The footer is dedicated to the brand. It is a business and commercial requirement, and it never shows data or status. | `BRAND-01` |
+| Use the footer tones that exist today, red and blue. The default tone is still to be defined. Do not create new footers per slide. | `BRAND-02` |
+| Screens without data can carry more brand: pairing, loading, shift not started, empty states, Company Update, and Welcome. | `BRAND-03` |
 
 ## Where the brand does not live
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| BRAND-04 | Brand red never appears on data, status, or chart marks. Negative status has its own token. |
-| BRAND-05 | No brand color or brand pattern behind numbers. |
+| Brand red never appears on data, status, or charts. Negative status has its own color token. | `BRAND-04` |
+| No brand color or brand pattern behind numbers. | `BRAND-05` |
 
-## Modern and polished
+## Modern and world class
 
-These rules turn "modern" into something a review can check.
+"Modern" is hard to review, so these rules describe what it means for us.
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| BRAND-06 | Foundations tokens only, for color, type, spacing, radius, and shadow. No hardcoded values. |
-| BRAND-07 | Geist for display values, Inter for text, following the type scale roles. |
-| BRAND-08 | Space separates content, not lines. Spacing follows the 4 px scale. No borders around zones. |
-| BRAND-09 | One component for each job. Use an existing component before creating a new one. |
-| BRAND-10 | Icons come from the Icon component only. |
-| BRAND-11 | Every slide looks like part of one set. Run Throughput is the reference slide. |
+| Use only Foundations tokens for color, type, spacing, radius, and shadow. Nothing is hardcoded. | `BRAND-06` |
+| Geist for values people look at, Inter for text people read, always through the type scale roles. | `BRAND-07` |
+| Space separates content, not lines. Spacing follows the 4 px scale. No borders around zones. | `BRAND-08` |
+| One component for each job. Use an existing component before creating a new one. | `BRAND-09` |
+| Icons come only from the Icon component: Material Symbols, Outlined, weight 600. | `BRAND-10` |
+| Every slide looks like part of one set. Run Throughput is the reference slide. | `BRAND-11` |
 
 ## Light and Dark
 
-| ID | Rule |
+| Rule | ID |
 | --- | --- |
-| BRAND-12 | Design every slide in Light and Dark. Each screen picks its mode based on plant lighting. |
+| Design every slide in Light and Dark. Each screen picks its mode based on the lighting in the plant. | `BRAND-12` |
 
 ## Burn-in
 
-| ID | Rule |
-| --- | --- |
-| BRAND-13 | The footer is the only large static element allowed. Everything else avoids large static, saturated, or high-contrast areas. |
+Burn-in is a faint permanent shadow that static images leave on some screens. The risk is real on OLED TVs, and low on LCD and LED TVs, which are the most common in commercial displays.
 
-## Pending decisions
-
-- Default footer tone (red or blue).
-- How to limit burn-in on the footer, to validate on real TVs.
+- The footer is the only large static element. Everything else avoids large static, saturated, or high-contrast areas.
+- Before investing in prevention, we need to know which screens plants use. If any are OLED, a simple test is to run the slideshow on one TV for 2 to 4 weeks, then show a 50% gray screen and look for marks.
 
 ## Checklist
 
-- [ ] The brand appears in the footer, and nowhere on data or status.
-- [ ] The footer uses an existing variant.
+- [ ] The brand appears in the footer and nowhere on data or status.
+- [ ] The footer uses an existing tone.
 - [ ] Only Foundations tokens are used. Nothing is hardcoded.
-- [ ] Geist for values and Inter for text, from the type scale roles.
+- [ ] Geist for values and Inter for text, through the type scale roles.
 - [ ] Space separates zones, with no borders.
 - [ ] Only existing components and icons are used.
 - [ ] The slide looks like part of the same set as Run Throughput, in Light and Dark.
+
+</Lang>
+
+<Lang es>
+
+# Brand expression
+
+Redzone TV suele ser lo primero que la gente ve en la planta. Debe verse como el mejor software del edificio: limpio, seguro y actual. Una pantalla que enorgullece a los equipos y hace que los visitantes pregunten qué es.
+
+Cada slide también es un display de marca, que ven todo el día empleados, clientes y visitantes. La marca enmarca los datos y nunca compite con ellos.
+
+**Lo esencial**
+
+- La marca vive en el footer, nunca sobre los datos.
+- Lo moderno viene de los tokens de Foundations, el espacio generoso y un componente para cada función.
+- Cada slide debe verse parte del mismo set que Run Throughput.
+
+## Dónde vive la marca
+
+| Regla | ID |
+| --- | --- |
+| El footer está dedicado a la marca. Es un requisito comercial y de negocio, y nunca muestra datos ni estados. | `BRAND-01` |
+| Usa los tonos de footer que existen hoy, rojo y azul. El tono por defecto aún está por definir. No crees footers nuevos por slide. | `BRAND-02` |
+| Las pantallas sin datos pueden llevar más marca: emparejamiento, carga, turno sin iniciar, estados vacíos, Company Update y Welcome. | `BRAND-03` |
+
+## Dónde no vive la marca
+
+| Regla | ID |
+| --- | --- |
+| El rojo de marca nunca aparece en datos, estados ni gráficas. El estado negativo tiene su propio token de color. | `BRAND-04` |
+| Nada de color o patrón de marca detrás de los números. | `BRAND-05` |
+
+## Moderno y de clase mundial
+
+"Moderno" es difícil de revisar, así que estas reglas describen lo que significa para nosotros.
+
+| Regla | ID |
+| --- | --- |
+| Usa solo tokens de Foundations para color, tipografía, espaciado, radio y sombra. Nada va escrito a mano. | `BRAND-06` |
+| Geist para los valores que la gente mira, Inter para el texto que la gente lee, siempre a través de los roles de la escala tipográfica. | `BRAND-07` |
+| El espacio separa el contenido, no las líneas. El espaciado sigue la escala de 4 px. Nada de bordes alrededor de las zonas. | `BRAND-08` |
+| Un componente para cada función. Usa un componente existente antes de crear uno nuevo. | `BRAND-09` |
+| Los íconos vienen solo del componente Icon: Material Symbols, Outlined, peso 600. | `BRAND-10` |
+| Cada slide se ve parte de un mismo set. Run Throughput es el slide de referencia. | `BRAND-11` |
+
+## Light y Dark
+
+| Regla | ID |
+| --- | --- |
+| Diseña cada slide en Light y Dark. Cada pantalla elige su modo según la iluminación de la planta. | `BRAND-12` |
+
+## Burn-in
+
+El burn-in es una sombra tenue y permanente que dejan las imágenes fijas en algunas pantallas. El riesgo es real en TVs OLED, y bajo en TVs LCD y LED, que son las más comunes en displays comerciales.
+
+- El footer es el único elemento fijo grande. Todo lo demás evita áreas grandes, fijas, saturadas o de alto contraste.
+- Antes de invertir en prevención, necesitamos saber qué pantallas usan las plantas. Si alguna es OLED, una prueba simple es dejar el slideshow en una TV de 2 a 4 semanas, luego mostrar una pantalla gris al 50 % y buscar marcas.
+
+## Checklist
+
+- [ ] La marca aparece en el footer y en ningún dato ni estado.
+- [ ] El footer usa un tono existente.
+- [ ] Solo se usan tokens de Foundations. Nada va escrito a mano.
+- [ ] Geist para valores e Inter para texto, a través de los roles de la escala tipográfica.
+- [ ] El espacio separa las zonas, sin bordes.
+- [ ] Solo se usan componentes e íconos existentes.
+- [ ] El slide se ve parte del mismo set que Run Throughput, en Light y Dark.
+
+</Lang>
