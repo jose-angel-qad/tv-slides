@@ -126,3 +126,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: T4 Table template, Location table (Table), Status value (Status), Mini hourly bars (Data viz), with stories and Docs.
 - Checklist failures: INFO-04/INFO-05 (no single main KPI on multiple location slides); INFO-10 (row hero uses the slide title role); BRAND-09 (new components pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: primary feedback on multiple location slides, row hero type role, run statuses (questions.md).
+
+### Throughput dashboard
+- Stories: Positive (one location without crew target), Negative (three behind plan, crew below target, long name).
+- Reused: T4 template, Chart card (one per location), Status value, Mini hourly bars.
+- Created: none (the "Throughput location card" is a Chart card composition, not a new component).
+- Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-16 (target in the caption, not on the compact bars); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: what the plus or minus compares against, the orange tile (questions.md).

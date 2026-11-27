@@ -89,3 +89,8 @@ Format per entry:
 - Assumption used: Status value `lg` uses `--rz-tv-type-slide-title`. Foundations unchanged.
 - Question: which run statuses exist besides running and stopped?
 - Assumption used: Running (positive) and Stopped (negative), always with a word.
+
+## Throughput dashboard
+- Question: what does the plus or minus amount compare against (plan to date or pace), and what does the orange tile mean?
+- Assumption used: units ahead or behind the plan to date. Orange (warning) is not used; ahead or on plan is positive, behind is negative. Four locations per page (2 x 2 cards); more locations go to the next page.
+- Where it shows: `src/slides/throughput-dashboard/`
