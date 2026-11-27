@@ -28,3 +28,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: shared slide body `src/slides/_shared/HourlyMetric.vue` (also used by Hourly counts and Units/man hour).
 - Checklist failures: INFO-19 (2 of 6 data states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: hero is shift OEE (Claude idea); key question kept. See questions.md.
+
+### Hourly counts
+- Stories: Positive, Negative (long location name).
+- Reused: shared `HourlyMetric` body, KPI tile large, Stat tile, Chart card, Hourly bar chart, Chart legend item.
+- Created: none.
+- Checklist failures: INFO-19 (2 of 6 data states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: see "Hourly OEE, Hourly counts, Units/man hour" in questions.md.
