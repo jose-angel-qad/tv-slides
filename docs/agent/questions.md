@@ -144,3 +144,9 @@ Format per entry:
 - Options: a list of characteristics with their control status (built); one X-bar chart per location; the X-Bar R slide per characteristic.
 - Assumption used: a list, one row per characteristic, with control status (hero), latest value, control limits and Cpk against 1.33. The charts live on X-Bar R.
 - Where it shows: `src/slides/spc-dashboard/`
+
+## Company inherited highlight (proposal)
+- Question: what does this slide show? It was only captured empty and is not in the Knowledge Base.
+- Options: a company-level Company Update inherited by every site; a KPI highlight rolled up from the parent company; a recognition message.
+- Assumption used: a highlight shared by the company with every site (headline, short message, optional image). Proposed key question: "What is the company celebrating or asking of every site today?"
+- Where it shows: `src/slides/company-inherited-highlight/`

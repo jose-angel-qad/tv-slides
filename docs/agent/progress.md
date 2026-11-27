@@ -196,3 +196,16 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none (the "SPC statistics list" is a Location table composition).
 - Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: one chart or a list (questions.md).
+
+### Company inherited highlight (proposal, definition pending)
+- Stories: Positive (headline, message, image), Negative (nothing shared).
+- Reused: T4 template, Chart card, Empty state message.
+- Created: none.
+- Checklist failures: INFO-01 (proposed key question); INFO-10 (headline uses the secondary KPI value role for text); INFO-19 (2 of 6 states); A11Y-12, A11Y-18, A11Y-19 not tested.
+- Open questions: what the slide is (questions.md).
+
+## Night summary
+- 27 of 27 slides have a commit with Positive and Negative stories, checked in Light and Dark at 1920 x 1080.
+- New components: Progress bar, Bar list, Line chart, Step flow chart, Mini hourly bars, Location table, Status value, Empty state message, News item, Media frame, Person card; templates T2 List + support and T4 Table. Changed: Hourly bar chart, Material icon.
+- Not done anywhere: loading, stale, disconnected, error and slideshow menu states (INFO-19); grayscale, Arabic, tall script and long language checks.
+- The audit tab Components has no rows for Step flow chart, Empty state is row "Empty state message"; new items without a row are listed here only.
