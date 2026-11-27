@@ -5,6 +5,7 @@ import HourlyBarChart from './HourlyBarChart.vue'
 import ChartLegendItem from './ChartLegendItem.vue'
 import LineChart from './LineChart.vue'
 import BarList from './BarList.vue'
+import StepFlowChart from './StepFlowChart.vue'
 
 const meta: Meta = { title: 'Components/Data viz' }
 export default meta
@@ -93,5 +94,21 @@ export const Bars: StoryObj = {
     components: { StoryFrame, BarList },
     setup: () => ({ barRows }),
     template: `<StoryFrame :width="1400"><BarList :rows="barRows" :target="40" /></StoryFrame>`,
+  }),
+}
+
+// Step flow chart: steps in process order with labeled WIP; the bottleneck carries the status.
+const flow = [
+  { id: 'a', name: 'Cut', completed: 148, wipAfter: 5 },
+  { id: 'b', name: 'Drill and dowel insertion', completed: 135, wipAfter: 46 },
+  { id: 'c', name: 'Assemble', completed: 89, wipAfter: 6 },
+  { id: 'd', name: 'Pack', completed: 79 },
+]
+export const StepFlow: StoryObj = {
+  name: 'Step flow chart',
+  render: () => ({
+    components: { StoryFrame, StepFlowChart },
+    setup: () => ({ flow }),
+    template: `<StoryFrame :width="1400"><div style="height: 420px; display: flex"><StepFlowChart :steps="flow" :wip-limit="20" /></div></StoryFrame>`,
   }),
 }

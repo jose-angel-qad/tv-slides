@@ -23,4 +23,13 @@ Ranked or ordered horizontal bars: Pareto problems, Leaderboard points, top prob
 - Optional `target`: one dashed `text/secondary` line across every row; label it in the card legend.
 - Props: `rows` (`id`, `label`, `detail`, `value`, `valueText`, `status`, `inProgress`), `max`, `target`, `labelWidth`.
 
+## Step flow chart
+
+Steps in process order with the WIP between them (Line balance). Pending approval.
+
+- One vertical `data/neutral` bar per step (steps completed, from zero), value above, step name below in horizontal text that wraps.
+- WIP between two steps as a value with the label "WIP", never an unlabeled shape.
+- The bottleneck (largest WIP at or above `wipLimit`) shows the negative status icon in `status/negative/content`.
+- Props: `steps` (`id`, `name`, `completed`, `wipAfter`), `wipLimit`.
+
 <Stories />

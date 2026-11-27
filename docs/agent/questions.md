@@ -49,3 +49,9 @@ Format per entry:
 - Options: this shift; the current run; since the station last went idle.
 - Assumption used: steps completed this shift (matches the hourly chart). States: working (time left, positive), idle (warning), over the step time target (negative). The state and timer are the hero.
 - Where it shows: `src/slides/discrete-station/`
+
+## Line balance
+- Question: are the triangle numbers WIP, and what WIP count makes a bottleneck?
+- Options: a fixed WIP limit per location; the largest WIP is always the bottleneck; a WIP limit per step.
+- Assumption used: the numbers are WIP between steps; one WIP limit per location (mock 20). Below it the slide says work is flowing.
+- Where it shows: `src/slides/line-balance/`

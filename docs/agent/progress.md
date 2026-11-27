@@ -77,3 +77,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. The hourly chart at half width is tight: below-target value labels with icons nearly touch.
 - Open questions: the period of the steps value, station states (questions.md).
+
+### Line balance
+- Stories: Positive (flowing), Negative (bottleneck, long step names).
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card.
+- Created: Step flow chart (Data viz), with story and Docs section.
+- Checklist failures: INFO-17 not applicable; BRAND-09 (new component pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Long step names that wrap to three lines shorten the bars.
+- Open questions: WIP threshold (questions.md).
