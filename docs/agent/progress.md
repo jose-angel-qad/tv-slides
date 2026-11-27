@@ -70,3 +70,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: what the OEE change compares against (questions.md). The OEE change is not shown.
+
+### Discrete station
+- Stories: Positive (working), Negative (over step time, long names), Idle.
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card, Bar list, Hourly bar chart.
+- Created: none.
+- Checklist failures: INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. The hourly chart at half width is tight: below-target value labels with icons nearly touch.
+- Open questions: the period of the steps value, station states (questions.md).

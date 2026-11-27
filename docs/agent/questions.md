@@ -43,3 +43,9 @@ Format per entry:
 - Options: previous shift; same shift last week; OEE target.
 - Assumption used: the change is dropped; OEE shows its status against the OEE target. Quality has no target, so it stays neutral.
 - Where it shows: `src/slides/discrete-location/`
+
+## Discrete station
+- Question: what period does the large steps value cover, and which station states exist besides Idle and Time left?
+- Options: this shift; the current run; since the station last went idle.
+- Assumption used: steps completed this shift (matches the hourly chart). States: working (time left, positive), idle (warning), over the step time target (negative). The state and timer are the hero.
+- Where it shows: `src/slides/discrete-station/`
