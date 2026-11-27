@@ -98,3 +98,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: shared helpers `_shared/fastCycles.ts` (used by Shift (Fast cycles)).
 - Checklist failures: INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: colored dashes, green count badge, "Avg. to target" (questions.md). Not shown.
+
+### Shift (Fast cycles)
+- Stories: Positive, Negative (over target, one asset not reporting, OEE below target, long names).
+- Reused: T2 List + support, Chart card, Bar list, KPI tile large, Stat tile, Chart legend item, `_shared/fastCycles.ts`.
+- Created: none.
+- Checklist failures: INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: see "Run (Fast cycles), Shift (Fast cycles)" in questions.md.
