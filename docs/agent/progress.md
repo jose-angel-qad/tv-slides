@@ -208,4 +208,4 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - 27 of 27 slides have a commit with Positive and Negative stories, checked in Light and Dark at 1920 x 1080.
 - New components: Progress bar, Bar list, Line chart, Step flow chart, Mini hourly bars, Location table, Status value, Empty state message, News item, Media frame, Person card; templates T2 List + support and T4 Table. Changed: Hourly bar chart, Material icon.
 - Not done anywhere: loading, stale, disconnected, error and slideshow menu states (INFO-19); grayscale, Arabic, tall script and long language checks.
-- The audit tab Components has no rows for Step flow chart, Empty state is row "Empty state message"; new items without a row are listed here only.
+- The audit tab Components has no rows for Step flow chart, Line chart (logged on "Count trend area chart"), Status value (logged on "Trend indicator"), the T2 and T4 templates or the content icons. Only column I was edited, so these are listed here only.
