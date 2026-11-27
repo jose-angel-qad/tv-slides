@@ -133,3 +133,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none (the "Throughput location card" is a Chart card composition, not a new component).
 - Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-16 (target in the caption, not on the compact bars); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: what the plus or minus compares against, the orange tile (questions.md).
+
+### Run dashboard
+- Stories: Positive (one run complete), Negative (below target, quality issue, no active run, long names).
+- Reused: T4 template, Chart card, Location table, Status value, Progress bar.
+- Changed: Progress bar (label takes the free width before wrapping).
+- Checklist failures: INFO-04/INFO-05 (no single main KPI); INFO-10 (row hero role); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested. Product names wrap to two or three lines; with 8 long names the page would need fewer rows.
+- Open questions: quality circle and badge (questions.md).

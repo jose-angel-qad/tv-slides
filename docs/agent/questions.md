@@ -94,3 +94,9 @@ Format per entry:
 - Question: what does the plus or minus amount compare against (plan to date or pace), and what does the orange tile mean?
 - Assumption used: units ahead or behind the plan to date. Orange (warning) is not used; ahead or on plan is positive, behind is negative. Four locations per page (2 x 2 cards); more locations go to the next page.
 - Where it shows: `src/slides/throughput-dashboard/`
+
+## Run dashboard
+- Question: what do the quality circle and its number (for example 209) represent, and what is the quality target?
+- Options: first-pass quality percent; count of rejected units; open quality checks.
+- Assumption used: first-pass quality percent with its status against a 98% target. The count badge is not shown.
+- Where it shows: `src/slides/run-dashboard/`

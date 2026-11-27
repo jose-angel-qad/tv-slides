@@ -58,6 +58,7 @@ const fill = computed(() => pct(props.value))
   gap: var(--rz-spacing-md);
 }
 .label {
+  flex: 1;
   min-width: 0;
   font: var(--rz-tv-type-body-strong);
   color: var(--rz-color-text-primary);
