@@ -29,13 +29,15 @@ const props = withDefaults(
     showPoints?: boolean
     /** Flag points above the highest or below the lowest reference line. */
     flagOutside?: boolean
+    /** Also flag points below the lowest line. Off for range charts, whose lowest line is R-bar. */
+    flagLow?: boolean
     /** Label the x axis every n hours (time series) or every n points (`xLabel`). */
     xLabel?: (p: LinePoint, i: number) => string
     xEvery?: number
     /** Shade under the line (area chart). */
     area?: boolean
   }>(),
-  { lines: () => [], zeroBased: true, showPoints: false, flagOutside: false, xEvery: 1, area: false, format: (n: number) => formatCount(n) },
+  { lines: () => [], flagLow: true, zeroBased: true, showPoints: false, flagOutside: false, xEvery: 1, area: false, format: (n: number) => formatCount(n) },
 )
 
 const AXIS_W = 96
@@ -83,7 +85,7 @@ const areaPath = computed(() =>
 )
 const hiLine = computed(() => (props.lines.length ? Math.max(...props.lines.map((l) => l.value)) : Infinity))
 const loLine = computed(() => (props.lines.length ? Math.min(...props.lines.map((l) => l.value)) : -Infinity))
-const outside = (v: number) => props.flagOutside && (v > hiLine.value || v < loLine.value)
+const outside = (v: number) => props.flagOutside && (v > hiLine.value || (props.flagLow && v < loLine.value))
 
 const xTicks = computed(() =>
   props.points

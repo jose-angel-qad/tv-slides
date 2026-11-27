@@ -73,3 +73,9 @@ Format per entry:
 - Options: units against plan for the run; units against plan for the shift. The sunrise time may be the shift start or the run ETA.
 - Assumption used: units against plan for the run (signed, with status); the sunrise time is not shown, the ETA is. Open items are counted and listed by time open; breakdowns are negative, a lone data sheet is a warning.
 - Where it shows: `src/slides/operations/`
+
+## X-Bar R
+- Question: which statistics are needed, what Cpk target applies, and should USL and LSL be drawn?
+- Options: Cp and Cpk only; add Pp and Ppk; draw spec lines on the X-bar chart.
+- Assumption used: Cp (neutral) and Cpk (status against 1.33). Spec limits as text in the chart header; UCL, center and LCL are drawn. "In control" means no point outside the control limits (Western Electric rules not applied).
+- Where it shows: `src/slides/x-bar-r/`
