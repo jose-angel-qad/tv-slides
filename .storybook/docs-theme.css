@@ -1,0 +1,37 @@
+/*
+ * Storybook Docs chrome in the active Theme (Dark or Light). The preview sets data-theme on
+ * <html>, so the TV color tokens resolve here. Story content brings its own styles.
+ */
+.sbdocs.sbdocs-wrapper {
+  background: var(--rz-color-background-default);
+  color: var(--rz-color-text-primary);
+}
+/* MDX text (for example the Guidelines page). */
+.sbdocs.sbdocs-wrapper :is(h1, p, li):not(.rz-doc *) {
+  font-family: var(--rz-font-family-text);
+  color: var(--rz-color-text-primary);
+}
+
+/* TV stories on a Docs page: TvCanvas fills this 16:9 box instead of the viewport and scales to fit. */
+.rz-docs-story {
+  aspect-ratio: 16 / 9;
+}
+.rz-docs-story .rz-tv-frame.rz-tv-frame {
+  width: 100%;
+  height: 100%;
+}
+
+/* Stories block: story names, the "Stories" heading and the preview box. Guide content (.rz-doc) styles itself. */
+.sbdocs.sbdocs-wrapper h3:not(.rz-doc *) {
+  color: var(--rz-color-text-primary);
+}
+.sbdocs.sbdocs-wrapper h2:not(.rz-doc *) {
+  color: var(--rz-color-text-secondary);
+}
+.sbdocs.sbdocs-preview {
+  border-color: var(--rz-color-border-subtle);
+  background: var(--rz-color-background-default);
+}
+.sbdocs.sbdocs-preview button {
+  color: var(--rz-color-text-secondary);
+}

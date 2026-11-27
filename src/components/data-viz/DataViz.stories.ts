@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import StoryFrame from '../_story/StoryFrame.vue'
+import { guideParameters, guideRender } from '../../stories/docs/guide'
 import HourlyBarChart from './HourlyBarChart.vue'
 import ChartLegendItem from './ChartLegendItem.vue'
 
@@ -50,4 +51,12 @@ export const Legend: StoryObj = {
       </ul>
     </StoryFrame>`,
   }),
+}
+
+// Guidelines for the Docs page (see the .mdx next to this file). Hidden from the sidebar.
+export const HourlyBarGuide: StoryObj = {
+  name: 'Hourly bar chart guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('hourly-bar'),
 }

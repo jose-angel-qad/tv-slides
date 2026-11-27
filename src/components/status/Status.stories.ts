@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import StoryFrame from '../_story/StoryFrame.vue'
+import { guideParameters, guideRender } from '../../stories/docs/guide'
 import StatusIcon from './StatusIcon.vue'
 import StatusLine from './StatusLine.vue'
 import StatusBand from './StatusBand.vue'
@@ -46,4 +47,18 @@ export const Band: Story = {
       <StatusBand status="negative" text="260 behind plan" />
     </StoryFrame>`,
   }),
+}
+
+// Guidelines for the Docs page (see the .mdx next to this file). Hidden from the sidebar.
+export const StatusBandGuide: StoryObj = {
+  name: 'Status band guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('status-band'),
+}
+export const StatusIconGuide: StoryObj = {
+  name: 'Status icon and Status line guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('status-icon'),
 }

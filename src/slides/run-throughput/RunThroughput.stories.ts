@@ -26,6 +26,6 @@ type Story = StoryObj<{ data: RunThroughputData }>
 // Dark and Light come from the Theme switch in the toolbar.
 export const Success: Story = { args: { data: runThroughputSuccess } }
 export const Warning: Story = { args: { data: runThroughputWarning } }
-// Not named `Error`, which would shadow the global Error in this module.
-export const ErrorState: Story = { name: 'Error', args: { data: runThroughputError } }
+// Named Negative so it does not clash with the Error data state.
+export const Negative: Story = { args: { data: runThroughputError } }
 export const Millions: Story = { name: 'Edge case, millions of cases', args: { data: runThroughputMillions } }

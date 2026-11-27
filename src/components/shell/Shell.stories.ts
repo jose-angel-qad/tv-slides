@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import StoryFrame from '../_story/StoryFrame.vue'
+import { guideParameters, guideRender } from '../../stories/docs/guide'
 import SlideHeader from './SlideHeader.vue'
 import ScreenNavStrip from './ScreenNavStrip.vue'
 import ClockAndRefreshTimer from './ClockAndRefreshTimer.vue'
@@ -49,3 +50,11 @@ export const Footer: Story = { name: 'Footer brand bar', ...footerStory(shellFoo
 export const FooterRed: Story = { name: 'Footer brand bar, red', ...footerStory(shellFooterRed) }
 export const FooterBlue: Story = { name: 'Footer brand bar, blue', ...footerStory(shellFooterBlue) }
 export const FooterCustomer: Story = { name: 'Footer brand bar, customer logo', ...footerStory(shellFooterCustomer) }
+
+// Guidelines for the Docs page (see the .mdx next to this file). Hidden from the sidebar.
+export const SlideHeaderGuide: StoryObj = {
+  name: 'Slide header guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('slide-header'),
+}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import StoryFrame from '../_story/StoryFrame.vue'
+import { guideParameters, guideRender } from '../../stories/docs/guide'
 import KpiTile from './KpiTile.vue'
 import StatTile from './StatTile.vue'
 
@@ -38,4 +39,18 @@ export const Stat: Story = {
       </div>
     </StoryFrame>`,
   }),
+}
+
+// Guidelines for the Docs page (see the .mdx next to this file). Hidden from the sidebar.
+export const KpiTileGuide: StoryObj = {
+  name: 'KPI tile, large guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('kpi-tile'),
+}
+export const StatTileGuide: StoryObj = {
+  name: 'Stat tile guidelines',
+  tags: ['!dev', 'guide'],
+  parameters: guideParameters,
+  render: guideRender('stat-tile'),
 }
