@@ -42,3 +42,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: none.
 - Checklist failures: INFO-19 (2 of 6 data states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: see "Hourly OEE, Hourly counts, Units/man hour" in questions.md.
+
+### Run speed
+- Stories: Positive, Negative (long product and location), ETA not available.
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card.
+- Created: Progress bar (Data display), with story and Docs page.
+- Checklist failures: BRAND-09 (new component pending approval); INFO-19 (3 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: product name placement (questions.md, KPI tile). The race track and car are dropped.

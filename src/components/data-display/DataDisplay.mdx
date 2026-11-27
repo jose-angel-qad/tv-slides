@@ -1,0 +1,29 @@
+import { Meta, Stories } from '@storybook/addon-docs/blocks'
+import * as DataDisplayStories from './DataDisplay.stories'
+
+<Meta of={DataDisplayStories} />
+
+# Data display
+
+## Crew size indicator
+
+Wraps the Stat tile: average crew against the target crew, with the Status line.
+
+## Progress bar
+
+Completed of planned for a run, a cycle or a step. Pending approval.
+
+- Caption row above the track: label on the left (wraps, never cut), "15,400 of 22,900 cases" on the right. Text never sits on the fill.
+- Track 32 px (`md`) or 20 px (`sm`), `surface/raised`; fill `data/neutral`, hatched when in progress.
+- Optional marker (pace or target): 4 px `text/primary` line with its label below the track.
+- No status color. The status of the run belongs to its KPI (INFO-05, INFO-06).
+
+| Prop | Type | Notes |
+| --- | --- | --- |
+| `value`, `max` | number | Completed and planned. |
+| `label`, `valueText` | string | Optional caption row. |
+| `marker`, `markerLabel` | number, string | Optional pace or target marker. |
+| `size` | `md` or `sm` | Track height. |
+| `inProgress` | boolean | Hatched fill. |
+
+<Stories />

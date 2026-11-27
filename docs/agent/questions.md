@@ -19,3 +19,9 @@ Format per entry:
 - Where it shows: `src/slides/_shared/HourlyMetric.vue`
 - Question: what does the shift gap compare against (target times finished hours, or the pace to date)?
 - Assumption used: the mock passes the gap directly (`shiftGap`); OEE in points, counts in units, rates in units per man hour.
+
+## KPI tile, large and Stat tile (all slides)
+- Question: product names are never cut (INFO-23), but the tile subtitle is one line with an ellipsis. Run throughput cuts long product names today.
+- Options: let the subtitle wrap to two lines (the 380 px tile has no room without shrinking the value); move the product name to a card where it can wrap; allow the ellipsis only in the tile.
+- Assumption used: new slides put the full product name where it can wrap (progress bar label, table cell) and keep the tile subtitle short (SKU, shift, start time). Run throughput is unchanged.
+- Where it shows: Run speed, Run dashboard, Up/Down stream.
