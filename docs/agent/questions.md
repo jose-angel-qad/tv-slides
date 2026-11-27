@@ -37,3 +37,9 @@ Format per entry:
 - Options: one list of the top 7 for the location; one page per sub-location; a status against a loss budget.
 - Assumption used: one list of the top 7 problems by time lost for the location, with "N more not shown". No status anywhere (INFO-03: no target, stays neutral). Problem type is a text label, not a color.
 - Where it shows: `src/slides/pareto/`
+
+## Discrete location
+- Question: what does the OEE change (for example +13.2%) compare against, and is there a quality target?
+- Options: previous shift; same shift last week; OEE target.
+- Assumption used: the change is dropped; OEE shows its status against the OEE target. Quality has no target, so it stays neutral.
+- Where it shows: `src/slides/discrete-location/`

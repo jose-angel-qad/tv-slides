@@ -63,3 +63,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: T2 List + support template; Bar list (Data viz) first used here.
 - Checklist failures: INFO-04/INFO-05 not applicable (no target, no primary feedback); INFO-17 not applicable; BRAND-09 (new component and template pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: sub-locations and the missing status (questions.md).
+
+### Discrete location
+- Stories: Positive, Negative (long location name).
+- Reused: T3 Hero + support, KPI tile large, Stat tile, Chart card, Hourly bar chart, Chart legend item.
+- Created: none.
+- Checklist failures: INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: what the OEE change compares against (questions.md). The OEE change is not shown.
