@@ -15,4 +15,13 @@ One alert, chat or high five. Pending approval.
 - Meta line in body (Inter 28, `text/secondary`): type in words, author, time. Text in Inter SemiBold 32, wraps, never cut or scrolled (A11Y-15).
 - Props: `type` (`alert`, `chat`, `high-five`), `time`, `author`, `text`.
 
+## Media frame
+
+An uploaded image or PDF page, as large as possible (Company Update). Pending approval.
+
+- `object-fit: contain`: the file keeps its aspect ratio, centered, never cropped or stretched.
+- Card frame like Chart card (`surface/default`, radius 24, `elevation/card`), with an optional caption row: title on the left, "Page 1 of 3" on the right for a PDF.
+- If the file cannot load, it shows the Empty state message with a plain sentence (INFO-21).
+- Props: `src`, `alt`, `title`, `page`.
+
 <Stories />

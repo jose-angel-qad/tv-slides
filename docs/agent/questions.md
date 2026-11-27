@@ -121,3 +121,9 @@ Format per entry:
 - Question: which item types exist, how long do items stay, and how many per page?
 - Assumption used: alert (warning icon), chat and high five (outlined icons); items from the last 24 hours; 4 per page, newest first, pages instead of a ticker.
 - Where it shows: `src/slides/news/`
+
+## Company update
+- Question: how are PDFs with several pages shown?
+- Options: one page per slide rotation with "Page 1 of 3"; all pages in sequence within one dwell time; first page only.
+- Assumption used: one page per rotation with "Page N of M" in the caption. Never scrolled.
+- Where it shows: `src/slides/company-update/`

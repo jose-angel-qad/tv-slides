@@ -168,3 +168,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: News item (Content), Empty state message (Feedback), six content icons in Material icon.
 - Checklist failures: BRAND-09 (new components pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-18, A11Y-19 not tested.
 - Open questions: item types and their icons (questions.md).
+
+### Company update
+- Stories: Positive (landscape image), Portrait PDF page (1 of 3), Negative (file cannot load).
+- Reused: T4 template, Empty state message.
+- Created: Media frame (Content). Docs section in Content; no separate story (the slide stories cover it).
+- Checklist failures: BRAND-09 (new component pending approval); INFO-19 (loading and stale not built); A11Y-12, A11Y-18, A11Y-19 not tested.
+- Open questions: multi-page PDFs (questions.md).
