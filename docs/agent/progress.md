@@ -175,3 +175,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: Media frame (Content). Docs section in Content; no separate story (the slide stories cover it).
 - Checklist failures: BRAND-09 (new component pending approval); INFO-19 (loading and stale not built); A11Y-12, A11Y-18, A11Y-19 not tested.
 - Open questions: multi-page PDFs (questions.md).
+
+### Welcome
+- Stories: Positive (three new hires, one without photo, one long name), Negative (no new hires).
+- Reused: T4 template, Chart card, Empty state message, Material icon.
+- Created: Person card (Content).
+- Checklist failures: BRAND-09 (new component pending approval); INFO-19 (loading and stale not built); A11Y-12, A11Y-18, A11Y-19 not tested; the name uses the slide title role.
+- Open questions: maximum new hires (questions.md).

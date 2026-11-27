@@ -6,6 +6,7 @@ import DocPage from './DocPage.vue'
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
     <h2>November 28, 2026: Overnight slides (pending approval)</h2>
     <ul>
+      <li>Added Person card (Content). Used by Welcome.</li>
       <li>Added Media frame (Content). Used by Company update.</li>
       <li>Added News item (Content), Empty state message (Feedback) and the content icons campaign, chat, celebration, person, image and inbox (Icon, outlined). Used by News.</li>
       <li>Added Location table (Table), Status value (Status), Mini hourly bars (Data viz) and the T4 Table template. Used by Shift dashboard and the other multiple location slides.</li>

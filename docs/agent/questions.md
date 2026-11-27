@@ -127,3 +127,8 @@ Format per entry:
 - Options: one page per slide rotation with "Page 1 of 3"; all pages in sequence within one dwell time; first page only.
 - Assumption used: one page per rotation with "Page N of M" in the caption. Never scrolled.
 - Where it shows: `src/slides/company-update/`
+
+## Welcome
+- Question: how many new hires per page, how long do they stay, and is the old red wordmark header needed?
+- Assumption used: 3 per page, shown during their first week. The header is the standard Slide header; the brand stays in the footer.
+- Where it shows: `src/slides/welcome/`
