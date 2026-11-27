@@ -132,3 +132,9 @@ Format per entry:
 - Question: how many new hires per page, how long do they stay, and is the old red wordmark header needed?
 - Assumption used: 3 per page, shown during their first week. The header is the standard Slide header; the brand stays in the footer.
 - Where it shows: `src/slides/welcome/`
+
+## Maintenance status (proposal)
+- Question: what do PM, WO, CL and OD stand for, and when does a count need attention (CL shows red at 517)?
+- Options: PM = preventive maintenance due, WO = open work orders, CL = checklist items open, OD = overdue tasks (assumed).
+- Assumption used: those meanings, spelled out in the headers, with assumed limits (PM 5, WO 10, CL 50, OD 1). At or above the limit is negative with its icon; below stays neutral. Five columns break INFO-09 (4 metric columns); dropping one count is an option.
+- Where it shows: `src/slides/maintenance-status/`

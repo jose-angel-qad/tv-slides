@@ -182,3 +182,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Created: Person card (Content).
 - Checklist failures: BRAND-09 (new component pending approval); INFO-19 (loading and stale not built); A11Y-12, A11Y-18, A11Y-19 not tested; the name uses the slide title role.
 - Open questions: maximum new hires (questions.md).
+
+### Maintenance status (proposal, definition pending)
+- Stories: Positive (all running, counts under limits), Negative (active issues, counts over limits, long names).
+- Reused: T4 template, Chart card, Location table, Status value.
+- Created: none.
+- Checklist failures: INFO-09 (five columns); INFO-24 (abbreviations spelled out with assumed meanings); INFO-04/INFO-05 (no single main KPI); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: PM, WO, CL, OD and their limits (questions.md).
