@@ -4,6 +4,7 @@ import { guideParameters, guideRender } from '../../stories/docs/guide'
 import StatusIcon from './StatusIcon.vue'
 import StatusLine from './StatusLine.vue'
 import StatusBand from './StatusBand.vue'
+import StatusValue from './StatusValue.vue'
 
 const meta: Meta = { title: 'Components/Status' }
 export default meta
@@ -61,4 +62,22 @@ export const StatusIconGuide: StoryObj = {
   tags: ['!dev', 'guide'],
   parameters: guideParameters,
   render: guideRender('status-icon'),
+}
+
+// Status value: a value with its secondary status, for table cells and lists.
+export const Value: Story = {
+  name: 'Status value',
+  render: () => ({
+    components: { StoryFrame, StatusValue },
+    template: `<StoryFrame>
+      <div style="display: flex; gap: 48px; align-items: center">
+        <StatusValue size="lg" status="positive" text="86.4%" />
+        <StatusValue size="lg" status="negative" text="64.2%" />
+        <StatusValue status="positive" text="Running" />
+        <StatusValue status="negative" text="Stopped" />
+        <StatusValue status="warning" text="14m late" />
+        <StatusValue text="1,240" />
+      </div>
+    </StoryFrame>`,
+  }),
 }

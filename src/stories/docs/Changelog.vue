@@ -6,6 +6,7 @@ import DocPage from './DocPage.vue'
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
     <h2>November 28, 2026: Overnight slides (pending approval)</h2>
     <ul>
+      <li>Added Location table (Table), Status value (Status), Mini hourly bars (Data viz) and the T4 Table template. Used by Shift dashboard and the other multiple location slides.</li>
       <li>Added Step flow chart (Data viz): steps in process order with labeled WIP. Used by Line balance.</li>
       <li>Added Line chart (Data viz): one metric over time with labeled reference lines. Used by Counts.</li>
       <li>Added Bar list (Data viz) and the T2 List + support template.</li>

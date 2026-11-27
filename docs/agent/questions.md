@@ -79,3 +79,13 @@ Format per entry:
 - Options: Cp and Cpk only; add Pp and Ppk; draw spec lines on the X-bar chart.
 - Assumption used: Cp (neutral) and Cpk (status against 1.33). Spec limits as text in the chart header; UCL, center and LCL are drawn. "In control" means no point outside the control limits (Western Electric rules not applied).
 - Where it shows: `src/slides/x-bar-r/`
+
+## Multiple location slides (Shift dashboard and the rest)
+- Question: INFO-05 allows one primary feedback per slide, but a multiple location slide has one KPI per row. What is the main KPI?
+- Options: no Status band, each row's hero value carries a secondary status; a summary band ("6 of 8 lines on target") above the table; the worst line as hero.
+- Assumption used: no Status band. Each row has one hero column (larger value with its status icon) and the other cells stay secondary.
+- Where it shows: `src/slides/shift-dashboard/` and the other multiple location slides.
+- Question: there is no type role for a table hero value. Is the slide title role (Geist Bold 44) acceptable, or should a table value role be added to Foundations?
+- Assumption used: Status value `lg` uses `--rz-tv-type-slide-title`. Foundations unchanged.
+- Question: which run statuses exist besides running and stopped?
+- Assumption used: Running (positive) and Stopped (negative), always with a word.

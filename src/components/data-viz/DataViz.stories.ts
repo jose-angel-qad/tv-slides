@@ -6,6 +6,7 @@ import ChartLegendItem from './ChartLegendItem.vue'
 import LineChart from './LineChart.vue'
 import BarList from './BarList.vue'
 import StepFlowChart from './StepFlowChart.vue'
+import MiniHourlyBars from './MiniHourlyBars.vue'
 
 const meta: Meta = { title: 'Components/Data viz' }
 export default meta
@@ -110,5 +111,17 @@ export const StepFlow: StoryObj = {
     components: { StoryFrame, StepFlowChart },
     setup: () => ({ flow }),
     template: `<StoryFrame :width="1400"><div style="height: 420px; display: flex"><StepFlowChart :steps="flow" :wip-limit="20" /></div></StoryFrame>`,
+  }),
+}
+
+// Mini hourly bars: compact bars for a table cell or a location card, always with a text summary.
+export const MiniBars: StoryObj = {
+  name: 'Mini hourly bars',
+  render: () => ({
+    components: { StoryFrame, MiniHourlyBars },
+    template: `<StoryFrame :width="480">
+      <MiniHourlyBars :values="[84, 88, 86, 90, 82, 87, 85, 89, 86, 88, 84, 41]" :target="80" :current-index="11" />
+      <MiniHourlyBars :values="[80, 72, 65, 58, 70, 62, 55, 68, 61, 59, 64, 12]" :target="80" :current-index="11" :height="96" />
+    </StoryFrame>`,
   }),
 }

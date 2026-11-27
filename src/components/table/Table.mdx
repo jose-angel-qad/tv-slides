@@ -1,0 +1,24 @@
+import { Meta, Stories } from '@storybook/addon-docs/blocks'
+import * as TableStories from './Table.stories'
+
+<Meta of={TableStories} />
+
+# Table
+
+## Location table
+
+One row per location for multiple location slides (Scoreboard, Shift dashboard, Run dashboard, Up/Down stream, Maintenance status). Pending approval.
+
+- Fixed row order (INFO-11). Up to 8 rows and 4 metric columns per page (INFO-09); add pages instead of shrinking.
+- Column header: Inter Regular 28 in `text/secondary`, the unit on the same line ("Downtime, min").
+- Rows: min height 72 px, radius `radius/md`, `surface/raised` fill, separated by `spacing/2xs`. No lines (BRAND-08).
+- Location name: Inter SemiBold 28, wraps to two lines. Cells: Geist SemiBold 32 with tabular figures (A11Y-05).
+- Cells render from slots named `cell-<key>` with the row as a prop. Use Status value for a value with status.
+
+| Prop | Type | Notes |
+| --- | --- | --- |
+| `columns` | `{ key, label, width?, align? }[]` | `width` is a CSS grid track. |
+| `rows` | `{ id, location, ... }[]` | |
+| `locationLabel`, `locationWidth` | string | Defaults "Location", `minmax(0, 1.2fr)`. |
+
+<Stories />

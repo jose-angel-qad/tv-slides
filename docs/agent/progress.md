@@ -119,3 +119,10 @@ Run Throughput is already built: mark it Pending approval in the audit at the st
 - Changed: Line chart (`flagLow` prop, for range charts).
 - Checklist failures: INFO-18 (control charts are not zero based, by design); INFO-17 not applicable; INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
 - Open questions: capability target and spec lines (questions.md).
+
+### Shift dashboard
+- Stories: Positive (4 locations), Negative (8 locations, page 1 of 2, two stopped, long name).
+- Reused: Chart card, Chart legend item, Status icon.
+- Created: T4 Table template, Location table (Table), Status value (Status), Mini hourly bars (Data viz), with stories and Docs.
+- Checklist failures: INFO-04/INFO-05 (no single main KPI on multiple location slides); INFO-10 (row hero uses the slide title role); BRAND-09 (new components pending approval); INFO-19 (2 of 6 states); A11Y-12, A11Y-17 to A11Y-19 not tested.
+- Open questions: primary feedback on multiple location slides, row hero type role, run statuses (questions.md).

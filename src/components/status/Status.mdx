@@ -7,4 +7,13 @@ import * as StatusStories from './Status.stories'
 
 <Story of={StatusStories.StatusIconGuide} />
 
+## Status value
+
+A value with its secondary status, for table cells and lists. Pending approval.
+
+- Status icon (32 px, or 40 px at `lg`) then the value. Warning and negative values take `status/{status}/content`; positive keeps `text/primary`.
+- `md`: Geist SemiBold 32 (chart value). `lg`: Geist Bold 44 (slide title role), only for the hero column of a multiple location table.
+- Tabular figures, so values line up in columns (A11Y-05). No fills.
+- Props: `status`, `text`, `size`, `label`.
+
 <Stories />
