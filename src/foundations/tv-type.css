@@ -1,0 +1,63 @@
+/*
+ * TV platform type scale (1920 x 1080 canvas). Families and weights come from Foundations
+ * (--rz-font-family-*, --rz-font-weight-*); this file sets the TV sizes and the text styles.
+ * Mirrors the Figma "TV type" variables and the text styles bound to them.
+ *
+ * Global layer: sizes, line heights and tracking. Use them only to define text styles.
+ * Semantic layer: one text style per role, --rz-tv-type-{role}, written as a `font` shorthand.
+ * Figures are proportional (the font default): values change only when the slide changes.
+ * Tracked styles set `letter-spacing` from --rz-tv-tracking-{role}.
+ * Rule: line height >= font size.
+ */
+:root {
+  /* Sizes: 5 steps. 104 and 136 are reserved for KPI values. */
+  --rz-tv-font-size-sm: 28px;
+  --rz-tv-font-size-md: 32px;
+  --rz-tv-font-size-lg: 44px;
+  --rz-tv-font-size-xl: 104px;
+  --rz-tv-font-size-2xl: 136px;
+
+  /* Line heights */
+  --rz-tv-line-height-2xs: 34px;
+  --rz-tv-line-height-xs: 36px;
+  --rz-tv-line-height-sm: 40px;
+  --rz-tv-line-height-md: 48px;
+  --rz-tv-line-height-lg: 52px;
+  --rz-tv-line-height-xl: 104px;
+  --rz-tv-line-height-2xl: 136px;
+
+  /* Tracking */
+  --rz-tv-letter-spacing-tight: -0.02em;
+  --rz-tv-letter-spacing-snug: -0.01em;
+  --rz-tv-letter-spacing-none: 0em;
+
+  /* KPI values (display). Tabular figures: they update live. */
+  --rz-tv-type-kpi-primary-value: var(--rz-font-weight-bold) var(--rz-tv-font-size-2xl) / var(--rz-tv-line-height-2xl) var(--rz-font-family-display);
+  --rz-tv-type-kpi-primary-unit: var(--rz-font-weight-medium) var(--rz-tv-font-size-lg) / var(--rz-tv-line-height-lg) var(--rz-font-family-display);
+  --rz-tv-type-kpi-secondary-value: var(--rz-font-weight-semibold) var(--rz-tv-font-size-xl) / var(--rz-tv-line-height-xl) var(--rz-font-family-display);
+  --rz-tv-type-kpi-secondary-unit: var(--rz-font-weight-medium) var(--rz-tv-font-size-md) / var(--rz-tv-line-height-sm) var(--rz-font-family-display);
+  --rz-tv-tracking-kpi-value: var(--rz-tv-letter-spacing-tight);
+
+  /* Shell (display) */
+  --rz-tv-type-slide-title: var(--rz-font-weight-bold) var(--rz-tv-font-size-lg) / var(--rz-tv-line-height-md) var(--rz-font-family-display);
+  --rz-tv-type-slide-location: var(--rz-font-weight-regular) var(--rz-tv-font-size-lg) / var(--rz-tv-line-height-md) var(--rz-font-family-display);
+  --rz-tv-tracking-slide-title: var(--rz-tv-letter-spacing-tight);
+  --rz-tv-type-clock-time: var(--rz-font-weight-semibold) var(--rz-tv-font-size-lg) / var(--rz-tv-line-height-lg) var(--rz-font-family-display);
+  --rz-tv-tracking-clock-time: var(--rz-tv-letter-spacing-snug);
+  --rz-tv-type-clock-date: var(--rz-font-weight-regular) var(--rz-tv-font-size-sm) / var(--rz-tv-line-height-2xs) var(--rz-font-family-display);
+
+  /* Cards and charts (display) */
+  --rz-tv-type-card-title: var(--rz-font-weight-medium) var(--rz-tv-font-size-md) / var(--rz-tv-line-height-sm) var(--rz-font-family-display);
+  --rz-tv-type-chart-title: var(--rz-font-weight-semibold) var(--rz-tv-font-size-md) / var(--rz-tv-line-height-sm) var(--rz-font-family-display);
+  --rz-tv-tracking-card-title: var(--rz-tv-letter-spacing-snug);
+  --rz-tv-type-chart-value: var(--rz-font-weight-semibold) var(--rz-tv-font-size-md) / var(--rz-tv-line-height-xs) var(--rz-font-family-display);
+  --rz-tv-type-chart-target-value: var(--rz-font-weight-semibold) var(--rz-tv-font-size-sm) / var(--rz-tv-line-height-2xs) var(--rz-font-family-display);
+
+  /* Status (text) */
+  --rz-tv-type-status-band: var(--rz-font-weight-semibold) var(--rz-tv-font-size-md) / var(--rz-tv-line-height-sm) var(--rz-font-family-text);
+  --rz-tv-type-status-line: var(--rz-font-weight-medium) var(--rz-tv-font-size-sm) / var(--rz-tv-line-height-xs) var(--rz-font-family-text);
+
+  /* Body (text): context lines, axis labels, legend, footer */
+  --rz-tv-type-body: var(--rz-font-weight-regular) var(--rz-tv-font-size-sm) / var(--rz-tv-line-height-2xs) var(--rz-font-family-text);
+  --rz-tv-type-body-strong: var(--rz-font-weight-semibold) var(--rz-tv-font-size-sm) / var(--rz-tv-line-height-2xs) var(--rz-font-family-text);
+}

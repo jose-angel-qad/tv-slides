@@ -1,0 +1,123 @@
+/*
+ * Redzone TV foundations.
+ * Colors come from tokens/tv-colors.json (injected as [data-theme] rules).
+ * Sizes below are TV platform values on the 1920 x 1080 canvas.
+ *
+ * The TV type scale (sizes, line heights, text styles) lives in tv-type.css.
+ */
+:root {
+  /*
+   * Font families.
+   *   display (Geist): what people look at. KPI values and units, slide title, card titles, clock,
+   *     chart value labels.
+   *   text (Inter): what people read. Context lines, status text, axis labels, legend, footer.
+   * Line height is always >= the font size (no cap-height trimming).
+   * --rz-font-family is the body default and stays as an alias of the text family.
+   */
+  --rz-font-family-text: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --rz-font-family-display: 'Geist Variable', 'Geist', 'Inter Variable', system-ui, sans-serif;
+  --rz-font-family: var(--rz-font-family-text);
+
+  /* Brand. Logo only; never used on data. */
+  --rz-brand-red: #fb0436;
+
+  --rz-font-weight-regular: 400;
+  --rz-font-weight-medium: 500;
+  --rz-font-weight-semibold: 600;
+  --rz-font-weight-bold: 700;
+
+  --rz-line-height-tight: 1;
+  --rz-line-height-snug: 1.15;
+
+  /*
+   * Spacing, 4 px base (replaces the earlier 8 px base).
+   * Global layer: numeric primitives. Use them only to define semantic tokens.
+   */
+  --rz-space-0: 0px;
+  --rz-space-4: 4px;
+  --rz-space-8: 8px;
+  --rz-space-12: 12px;
+  --rz-space-16: 16px;
+  --rz-space-20: 20px;
+  --rz-space-24: 24px;
+  --rz-space-32: 32px;
+  --rz-space-40: 40px;
+  --rz-space-48: 48px;
+  --rz-space-64: 64px;
+  --rz-space-80: 80px;
+  --rz-space-96: 96px;
+
+  /* Semantic layer: what components use. Each one aliases a global step. */
+  --rz-spacing-3xs: var(--rz-space-4);
+  --rz-spacing-2xs: var(--rz-space-8);
+  --rz-spacing-xs: var(--rz-space-12);
+  --rz-spacing-sm: var(--rz-space-16);
+  --rz-spacing-md: var(--rz-space-24);
+  --rz-spacing-lg: var(--rz-space-32);
+  --rz-spacing-xl: var(--rz-space-40);
+  --rz-spacing-2xl: var(--rz-space-64);
+  --rz-spacing-3xl: var(--rz-space-96);
+
+  /* Radius */
+  --rz-radius-sm: 8px;
+  --rz-radius-md: 16px;
+  --rz-radius-lg: 24px;
+  --rz-radius-full: 999px;
+
+  /* TV layout */
+  --rz-tv-canvas-width: 1920px;
+  --rz-tv-canvas-height: 1080px;
+  --rz-tv-safe-x: 96px;
+  --rz-tv-safe-y: 64px;
+  --rz-tv-grid-columns: 12;
+  --rz-tv-grid-gutter: 32px;
+
+  /* Motion */
+  --rz-motion-duration-slide: 600ms;
+  --rz-motion-duration-value: 400ms;
+  --rz-motion-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/*
+ * Composite tokens that mirror Figma styles. Declared on [data-theme] (not :root) so the
+ * var() references resolve against the active mode's colors.
+ *   gradient/surface/default -> --rz-gradient-surface-default (one style, Dark and Light)
+ *   elevation/card           -> --rz-elevation-card (colors elevation/card/small and /large)
+ *   elevation/sheet          -> --rz-elevation-sheet (color elevation/sheet/shadow)
+ */
+[data-theme] {
+  --rz-gradient-surface-default: linear-gradient(
+    180deg,
+    var(--rz-color-gradient-surface-start) 0%,
+    var(--rz-color-gradient-surface-end) 100%
+  );
+  --rz-elevation-card: 0 1px 2px 0 var(--rz-elevation-card-small), 0 12px 32px 0 var(--rz-elevation-card-large);
+  --rz-elevation-sheet: 0 4px 24px 0 var(--rz-elevation-sheet-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --rz-motion-duration-slide: 0ms;
+    --rz-motion-duration-value: 0ms;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.rz-tv {
+  font-family: var(--rz-font-family);
+  font-feature-settings: 'cv11' 1;
+  -webkit-font-smoothing: antialiased;
+  color: var(--rz-color-text-primary);
+  background: var(--rz-color-background-default);
+}
