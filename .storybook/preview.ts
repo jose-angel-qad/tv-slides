@@ -33,7 +33,17 @@ const preview: Preview = {
     layout: 'fullscreen',
     controls: { matchers: { color: /(background|color)$/i } },
     options: {
-      storySort: { order: ['Introduction', 'Foundations', 'Guidelines', 'Components', 'Templates', 'Slides'] },
+      storySort: {
+        order: [
+          'Introduction',
+          'Foundations',
+          'Guidelines',
+          ['Overview', 'Accessibility', 'Information design', 'Brand expression'],
+          'Components',
+          'Templates',
+          'Slides',
+        ],
+      },
     },
     docs: {
       // Guideline stories (tag 'guide') are placed by hand on each Docs page, not in <Stories />.

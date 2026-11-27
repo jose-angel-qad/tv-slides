@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Guidelines/Information design" />
+
+# Information design
+
+Each slide answers one question, and a person walking by gets the answer in under 5 seconds.
+
+## One question
+
+| ID | Rule |
+| --- | --- |
+| INFO-01 | Start from the slide's key question on its spec page in **Slides**. |
+| INFO-02 | The answer is the largest element on screen. |
+| INFO-03 | Every key value shows its status and its gap to target, for example 92.8% OEE, 2.8 pts above target. |
+
+## Hierarchy
+
+| ID | Rule |
+| --- | --- |
+| INFO-04 | Same anatomy on every slide: header (title, context, freshness, navigation), hero (the answer), support, and footer (brand). |
+| INFO-05 | Single location: one hero plus up to three supporting facts. |
+| INFO-06 | Multiple location: up to 8 rows and 4 metric columns per page. Paginate; never shrink to fit. |
+| INFO-07 | Up to three text sizes per slide. |
+| INFO-08 | Keep row order stable so people find their line in the same place. Only the Leaderboard re-sorts. |
+
+## What to highlight
+
+| ID | Rule |
+| --- | --- |
+| INFO-09 | Status color only where it needs attention. Base data stays neutral. |
+| INFO-10 | When space runs out, remove support content first. Never reduce size below the minimum. |
+
+| Highlight | Keep quiet |
+| --- | --- |
+| The answer to the question | Labels and units |
+| Values below target | Values on target, when many are shown |
+| What changed or needs action | Context that never changes |
+
+## Charts
+
+| ID | Rule |
+| --- | --- |
+| INFO-11 | Show a number first. Use a chart only when its shape answers the question faster. |
+| INFO-12 | One neutral data color plus status colors. No pies, donuts, or gauges. |
+| INFO-13 | Label the target line with its value. Keep value labels off it. |
+| INFO-14 | Mark the current hour as in progress, so a partial bar does not read as a failure. |
+| INFO-15 | Label data directly. Few ticks, large labels. Bars start at zero. |
+
+## Data states
+
+| ID | Rule |
+| --- | --- |
+| INFO-16 | Design every slide in: live, loading, empty, shift not started, stale, disconnected, and error. |
+| INFO-17 | Freshness is always visible in the header. Stale data is dimmed and shows its last update time. |
+| INFO-18 | Zero and empty are different. Explain empty in a plain sentence, for example 2nd shift starts at 6:00 AM. |
+| INFO-19 | Never show raw system messages or a blank screen. |
+
+## Content
+
+| ID | Rule |
+| --- | --- |
+| INFO-20 | Locale-aware numbers, dates, and times. Whole numbers for counts, one decimal for percentages and rates. Units always visible. |
+| INFO-21 | Leave room for 40% text expansion. Wrap to two lines; never truncate line or product names. |
+| INFO-22 | Sentence case and no unexplained abbreviations. Line and product names appear as entered. |
+| INFO-23 | Gamification stays, with one meaning per symbol. Zero points is neutral, and numbers lead over illustrations. |
+
+## Checklist
+
+- [ ] The key question is answered by the largest element on screen.
+- [ ] Every key value shows its status and gap to target.
+- [ ] Single location: one hero and up to three facts. Multiple location: up to 8 rows and 4 metric columns.
+- [ ] Three text sizes or fewer.
+- [ ] Status color appears only where attention is needed.
+- [ ] Charts have a labeled target, an in-progress current hour, and no pies or gauges.
+- [ ] All seven data states are designed.
+- [ ] Numbers and units are formatted, and no name is truncated.

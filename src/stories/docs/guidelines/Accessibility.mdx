@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Guidelines/Accessibility" />
+
+# Accessibility
+
+Slides are read from far away, by everyone, on screens that never turn off. The minimum is WCAG 2.1 AA, with higher contrast for key values.
+
+## Legibility at distance
+
+| ID | Rule |
+| --- | --- |
+| A11Y-01 | Size for the farthest viewer, measured as cap height on the physical screen: text at least distance (ft) / 25, key values at least distance (ft) / 10. |
+| A11Y-02 | Never below 24 px on the 1920 x 1080 canvas. Use the type scale roles; they already meet this floor. |
+| A11Y-03 | Regular weight or heavier. Proportional figures: values change only when the slide changes, never live, and proportional figures use space better. |
+
+Reference viewing distances and screen sizes are provisional until they are validated on real TVs in plants.
+
+## Contrast
+
+| ID | Rule |
+| --- | --- |
+| A11Y-04 | Text 4.5:1. Key values 7:1. Bars, lines, icons, and the target line 3:1. Check both modes. |
+| A11Y-05 | No white text on saturated status fills. Use the matching on-fill token. |
+| A11Y-06 | No pure black or pure white surfaces. Use Foundations surfaces only. |
+
+The color editor in the Storybook toolbar shows live contrast for every token pair.
+
+## Color vision
+
+| ID | Rule |
+| --- | --- |
+| A11Y-07 | Color is never the only signal. Every status pairs color with its icon shape, plus a label when it fits. |
+| A11Y-08 | Status is not trend. Up and down arrows never use status colors. |
+| A11Y-09 | Check every slide in grayscale and with protanopia, deuteranopia, and tritanopia simulation (Chrome DevTools, Rendering, Emulate vision deficiencies). |
+
+| Status | Color | Icon |
+| --- | --- | --- |
+| Positive (at or above target) | Positive | Circle |
+| Warning (at risk) | Warning | Triangle |
+| Negative (below target or stopped) | Negative | Octagon |
+| Neutral (no target or no data) | Neutral | Dash |
+
+## Motion
+
+| ID | Rule |
+| --- | --- |
+| A11Y-10 | Nothing flashes or loops. |
+| A11Y-11 | Respect the device reduced motion setting: replace movement with an instant change or a crossfade. |
+| A11Y-12 | No auto-scrolling text people need to read. Use pages instead of a ticker. |
+
+## Checklist
+
+- [ ] Text, key values, and chart marks meet their contrast ratio in Light and Dark.
+- [ ] No text is below 24 px, and no weight is lighter than Regular.
+- [ ] Every status has an icon shape, not only a color.
+- [ ] The slide still reads in grayscale and with color blindness simulation.
+- [ ] No white text on a saturated fill, and no pure black or white surface.
+- [ ] Nothing flashes, loops, or scrolls on its own, and reduced motion works.

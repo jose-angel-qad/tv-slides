@@ -12,6 +12,37 @@
   color: var(--rz-color-text-primary);
 }
 
+/* MDX tables (Guidelines rules), styled like the Foundations doc tables. */
+.sbdocs.sbdocs-wrapper table:not(.rz-doc *) {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--rz-font-family-text);
+}
+.sbdocs.sbdocs-wrapper :is(table tr, table tr:nth-of-type(2n)):not(.rz-doc *) {
+  background: transparent;
+  border: 0;
+}
+.sbdocs.sbdocs-wrapper :is(table th, table td):not(.rz-doc *) {
+  padding: var(--rz-spacing-2xs) var(--rz-spacing-xs);
+  text-align: left;
+  vertical-align: top;
+  border: 0;
+  border-top: 1px solid var(--rz-color-border-subtle);
+  color: var(--rz-color-text-primary);
+}
+.sbdocs.sbdocs-wrapper table th:not(.rz-doc *) {
+  font-weight: 500;
+  border-top: 0;
+  color: var(--rz-color-text-secondary);
+}
+/* Rule IDs (A11Y-01) stay on one line. */
+.sbdocs.sbdocs-wrapper table td:first-child:not(.rz-doc *) {
+  white-space: nowrap;
+}
+.sbdocs.sbdocs-wrapper :is(table a, p a, li a):not(.rz-doc *) {
+  color: var(--rz-color-data-neutral);
+}
+
 /* TV stories on a Docs page: TvCanvas fills this 16:9 box instead of the viewport and scales to fit. */
 .rz-docs-story {
   aspect-ratio: 16 / 9;

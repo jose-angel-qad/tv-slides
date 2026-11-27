@@ -31,7 +31,7 @@
   --rz-tv-letter-spacing-snug: -0.01em;
   --rz-tv-letter-spacing-none: 0em;
 
-  /* KPI values (display). Tabular figures: they update live. */
+  /* KPI values (display). Proportional figures: they change only with the slide. */
   --rz-tv-type-kpi-primary-value: var(--rz-font-weight-bold) var(--rz-tv-font-size-2xl) / var(--rz-tv-line-height-2xl) var(--rz-font-family-display);
   --rz-tv-type-kpi-primary-unit: var(--rz-font-weight-medium) var(--rz-tv-font-size-lg) / var(--rz-tv-line-height-lg) var(--rz-font-family-display);
   --rz-tv-type-kpi-secondary-value: var(--rz-font-weight-semibold) var(--rz-tv-font-size-xl) / var(--rz-tv-line-height-xl) var(--rz-font-family-display);

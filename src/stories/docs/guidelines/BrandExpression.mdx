@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Guidelines/Brand expression" />
+
+# Brand expression
+
+Slides run all day on factory TVs that employees, customers, and visitors see. Every slide is also a brand display: on brand by default, modern, and polished. The brand frames the data and never competes with it.
+
+## Where the brand lives
+
+| ID | Rule |
+| --- | --- |
+| BRAND-01 | The footer is dedicated to the brand. It is a business and commercial requirement, and it never shows data or status. |
+| BRAND-02 | Use the footer variants defined in the Footer brand bar component. Do not create new ones per slide. |
+| BRAND-03 | Screens without data can carry more brand: pairing, loading, shift not started, empty states, Company Update, and Welcome. |
+
+## Where the brand does not live
+
+| ID | Rule |
+| --- | --- |
+| BRAND-04 | Brand red never appears on data, status, or chart marks. Negative status has its own token. |
+| BRAND-05 | No brand color or brand pattern behind numbers. |
+
+## Modern and polished
+
+These rules turn "modern" into something a review can check.
+
+| ID | Rule |
+| --- | --- |
+| BRAND-06 | Foundations tokens only, for color, type, spacing, radius, and shadow. No hardcoded values. |
+| BRAND-07 | Geist for display values, Inter for text, following the type scale roles. |
+| BRAND-08 | Space separates content, not lines. Spacing follows the 4 px scale. No borders around zones. |
+| BRAND-09 | One component for each job. Use an existing component before creating a new one. |
+| BRAND-10 | Icons come from the Icon component only. |
+| BRAND-11 | Every slide looks like part of one set. Run Throughput is the reference slide. |
+
+## Light and Dark
+
+| ID | Rule |
+| --- | --- |
+| BRAND-12 | Design every slide in Light and Dark. Each screen picks its mode based on plant lighting. |
+
+## Burn-in
+
+| ID | Rule |
+| --- | --- |
+| BRAND-13 | The footer is the only large static element allowed. Everything else avoids large static, saturated, or high-contrast areas. |
+
+## Pending decisions
+
+- Default footer tone (red or blue).
+- How to limit burn-in on the footer, to validate on real TVs.
+
+## Checklist
+
+- [ ] The brand appears in the footer, and nowhere on data or status.
+- [ ] The footer uses an existing variant.
+- [ ] Only Foundations tokens are used. Nothing is hardcoded.
+- [ ] Geist for values and Inter for text, from the type scale roles.
+- [ ] Space separates zones, with no borders.
+- [ ] Only existing components and icons are used.
+- [ ] The slide looks like part of the same set as Run Throughput, in Light and Dark.
