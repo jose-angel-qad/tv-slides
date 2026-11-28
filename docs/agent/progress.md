@@ -10,7 +10,7 @@ Round 1 (November 28, overnight) built all 27 slides as drafts. Review found tha
 
 Add slides here when the user approves them; they become references for style and judgment.
 
-## Round 2 order
+## Round 2 order (done, November 29 overnight; see Round 2 log)
 
 Pilot review (November 29): the approach works. Hourly OEE had no feedback. Shift Dashboard feedback became the rules in the agent's "Step 4b. System rules from the pilot review": row hierarchy with a metric cell instead of larger text, one status per element, a run status badge, and one chart geometry for every bar chart.
 
@@ -285,6 +285,27 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Stories: Default (clear leader), Tie for first, Start of shift.
 - Reviews: 1) FAIL: zero values drew a sliver bar, "No points yet" repeated. Fixed: no bar for zero, repetition removed. 2) PASS. Minor kept: hourly results as a digit string, space under short lists (fixed bar rule), short bars far from their values, sparse start of shift.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-03, INFO-06 to INFO-16, INFO-18 to INFO-25; BRAND-01 to BRAND-12. Not applicable: INFO-04, INFO-05, INFO-17. Not verified: A11Y-12, A11Y-17 to A11Y-19.
+
+### SPC dashboard (pending approval, proposal)
+- Question: is each monitored characteristic in control? (kept)
+- Row hero: control status in a Metric cell ("In control" or "7 points out", over "Last 20 subgroups"). Latest value with LCL and UCL (status only when outside); Cpk with a status only below the capability target.
+- Left out: one chart per characteristic (unreadable at a quarter size; X-Bar R shows one in full); spec limits and target are not in the data.
+- Stories: Positive (all in control), Negative (two out of control, Cpk below target, long name).
+- Reviews: 1) PASS. Minor kept: long name wraps to three lines while the middle of the row has room, icon offsets the latest value, "Last 20 subgroups" on every row, Cpk beyond the key question.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-17, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
+### Company inherited highlight (pending approval, proposal)
+- Question (proposed): what is the company celebrating or asking of everyone?
+- Hero: headline (slide title role) with the message, who shared it and when; the image on the left with the card finish when there is one; text only centered at a readable measure.
+- Stories: With image, Text only, Nothing shared. Content container.
+- Reviews: 1) PASS. Minor kept: headline same role as the slide title, image padding uneven, text-only card sparse, "with all sites" repeats "All areas".
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-02, INFO-07, INFO-08, INFO-19 (empty built), INFO-20 to INFO-24; BRAND-01 to BRAND-12. INFO-01: proposed question. INFO-10: headline uses the slide title role. Not verified: A11Y-12, A11Y-18, A11Y-19.
+
+## Round 2 summary
+- 26 slides redesigned and through the review gate (every slide except Run throughput), one commit each on agent/slides, audit column I set to Pending approval.
+- Review rounds that ended at the limit with open findings (fixed after round 3, not re-reviewed): Run speed, Cycles, Line balance, Operations.
+- Shared pieces: chart geometry, status subtle tokens, Run status badge, Location table row layout, Metric cell, Fact card, Line chart bands, Progress bar lg, evenGrid.
+- Not done: extra scenarios (loading, stale, disconnected, error, slideshow menu) beyond the content slides; grayscale, Arabic, tall script and long language checks.
 
 ## Round 1 log (drafts, superseded)
 

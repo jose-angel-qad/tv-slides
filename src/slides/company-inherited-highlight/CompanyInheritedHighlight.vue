@@ -1,77 +1,112 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import T4Table from '../../templates/T4Table.vue'
-import ChartCard from '../../components/card/ChartCard.vue'
 import EmptyState from '../../components/feedback/EmptyState.vue'
 import type { CompanyHighlightData } from './types'
 
-// Proposal (definition pending, only captured empty). Assumed meaning: a highlight the company
-// (or a parent site) shares with every site, inherited by this TV's slide set.
-// Question (proposed): what is the company celebrating or asking of every site today?
-// Headline as the hero, a short message and an optional image at its own aspect ratio.
-// The brand stays in the footer; this screen may carry more of it (BRAND-03).
+// Design plan (round 2). Proposal: the slide is not in the Knowledge Base and was only captured with
+// no data. Assumed meaning (questions.md): a highlight written once by the company or a parent site
+// and inherited by every site's TVs, with a headline, a short message and an optional image.
+//
+// Question (proposed): what is the company celebrating or asking of everyone?
+// Answer (hero): the headline, the largest text on screen, with the image beside it.
+//
+// Must show (proposed), mapped:
+// - Headline: Geist Bold 44 (slide title role; the KPI value sizes are for numbers), wraps.
+// - Message: Inter 32 SemiBold (status band role, the largest reading text), wraps, never cut.
+// - Who shared it and when: one quiet line under the message.
+// - Image: contain fit with the card finish, like Company update; leaves the text full width when
+//   there is none.
+// - Nothing shared: an empty state sentence.
+//
+// Not shown:
+// - Location in the header context: the highlight is company wide ("All areas").
+//
+// Layout options:
+// a) Text in a titled card over the image (round 1): the card title repeated the slide type.
+// b) Image full screen with the text over it: text over an unknown image fails contrast.
+// c) One card: image on the left, headline and message on the right. Chosen: reads like a poster, and
+//    the text always sits on a token surface.
 const props = defineProps<{ data: CompanyHighlightData }>()
 const d = computed(() => props.data)
-const date = computed(() =>
-  d.value.sharedAt ? new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(d.value.sharedAt) : '',
+const shared = computed(() =>
+  [d.value.source, d.value.sharedAt ? new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(d.value.sharedAt) : '']
+    .filter(Boolean)
+    .join(' · '),
 )
 </script>
 
 <template>
-  <T4Table>
-    <ChartCard title="Company highlight">
-      <template #actions>
-        <span class="source">{{ d.source }}{{ date ? ` · ${date}` : '' }}</span>
-      </template>
-      <div v-if="d.headline" class="body" :class="{ 'with-image': d.image }">
-        <div class="text">
-          <h2 class="headline">{{ d.headline }}</h2>
-          <p v-if="d.message" class="message">{{ d.message }}</p>
-        </div>
-        <img v-if="d.image" class="image" :src="d.image.src" :alt="d.image.alt" />
+  <div class="rz-highlight">
+    <article v-if="d.headline" class="card" :class="{ 'has-image': d.image }">
+      <img v-if="d.image" class="image" :src="d.image.src" :alt="d.image.alt" />
+      <div class="text">
+        <h2 class="headline">{{ d.headline }}</h2>
+        <p v-if="d.message" class="message">{{ d.message }}</p>
+        <p class="shared">{{ shared }}</p>
       </div>
-      <EmptyState v-else icon="campaign" title="No company highlight right now" detail="Highlights shared by the company with every site show here." />
-    </ChartCard>
-  </T4Table>
+    </article>
+    <section v-else class="card empty"><EmptyState title="Nothing shared yet" /></section>
+  </div>
 </template>
 
 <style scoped>
-.source {
-  font: var(--rz-tv-type-body);
-  color: var(--rz-color-text-secondary);
+.rz-highlight {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+  display: grid;
 }
-.body {
-  flex: 1;
-  min-height: 0;
+.card {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: var(--rz-spacing-2xl);
+  min-height: 0;
+  padding: var(--rz-spacing-2xl);
+  border: 1px solid var(--rz-color-border-subtle);
+  border-radius: var(--rz-radius-lg);
+  background: var(--rz-gradient-surface-default);
+  box-shadow: var(--rz-elevation-card);
 }
-.body.with-image {
+.card.has-image {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.empty {
+  display: flex;
+  padding: 0;
+  background: var(--rz-color-surface-default);
+}
+.image {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--rz-radius-lg);
 }
 .text {
   display: flex;
   flex-direction: column;
   gap: var(--rz-spacing-md);
+  min-width: 0;
+}
+.card:not(.has-image) .text {
+  /* Text only: a readable line length, centered in the card. */
+  justify-self: center;
+  max-width: 1280px;
 }
 .headline {
   margin: 0;
-  font: var(--rz-tv-type-kpi-secondary-value);
-  letter-spacing: var(--rz-tv-tracking-kpi-value);
+  font: var(--rz-tv-type-slide-title);
+  letter-spacing: var(--rz-tv-tracking-slide-title);
   color: var(--rz-color-text-primary);
 }
 .message {
   margin: 0;
   font: var(--rz-tv-type-status-band);
-  color: var(--rz-color-text-secondary);
+  color: var(--rz-color-text-primary);
 }
-.image {
-  max-width: 100%;
-  max-height: 100%;
-  justify-self: center;
-  object-fit: contain;
-  border-radius: var(--rz-radius-md);
+.shared {
+  margin: 0;
+  font: var(--rz-tv-type-body);
+  color: var(--rz-color-text-secondary);
 }
 </style>

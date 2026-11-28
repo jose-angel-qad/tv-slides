@@ -11,5 +11,15 @@ export const companyHighlightPositive: CompanyHighlightData = {
   image: { src: art, alt: 'Illustration of a gold medal' },
 }
 
+// Text only, a long message.
+export const companyHighlightText: CompanyHighlightData = {
+  location: 'All areas',
+  source: 'Shared by the North America region',
+  sharedAt: new Date(2026, 10, 16),
+  headline: 'Winter weather plan starts Monday',
+  message:
+    'Parking lot B closes for snow storage. Use the north entrance and allow ten extra minutes. Shift leaders will confirm call-in times by text if roads close, so check that your phone number is current with HR this week.',
+}
+
 // Nothing shared yet.
 export const companyHighlightNegative: CompanyHighlightData = { location: 'All areas', source: 'Shared by the company with all sites' }
