@@ -9,11 +9,14 @@ import { formatRate } from '../../utils/format'
 //   on target    -> positive, "On target 6.2"
 //   above target -> positive, "Above target 6.2"
 //   below target -> negative (octagon, line in negative/content), "Below target 6.2"
-const props = defineProps<{ crew: number; target: number }>()
+// `quiet` (pilot review, status economy): on or above target stays neutral, "Target 6.2", so only
+// a crew below target draws attention. Round 2 slides use it; Run throughput keeps the approved look.
+const props = defineProps<{ crew: number; target: number; quiet?: boolean }>()
 
 const state = computed<{ status: Status; label: string }>(() => {
   const diff = Math.round((props.crew - props.target) * 10) / 10
   const t = formatRate(props.target)
+  if (diff >= 0 && props.quiet) return { status: 'neutral', label: `Target ${t}` }
   if (diff === 0) return { status: 'positive', label: `On target ${t}` }
   if (diff > 0) return { status: 'positive', label: `Above target ${t}` }
   return { status: 'negative', label: `Below target ${t}` }
