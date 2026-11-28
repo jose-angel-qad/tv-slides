@@ -164,6 +164,26 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor fixed: context lines top aligned, hero label repeated the band. Minor kept: "Working" is the state not the pace, Fact card weaker than Stat tiles, no chart legend, every bar flagged in Negative, problem bars use the data blue, space under three problems.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Line balance (pending approval)
+- Question: where is work piling up? (kept)
+- Hero: the WIP between steps drawn as bars, the largest on a raised value plate; the WIP limit as a dashed "Limit 20" line; above it the largest WIP is a bottleneck (negative with icon). Title: "Most work in process: 46 waiting before Assemble". Steps completed are text under each step ("148 done").
+- Layout: options were a hero WIP number (round 1), a table of steps, completed bars with WIP values between them (review round 1: the completed bars dominated), WIP bars with steps as labels (chosen).
+- Left out: rotated names, bottleneck hero and tiles (round 1).
+- Stories: Default (flowing), Bottleneck, Many steps. Data without a target.
+- Changed: Step flow chart rebuilt (WIP bars, limit line, steps as labels; bar width from the step pitch).
+- Reviews: 1) FAIL: completed bars dominated. Rebuilt with WIP as bars. 2) FAIL: bottleneck color without a visible limit, dead zone. Added the limit line, dropped the repeated caption. 3) FAIL, blocking: WIP bar width from half the pitch. Fixed after round 3 (62% of the step pitch). Open, not re-reviewed: headroom up to the limit leaves space in Default, the answer is a 32 px title (no hero value), no flow cue between bars and steps, "done" lines not on one baseline when names wrap.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-16, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not applicable: INFO-04, INFO-05, INFO-17, INFO-18. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
+
+### Cycles (pending approval)
+- Question: is each asset's cycle on time? (kept)
+- Row hero: time left or overrun in a Metric cell ("14m left" over "of 45m"; overrun negative with icon); cycle bar hatched while running; state as Run status badge. Run card on the right: product, run progress (hatched), active and total cycle averages.
+- Layout: shared row layout for assets; options were a card grid (times do not line up) and a run strip on top (six assets do not fit).
+- Left out: double rings and legend, product image.
+- Stories: Positive, Negative (two overruns, rejected, no product, long names).
+- Reused: Location table, Metric cell, Run status badge, Progress bar, Chart card. Badge mapping: Active as Running ("Active"), Rejected as Breakdown style, No product as Inactive style (questions.md).
+- Reviews: 1) FAIL: averages larger than the row hero, overrun bar solid blue. Fixed: averages at 32 px, overrun stays hatched, no target on non-running rows. 2) FAIL: hero value same size as names (conflicts with the pilot rule: hierarchy from the container, one type scale per row; kept), dead zone under the run card. Fixed: card fills the column. 3) FAIL, blocking: space inside the run card. Fixed after round 3: card grouped at the top from the first row, as tall as its content. Open, not re-reviewed: metric cells shorter on non-running rows, overrun bar looks like a nearly done cycle, averages have little weight.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-16, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no main KPI (row heroes only). Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

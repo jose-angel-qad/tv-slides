@@ -104,6 +104,11 @@ Format per entry:
 - Assumption used: the numbers are WIP between steps; one WIP limit per location (mock 20). Below it the slide says work is flowing.
 - Where it shows: `src/slides/line-balance/`
 
+## Cycles (round 2)
+- Question: asset states (Active, Inactive, Overrun, Rejected, No product) are not run states. How should they map onto the Run status badge?
+- Assumption used: Active as Running labeled "Active", Inactive as Inactive, Rejected as Breakdown style labeled "Rejected", No product as Inactive style labeled "No product". Overrun is a timing result on the Metric cell.
+- Question: reviewers asked for a larger row hero value; the pilot rule says hierarchy comes from the container and rows keep one type scale. Kept the rule.
+
 ## Cycles
 - Question: what is the difference between active and total cycle time, and what does Rejected mean?
 - Options: active = time the asset runs, total = including load and unload; Rejected = the batch failed a check.
