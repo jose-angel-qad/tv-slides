@@ -228,6 +228,30 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: changeover values shift right when an icon shows, "Page 1 of 2" next to the Points header, uneven column spacing, "target 30m" on every row.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-17, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Must show partial by design. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Run dashboard (pending approval)
+- Question: how far along is each run, and is quality OK? (kept)
+- Row hero: percent done in a Metric cell with completed of planned ("15,400 of 22,900 cases"); "Done" with the positive icon when complete. Product with its progress bar in the widest column; OEE and quality plain with a status only below target. No active run: Inactive badge "No active run".
+- Left out: quality circle and badge (meaning unclear), product type icon.
+- Stories: Positive (one run done), Negative (below target, quality issue, no active run, long names).
+- Changed: Metric cell (second line wraps inside the cell).
+- Reviews: 1) FAIL: Metric cell second line ran past the cell. Fixed in the Metric cell, column 360 px. 2) PASS. Minor kept: bar repeats the percent, the no-run row's empty cell, orphan words in product names, OEE target not shown.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
+### Up/Down stream (pending approval)
+- Question: will the lines feeding this area finish on time? (kept)
+- Row hero: minutes ahead or behind in a Metric cell with the ETA ("21m behind" over "ETA 11:41 PM"; "No ETA" when stopped); behind is negative, ahead stays neutral. Product with progress; Run status badge. Rows in flow order, upstream first.
+- Stories: Positive, Negative (behind, a stopped line, long names). Positive values mean ahead (assumption, questions.md).
+- Reviews: 1) FAIL: "No ETA while stopped" ran past the Metric cell. Fixed. 2) PASS. Minor kept: a stopped run's bar is solid (reads as done elsewhere), orphan word in a product name, no flow cue besides row order.
+- Checklists: as Run dashboard.
+
+### News (pending approval)
+- Question: what happened recently that I should know? (kept)
+- Hero: one row card per item, newest first, sharing the page height (four per page); meta line with type, author and time; alerts use the warning icon.
+- Left out: "Latest news" card title (round 1), ticker.
+- Stories: Few items, Many items (page 1 of 3), Long text, No news.
+- Reviews: 1) PASS. Minor kept: one-line rows keep the shared height, small empty state, time at the end of the grey meta line, space under few items.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01, INFO-02, INFO-07, INFO-08, INFO-10, INFO-19 (empty built), INFO-20 to INFO-24; BRAND-01 to BRAND-12. Not applicable: INFO-03 to INFO-06, INFO-09, INFO-11 to INFO-18, INFO-25. Not verified: A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

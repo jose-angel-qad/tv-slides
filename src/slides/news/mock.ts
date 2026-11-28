@@ -13,4 +13,18 @@ export const newsPositive: NewsData = {
   ],
 }
 
+// Few items: one page, no page indicator.
+export const newsFew: NewsData = { ...newsPositive, page: { index: 1, count: 1 }, items: newsPositive.items.slice(0, 2) }
+
+// Long item text: wraps, never cut.
+export const newsLong: NewsData = {
+  ...newsPositive,
+  page: { index: 2, count: 3 },
+  items: [
+    { id: 'l1', type: 'alert', at: at(20, 12), author: 'Environmental, health and safety', text: 'Ammonia sensor in the compressor room reads above the warning level. Stay out of the room until maintenance confirms it is safe, and use the north corridor to reach the dock. Report any smell to your supervisor right away.' },
+    { id: 'l2', type: 'chat', at: at(19, 2), author: 'Dana Okonkwo-Lindqvist', text: 'Reminder: the new label printer on Line 6 needs the blue ribbon cartridges. They are in the second cabinet next to the quality desk.' },
+    { id: 'l3', type: 'high-five', at: at(18, 20), author: 'Maintenance', text: 'Thanks to the night crew for the quick filler repair.' },
+  ],
+}
+
 export const newsNegative: NewsData = { location: 'Packaging area', page: { index: 1, count: 1 }, items: [] }
