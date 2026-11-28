@@ -19,10 +19,11 @@ One alert, chat or high five. Pending approval.
 
 An uploaded image or PDF page, as large as possible (Company Update). Pending approval.
 
-- `object-fit: contain`: the file keeps its aspect ratio, centered, never cropped or stretched.
-- Card frame like Chart card (`surface/default`, radius 24, `elevation/card`), with an optional caption row: title on the left, "Page 1 of 3" on the right for a PDF.
-- If the file cannot load, it shows the Empty state message with a plain sentence (INFO-21).
-- Props: `src`, `alt`, `title`, `page`.
+- Contain fit: the file keeps its aspect ratio, centered, never cropped or stretched, as large as its container allows.
+- The card finish sits on the file itself: radius 24, 1 px `border/subtle`, `elevation/card`. No padding or caption around it.
+- A multi-page PDF shows "Page 1 of 3" under the file (Inter 28, `text/secondary`); pages advance with the slide (A11Y-15).
+- No file, loading and a file that cannot load each show a plain sentence on a card (INFO-20, INFO-21). Loading is static (A11Y-13).
+- Props: `src`, `alt`, `page`, `loading`.
 
 ## Person card
 

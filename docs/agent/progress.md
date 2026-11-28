@@ -54,8 +54,27 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 and INFO-05: no single main KPI on a multiple location slide. Stopped uses a status fill, which INFO-05 reserves for the main KPI; logged in questions.md. INFO-10: the row OEE uses the slide title role (Geist Bold 44), no table hero role exists. Not verified: INFO-19 (only Positive and Negative), A11Y-12, A11Y-18, A11Y-19.
 - Open questions: see questions.md.
 
-### Company update (not started)
-- Paused at the user's request after Shift dashboard. A draft (frameless Media frame, update name in the header, Landscape, Portrait, Multi-page PDF, No content and Loading stories) is saved outside the repo as a patch in the session notes folder; nothing of it is committed.
+## Round 2 log
+
+### Shared pieces (pending approval)
+- Chart geometry: `src/components/data-viz/chartGeometry.ts`. Bar 62% of its slot up to 104 px (the cap keeps Run throughput unchanged), 8 px gap floor, radius `min(10, bar x 0.15)`, shared axis, target line and hatching. Applied to Hourly bar chart (no visible change, bars still 104 px in Hourly OEE and Run throughput), Mini hourly bars (now SVG, 62% bars instead of fixed 4 px gaps), Bar list (end radius 4.8 px, shared hatching, 32 px bars 24 px apart) and Step flow chart (container query units for the 62% width and radius).
+- Foundations: `color/status/{positive, warning, negative, neutral}/subtle` and `/subtle-border`, Dark and Light. Contrast of content on subtle: Dark 7.24, 7.62, 5.21, 5.47; Light 4.80, 4.62, 4.59, 5.40. Light warning and negative tints are very light so the content colors keep 4.5:1; the border carries most of the tint. Logged for approval.
+- Run status badge (Status), seven states with filled icons; `runState.ts` holds the states.
+- Location table (Table) is now the shared row layout; Metric cell (Table) is the row hero.
+- Audit: Table column header, Multi-location table row, Run status indicator, Current Leader bar, Mini hourly bar chart, Pareto row set to Pending approval. No audit rows exist for Step flow chart, Metric cell, Run status badge as named, or Chart geometry.
+
+### Hourly OEE (pending approval)
+- Pilot design kept. Chart geometry comes through the Hourly bar chart; no visible change (bars 104 px). Body moved into the shared `_shared/HourlyTargetChart.vue`, now also used by Hourly counts and Units/man hour; render unchanged.
+
+### Company update (pending approval)
+- Question: what is the company sharing today? (guide, kept)
+- Hero: the attached file, contain fit, with the card finish (radius 24, border, elevation) on the file itself. No card padding or caption.
+- Layout: options were the file in a titled card (round 1, frame shrinks the file), full bleed (loses the set's finish and the edge of white files), the file alone with the card finish (chosen).
+- Left out: card padding and caption row, location in the header (the update's name is the header context), the "file cannot load" story (not a slide state; the frame still says so in a sentence), spinner (static loading text, A11Y-13).
+- Stories: Landscape, Portrait, Multi-page PDF, No content, Loading.
+- Reused: Empty state message. Changed: Media frame (no padding or caption, `loading` prop, No content message). Story helper `slideRender` takes an optional header context.
+- Reviews: 1) PASS, no blocking. Minor kept: loading looks close to No content (static on purpose, A11Y-13; the icon and sentence differ), "Page 1 of 3" small and costs 48 px of page height, white PDF page edge soft in Light, the header repeats the artwork heading (it is the update's name), empty state heading in Geist (Empty state component, unchanged).
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-07, INFO-08, INFO-10, INFO-19 (no content and loading built), INFO-20, INFO-21, INFO-24; BRAND-01 to BRAND-08, BRAND-10 to BRAND-12. Not applicable: INFO-03 to INFO-06, INFO-09, INFO-11 to INFO-18, INFO-22, INFO-23, INFO-25. BRAND-09: changed component pending approval. Not verified: A11Y-12, A11Y-17 to A11Y-19.
 
 ## Round 1 log (drafts, superseded)
 

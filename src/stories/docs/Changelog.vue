@@ -13,6 +13,7 @@ import DocPage from './DocPage.vue'
       <li>Bar list: end radius from the geometry (4.8 px instead of 8 px) and the shared hatching.</li>
       <li>Location table (Table): now the shared row layout. Row cards on the sheet, headers on the sheet, location name with a detail line, rows that fill the page between 112 and 184 px.</li>
       <li>Added Metric cell (Table): the row hero, value and target in a raised container instead of a larger font.</li>
+      <li>Media frame (Content): no card padding or caption row; the file carries the card finish. New <code>loading</code> prop and a No content message. The update's name moves to the slide header.</li>
     </ul>
 
     <h2>November 29, 2026: Round 2 slides (pending approval)</h2>
