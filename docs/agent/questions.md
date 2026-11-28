@@ -88,6 +88,10 @@ Format per entry:
 - Assumption used: the change is dropped; OEE shows its status against the OEE target. Quality has no target, so it stays neutral.
 - Where it shows: `src/slides/discrete-location/`
 
+## Discrete station (round 2)
+- Question: the station state is the hero's Status band. Should it also show as a Run status badge (the badge rules list Discrete station)?
+- Assumption used: no badge; the band is the primary feedback and a badge would repeat it.
+
 ## Discrete station
 - Question: what period does the large steps value cover, and which station states exist besides Idle and Time left?
 - Options: this shift; the current run; since the station last went idle.

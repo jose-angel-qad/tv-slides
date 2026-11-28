@@ -154,6 +154,16 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: Fact card values (44 px) smaller than Stat tile values (104 px), OEE above target not stated (status economy), quality has no target so no status, "Shift 2" under "this shift", "On target" legend item when no bar is on target, tight rows in the Fact card.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-08, BRAND-10 to BRAND-12. BRAND-09: new component pending approval. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Discrete station (pending approval)
+- Question: is this station keeping pace? (kept)
+- Hero: the timer with the station state in the Status band (Working positive, Idle warning, Over step time negative); guide idea, lead with the state.
+- Layout: hero and Fact card (steps completed, average step time against target, quality yield) on top; steps per hour chart and top problems (Bar list) below.
+- Left out: quality circle, Run status badge (the state is the band; a badge would repeat it, question logged), rework (no station value).
+- Stories: Positive (working), Negative (over step time, slow average, long names), Idle.
+- Reused: KPI tile large, Fact card, Chart card, Hourly bar chart, Bar list. Changed: Fact card (context baseline aligned with the value).
+- Reviews: 1) PASS. Minor fixed: context lines top aligned, hero label repeated the band. Minor kept: "Working" is the state not the pace, Fact card weaker than Stat tiles, no chart legend, every bar flagged in Negative, problem bars use the data blue, space under three problems.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

@@ -30,10 +30,8 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
     <div v-for="f in props.facts" :key="f.label" class="fact">
       <span class="label">{{ f.label }}</span>
       <span class="line">
-        <span class="value" :style="{ color: attention(f.status) ? STATUS_CONTENT_COLOR[f.status!] : undefined }">
-          <StatusIcon v-if="attention(f.status)" :status="f.status!" :size="40" :label="f.statusLabel" />
-          {{ f.value }}
-        </span>
+        <StatusIcon v-if="attention(f.status)" class="icon" :status="f.status!" :size="40" :label="f.statusLabel" />
+        <span class="value" :style="{ color: attention(f.status) ? STATUS_CONTENT_COLOR[f.status!] : undefined }">{{ f.value }}</span>
         <span v-if="f.detail" class="detail">{{ f.detail }}</span>
       </span>
     </div>
@@ -69,11 +67,12 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
   flex-wrap: wrap;
   column-gap: var(--rz-spacing-sm);
 }
-.value {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--rz-spacing-2xs);
+.icon {
   align-self: center;
+  /* 8 px to the value instead of the 16 px line gap. */
+  margin-right: calc(var(--rz-spacing-2xs) - var(--rz-spacing-sm));
+}
+.value {
   font: var(--rz-tv-type-kpi-primary-unit);
   color: var(--rz-color-text-primary);
   white-space: nowrap;
