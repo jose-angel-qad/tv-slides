@@ -201,6 +201,15 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) FAIL (shared with Run): same fixes. 2) PASS. Minor kept: Fact card facts stacked left with the right half empty, tight subtitle above the hero value.
 - Checklists: as Run (Fast cycles).
 
+### Throughput dashboard (pending approval)
+- Question: how many units has each line made versus plan? (kept)
+- Row hero: units this shift in a Metric cell with the gap to plan ("230 behind plan") and the row's status. Hourly bars (shared geometry, current hour hatched, target line) in the widest column. Crew plain, status only when short, "no target" when 0.
+- Layout: shared row layout; options were location cards (round 1, values do not line up) and one table per metric.
+- Left out: KPI tile per location, orange tiles (meaning unknown).
+- Stories: Positive (one line without a crew target), Negative (three behind plan, two crews short, long name).
+- Reviews: 1) PASS. Minor kept: "Per hour" header does not name the window, no hour labels on the mini bars, crew without the unit.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

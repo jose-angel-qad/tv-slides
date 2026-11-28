@@ -4,20 +4,10 @@ import { slideRender } from '../_shared/slideStory'
 import { throughputDashboardNegative, throughputDashboardPositive } from './mock'
 import type { ThroughputDashboardData } from './types'
 
-// Throughput dashboard (Multiple location): unit-based performance.
-// Key question: how many units has each line made versus plan? Kept.
-// Template T4 Table, with one Chart card per location. Reused: Chart card, Status value,
-// Mini hourly bars. Created: none. Positive: all ahead, one without a crew target.
-// Negative: three behind plan, crew below target, long name.
-//
-// Checklists (Light and Dark, 1920 x 1080)
-// Passed: A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-15,
-//   INFO-17, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12.
-// Failed or not verified:
-//   INFO-04, INFO-05: no single main KPI on a multiple location slide (see questions.md).
-//   INFO-16: the compact bars have no labeled target line; the target is written in the caption.
-//   INFO-19: only Positive and Negative are built.
-//   A11Y-12, A11Y-17 to A11Y-19: grayscale, tall scripts, Arabic and long languages not tested overnight.
+// Throughput dashboard (Multiple location). Status: Pending approval (round 2).
+// Key question: how many units has each line made versus plan? Row hero: units in a Metric cell with
+// the gap to plan; hourly bars; crew. Positive: all ahead, one line without a crew target. Negative:
+// three behind plan, two crews short, long name.
 const meta: Meta<{ data: ThroughputDashboardData }> = {
   title: 'Slides/Multiple location/Throughput dashboard',
   ...slideRender<ThroughputDashboardData>(ThroughputDashboard, 'Throughput dashboard'),
