@@ -64,6 +64,12 @@ Format per entry:
 - Assumption used: new slides put the full product name where it can wrap (progress bar label, table cell) and keep the tile subtitle short (SKU, shift, start time). Run throughput is unchanged.
 - Where it shows: Run speed, Run dashboard, Up/Down stream.
 
+## Counts (round 2)
+- Question: what counts as a slowdown?
+- Assumption used: running below 80% of the target rate for at least one 10-minute sample. Stops are samples at 0.
+- Question: should the current rate show as a number (guide idea)?
+- Assumption used: no; the line ends at now and a stopped line shows the Stopped badge.
+
 ## Counts
 - Question: what unit does the vertical axis use, and is there a target rate?
 - Options: units per hour; units per minute; percent of target speed.

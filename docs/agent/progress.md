@@ -124,6 +124,16 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor fixed: hidden rows now show their time. Minor kept: empty space under short lists (fixed bar thickness rule), total in the 32 px title has no hierarchy over row values, type is grey detail text, thin bars against two-line labels, no zero baseline, "No reason entered" next to "Unallocated".
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-03, INFO-06 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not applicable: INFO-04, INFO-05, INFO-17. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
 
+### Counts (pending approval)
+- Question: is the line producing at a steady rate? (kept)
+- Hero: the count rate line over the shift against the target, full body, with stops (red bands, octagon, duration) and slowdowns (amber bands, triangle, duration) marked. Title: "Cases per hour: 3 stops (2h 10m), 4 slowdowns". A line stopped now shows the Stopped badge.
+- Layout: options were a current rate hero over the chart (round 1; one number cannot say "steady"), chart plus a list of stops (repeats the bands), chart alone with marked periods (chosen).
+- Left out: current rate number (guide idea; the line ends at now), units this shift, stop tiles, area fill.
+- Stories: Positive (steady, one slowdown), Negative (unsteady, stopped now, long name).
+- Changed: Line chart, new `bands` prop; axis and target line from Chart geometry. Slowdown = below 80% of target (assumption, questions.md).
+- Reviews: 1) FAIL, blocking: a stop label overlapped the next icon. Minor: slowdowns without duration, weak amber tint, a stop in the Positive data. Fixed: label widths measured (20 px per character) with a 24 px gap, durations on every band, amber at 22%, steady Positive. 2) PASS. Minor kept: Positive line sits high on a zero-based axis, narrow slowdown labels shift right of their band, the ongoing stop is not hatched, icon widths differ (octagon and triangle glyphs), thin line in Light, no "target changes" story.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-05 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 not applicable, INFO-17 partly (the ongoing stop is not marked as in progress). Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

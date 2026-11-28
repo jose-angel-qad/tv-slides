@@ -1,31 +1,73 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import T3HeroSupport from '../../templates/T3HeroSupport.vue'
 import ChartCard from '../../components/card/ChartCard.vue'
-import KpiTile from '../../components/card/KpiTile.vue'
-import StatTile from '../../components/card/StatTile.vue'
-import LineChart from '../../components/data-viz/LineChart.vue'
-import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
-import type { FillStatus } from '../../components/status/status'
+import LineChart, { type PeriodBand } from '../../components/data-viz/LineChart.vue'
+import RunStatusBadge from '../../components/status/RunStatusBadge.vue'
 import { formatCount, formatDuration } from '../../utils/format'
 import { useElementSize } from '../../utils/useElementSize'
 import type { CountsData } from './types'
 
-// Question: is the line producing at a steady rate right now?
-// Hero: the current rate against the target rate (design guide idea). Stops read in the trend as
-// drops to zero; the stop time and counts are a neutral support tile. Count rate unit: units per
-// hour (assumption, see questions.md).
+// Design plan (round 2)
+//
+// Question: is the line producing at a steady rate? (guide, kept)
+// Answer (hero): the count rate line over the shift against the target rate, full body. Stops and
+// slowdowns are marked on the line as tinted periods with an icon and their length, so the
+// unsteady parts are what the eye finds first. The card title is the one-line answer: the unit,
+// then the stops and slowdowns counted ("Cases per hour: 1 stop (20m), 1 slowdown").
+//
+// Must show, mapped:
+// - Count rate over time: the line, one sample every 10 minutes.
+// - Target rate: dashed target line, labeled at its right end.
+// - Stops and slowdowns: negative bands (rate 0) and warning bands (below 80% of target), each with
+//   status icon and duration; counted in the title.
+//
+// Not shown:
+// - Current rate as a number (guide Claude idea) and units this shift (round 1): the line ends at
+//   now, and a total answers "how many", not "how steady". A line stopped now shows a Stopped badge.
+// - Stop minutes, stops and slowdowns as tiles (round 1): they are on the chart and in the title.
+// - Area fill (current product): a solid block hides the shape the question is about.
+//
+// Layout options:
+// a) Hero current rate over the chart (round 1): a single number cannot say "steady".
+// b) Chart with a side list of stops: repeats the bands.
+// c) Chart alone, full body, with marked periods. Chosen: steadiness is a pattern over time.
 const props = defineProps<{ data: CountsData }>()
 const d = computed(() => props.data)
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
-const band = computed<{ status: FillStatus; label: string }>(() => {
-  const r = d.value.currentRate
-  const t = d.value.targetRate
-  if (r === 0) return { status: d.value.status ?? 'negative', label: 'Stopped now' }
-  const diff = r - t
-  const status = d.value.status ?? (diff < 0 ? 'negative' : 'positive')
-  return { status, label: diff >= 0 ? `${formatCount(diff)} above target rate ${formatCount(t)}` : `${formatCount(-diff)} below target rate ${formatCount(t)}` }
+// A slowdown: running below 80% of the target rate. An assumption, logged in questions.md.
+const SLOW_SHARE = 0.8
+const SAMPLE_MIN = 10
+const bands = computed<PeriodBand[]>(() => {
+  const out: PeriodBand[] = []
+  const kind = (v: number) => (v === 0 ? 'negative' : v < d.value.targetRate * SLOW_SHARE ? 'warning' : null)
+  let i = 0
+  const pts = d.value.trend
+  while (i < pts.length) {
+    const k = kind(pts[i].value)
+    if (!k) {
+      i++
+      continue
+    }
+    let j = i
+    while (j + 1 < pts.length && kind(pts[j + 1].value) === k) j++
+    const mins = (j - i + 1) * SAMPLE_MIN
+    out.push({ from: i, to: j, status: k, label: formatDuration(mins) })
+    i = j + 1
+  }
+  return out
+})
+const stops = computed(() => bands.value.filter((b) => b.status === 'negative'))
+const slows = computed(() => bands.value.filter((b) => b.status === 'warning'))
+const stopMinutes = computed(() => stops.value.reduce((n, b) => n + (b.to - b.from + 1) * SAMPLE_MIN, 0))
+const stoppedNow = computed(() => d.value.trend[d.value.trend.length - 1]?.value === 0)
+const title = computed(() => {
+  const parts: string[] = []
+  if (stops.value.length)
+    parts.push(`${stops.value.length} ${stops.value.length === 1 ? 'stop' : 'stops'} (${formatDuration(stopMinutes.value)})`)
+  if (slows.value.length) parts.push(`${slows.value.length} ${slows.value.length === 1 ? 'slowdown' : 'slowdowns'}`)
+  const answer = parts.length ? parts.join(', ') : 'no stops or slowdowns'
+  return `${cap(d.value.unit.plural)} per hour: ${answer}`
 })
 
 const chartEl = ref<HTMLElement | null>(null)
@@ -33,59 +75,33 @@ const { width, height } = useElementSize(chartEl)
 </script>
 
 <template>
-  <T3HeroSupport>
-    <template #hero>
-      <KpiTile
-        title="Current rate"
-        subtitle="Last 10 minutes"
-        :value="formatCount(d.currentRate)"
-        :unit="`${d.unit.plural}/h`"
-        :band-status="band.status"
-        :band-text="band.label"
-      />
-    </template>
-    <template #support>
-      <StatTile :title="`${cap(d.unit.plural)} this shift`" :subtitle="d.shift" :value="formatCount(d.producedThisShift)" :show-status="false" />
-      <StatTile
-        title="Stopped time"
-        :subtitle="`${d.stops} ${d.stops === 1 ? 'stop' : 'stops'}, ${d.slowdowns} ${d.slowdowns === 1 ? 'slowdown' : 'slowdowns'}`"
-        :value="formatDuration(d.stopMinutes)"
-        :show-status="false"
-      />
-    </template>
-    <template #chart>
-      <ChartCard :title="`Count rate, ${d.unit.plural} per hour`">
-        <template #actions>
-          <ul class="legend">
-            <ChartLegendItem type="on-target" label="Count rate" />
-            <ChartLegendItem type="target" label="Target rate" />
-          </ul>
-        </template>
-        <div ref="chartEl" class="chart-area">
-          <LineChart
-            v-if="width && height"
-            :points="d.trend"
-            :lines="[{ value: d.targetRate, label: 'Target' }]"
-            :width="width"
-            :height="height"
-            area
-          />
-        </div>
-      </ChartCard>
-    </template>
-  </T3HeroSupport>
+  <div class="rz-counts">
+    <ChartCard :title="title">
+      <template v-if="stoppedNow" #actions><RunStatusBadge state="stopped" /></template>
+      <div ref="chartEl" class="chart-area">
+        <LineChart
+          v-if="width && height"
+          :points="d.trend"
+          :width="width"
+          :height="height"
+          :lines="[{ value: d.targetRate, label: 'Target' }]"
+          :bands="bands"
+          :format="formatCount"
+        />
+      </div>
+    </ChartCard>
+  </div>
 </template>
 
 <style scoped>
+.rz-counts {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+  display: grid;
+}
 .chart-area {
   flex: 1;
   min-height: 0;
-}
-.legend {
-  display: flex;
-  gap: var(--rz-spacing-lg);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 </style>

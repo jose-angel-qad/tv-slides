@@ -24,7 +24,8 @@ One metric over time, in the same language as the Hourly bar chart. Pending appr
 - One `data/neutral` line (4 px), optional area at 16%. Faint gridlines, about 4 y ticks, x labels on the hour.
 - Reference lines (target, control and spec limits) are dashed `text/secondary`, labeled at the right end with caption and value (INFO-16). Close labels are spread apart.
 - `zeroBased` (default) starts at zero; control charts turn it off. `flagOutside` marks points beyond the outer lines with the negative status icon; `flagLow` (default on) can turn off the lower side for range charts.
-- Props: `points`, `width`, `height`, `lines`, `format`, `zeroBased`, `showPoints`, `flagOutside`, `area`, `xLabel`, `xEvery`.
+- `bands` marks periods by point index: stops (`negative`) and slowdowns (`warning`) as tinted bands (14%, warning 22%) behind the line, each with its status icon and a short label (duration) at the top. Labels shift right instead of overlapping.
+- Props: `points`, `width`, `height`, `lines`, `format`, `zeroBased`, `showPoints`, `flagOutside`, `area`, `xLabel`, `xEvery`, `bands`.
 
 ## Bar list
 
