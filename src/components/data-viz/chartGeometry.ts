@@ -73,3 +73,16 @@ export function vBarPath(x: number, top: number, w: number, bottom: number): str
 
 /** CSS background for in-progress hatching on HTML bars (same stripes as the SVG pattern). */
 export const HATCH_CSS = `repeating-linear-gradient(-45deg, var(--rz-color-data-neutral) 0 ${HATCH_STRIPE}px, color-mix(in srgb, var(--rz-color-data-neutral) ${HATCH_TINT}%, transparent) ${HATCH_STRIPE}px ${HATCH_PERIOD}px)`
+
+/**
+ * Even gridlines for a value axis: about three nice steps up to `top` (for example 500, 1,000,
+ * 1,500). Pass it as the Hourly bar chart's gridValues; the chart's own fallback labels every other
+ * step, which reads uneven (500, 1,500). Run throughput keeps the fallback as approved.
+ */
+export function evenGrid(top: number, steps = 3): number[] {
+  const t = Math.max(top, 1)
+  const raw = t / steps
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)))
+  const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((v) => v >= raw) ?? raw
+  return Array.from({ length: Math.ceil(t / step) }, (_, i) => Number(((i + 1) * step).toFixed(6)))
+}

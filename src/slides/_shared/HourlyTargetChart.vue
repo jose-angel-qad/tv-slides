@@ -4,6 +4,7 @@ import ChartCard from '../../components/card/ChartCard.vue'
 import HourlyBarChart, { type HourPoint } from '../../components/data-viz/HourlyBarChart.vue'
 import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
 import { useElementSize } from '../../utils/useElementSize'
+import { evenGrid } from '../../components/data-viz/chartGeometry'
 
 // Shared body of the "which hours met the target?" slides: Hourly OEE (pilot design), Hourly counts
 // and Units/man hour. The hourly bar chart fills the slide body in one Chart card; the card title is
@@ -30,14 +31,7 @@ const title = computed(() => {
 
 // Even gridlines when the slide passes none: about three nice steps up to the tallest bar or the
 // target (the chart's own fallback labels every other step, which reads uneven: 500, 1,500).
-const grid = computed(() => {
-  if (props.gridValues) return props.gridValues
-  const top = Math.max(...props.hourly.map((p) => p.value), props.target, 1)
-  const raw = top / 3
-  const mag = Math.pow(10, Math.floor(Math.log10(raw)))
-  const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((v) => v >= raw) ?? raw
-  return Array.from({ length: Math.ceil(top / step) }, (_, i) => (i + 1) * step)
-})
+const grid = computed(() => props.gridValues ?? evenGrid(Math.max(...props.hourly.map((p) => p.value), props.target)))
 
 const chartEl = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(chartEl)

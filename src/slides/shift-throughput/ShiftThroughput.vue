@@ -9,6 +9,7 @@ import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
 import type { FillStatus } from '../../components/status/status'
 import { formatCount, formatKpiCount, formatRate, formatTime } from '../../utils/format'
 import { useElementSize } from '../../utils/useElementSize'
+import { evenGrid } from '../../components/data-viz/chartGeometry'
 import type { ShiftThroughputData } from './types'
 
 // Design plan (round 2)
@@ -77,6 +78,7 @@ const { width, height } = useElementSize(chartEl)
           :current-index="d.currentHourIndex"
           :width="width"
           :height="height"
+          :grid-values="evenGrid(Math.max(...d.hourly.map((p) => p.value), d.targetPerHour))"
         />
       </div>
     </ChartCard>
