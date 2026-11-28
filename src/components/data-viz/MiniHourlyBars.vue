@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 
 // Inventory: "Mini hourly bar chart" (Data viz). Compact hourly bars for a table cell or a
-// location card: no axis or value labels, so it always comes with a text summary next to it
-// ("8 of 12 on target"), which the slide renders. Same language as the Hourly bar chart:
-// data/neutral bars, below-target bars in status/negative/content, the current hour hatched,
+// location card: no axis or value labels. The slide names what it shows (a column header such as
+// "Last 12 hours", or a text summary such as "8 of 12 on target"). Same language as the Hourly
+// bar chart: data/neutral bars, below-target bars in status/negative/content, the current hour hatched,
 // and a dashed text/secondary target line. Bars start at zero.
 // Fixed geometry: 4 px gap between bars, 4 px corner radius, 3 px target line.
 const props = withDefaults(
@@ -50,6 +50,8 @@ const pct = (v: number) => `${(v / max.value) * 100}%`
   background: var(--rz-color-status-negative-content);
 }
 .bar.current {
+  /* A stopped line's current hour can be near zero; keep the hatch visible (fixed geometry). */
+  min-height: 8px;
   background: repeating-linear-gradient(
     -45deg,
     var(--rz-color-data-neutral) 0 4px,

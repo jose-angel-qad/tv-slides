@@ -8,6 +8,7 @@ import DocPage from './DocPage.vue'
     <ul>
       <li>Hourly bar chart: new optional <code>gridValues</code> prop for scales with meaningful steps. Hourly OEE passes 50% and 100%. Without it, the axis keeps every other nice step.</li>
       <li>Hourly bar chart: a value label that the target line crosses gets a surface-colored plate, so the dashes no longer show between the digits. Labels clear of the line are unchanged.</li>
+      <li>Mini hourly bars: the current hour keeps a minimum height of 8 px, so a stopped line's hatch stays visible. The slide may name the bars with a column header instead of a text summary.</li>
     </ul>
 
     <h2>November 28, 2026: Overnight slides (pending approval)</h2>

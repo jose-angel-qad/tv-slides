@@ -36,8 +36,9 @@ Steps in process order with the WIP between them (Line balance). Pending approva
 
 Compact hourly bars for a table cell or a location card. Pending approval.
 
-- No axis or value labels, so the slide always adds a text summary next to it ("8 of 11 on target").
+- No axis or value labels, so the slide names what it shows: a column header ("Last 12 hours") or a text summary ("8 of 11 on target").
 - `data/neutral` bars, below-target bars in `status/negative/content`, the current hour hatched, a dashed `text/secondary` target line. Bars start at zero.
-- Props: `values`, `target`, `currentIndex`, `height` (default 56).
+- The current hour keeps a minimum height of 8 px, so a stopped line's hatch stays visible.
+- Props: `values`, `target`, `currentIndex`, `height` (px, default 56).
 
 <Stories />

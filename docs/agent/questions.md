@@ -12,6 +12,19 @@ Format per entry:
 - Where it shows: <story or file>
 ```
 
+## Shift dashboard (round 2)
+- Question: when every location is on the same shift, should the shift name show once instead of on every row?
+- Options: per row always (consistent rows); once in the column header when shared, per row only when shifts differ.
+- Assumption used: per row always, since a slide set can mix areas on different shifts.
+- Where it shows: `src/slides/shift-dashboard/ShiftDashboard.vue`
+- Question: the last 12 hours can include the previous shift (handoff scenario). Should the bars mark where the current shift starts?
+- Assumption used: not marked yet. Needs the shift start in the data.
+- Question: Stopped uses a pill in status/negative/fill. INFO-05 reserves fills for the main KPI. Is a stopped line an exception that may use a fill on multiple location slides?
+- Options: fill pill (stands out from below-target lines on a squint); icon and color only (round 1, reviewers found it too close to a below-target line).
+- Assumption used: fill pill. If not allowed, the fallback is the icon-and-text Status value.
+- Question: which run statuses exist besides running and stopped? (guide open question)
+- Assumption used: only running and stopped.
+
 ## Hourly OEE (round 2)
 - Question: should the slide show the shift OEE as one large number (design guide Claude idea)?
 - Options: shift OEE as hero above the chart (round 1); chart only, with the count of hours on target as its title.

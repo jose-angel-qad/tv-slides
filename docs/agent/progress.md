@@ -30,6 +30,21 @@ Add slides here when the user approves them; they become references for style an
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-05 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 not applicable (no main KPI). INFO-16 partly: labels near the target sit on a plate that hides the line instead of moving off it. Not verified: INFO-19 (only Positive and Negative), A11Y-12, A11Y-17 to A11Y-19.
 - Open questions: shift OEE left out, see questions.md.
 
+### Shift dashboard (pending approval)
+- Question: how is each line's shift going, and is it running now? (guide, kept)
+- Hero: shift OEE in each row (largest value, with its status icon). Running has the positive icon; a stopped line gets a "Stopped" pill in the negative fill, so "stopped now" never reads like "below target".
+- Layout: one row card per location, column headers on the sheet, six rows per page. Options considered: one titled card with a table (round 1, rows squeezed to 72 px), a grid of location cards (values do not line up for comparison). Rows share the page height between 112 and 176 px, so four lines fill the sheet and their bars grow.
+- Left out: card title "Shift performance by location", the "Location" column header (the names say it), legend, "11 of 11 on target" text, green check on Running (normal state), per-row hour ticks and side navigation of the current product.
+- Stories: Positive (four lines on target, running), Negative (page 1 of 2, two stopped lines, long location name, long shift name, zero downtime).
+- Reused: Status value, Mini hourly bars. No longer used here: T4 Table, Chart card, Location table, Chart legend item.
+- Changed: Mini hourly bars (current hour at least 8 px; docs allow a column header instead of a text summary).
+- Reviews: 1) FAIL, blocking: dead zone under four rows next to cramped 55 px bars. Minor: shift name repeated, page indicator in the header row, target value not shown, wide gap after short names, gray Running, tiny current-hour bar on stopped lines. Fixed: rows grow to fill, bars fill the row, target named once in the OEE header ("OEE, target 80%"), Running in text/primary. Kept: shift name per row (it can differ per location), page indicator at the end of the header row, the tiny current bar (it is real data). 2) FAIL, blocking: location column sized to the longest name left a 400 px gap and squeezed the bars to 430 px; Stopped looked like a running line below target. Fixed: location column narrowed (long names wrap), chart column about 620 px, Stopped as a pill in status/negative/fill with on-fill text and icon, Location header removed, rows up to 184 px. Kept: below-target bars rely on color plus their position under the dashed target line. 3) FAIL, blocking: Running had no status icon (A11Y-10). Fixed: Running uses the positive icon with no fill. Minor fixed: one bar height for every row (120 px up to four rows, 80 px for five or six), current hour at least 8 px. Minor kept: OEE could be larger with four rows (no larger type role fits a row), shift name per row. 4) PASS, no blocking. Minor kept for the user's review: shift name repeated when all lines share it, below-target mini bars marked mostly by color, no legend for the hatched current hour, sparse location column with four short names.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 and INFO-05: no single main KPI on a multiple location slide. Stopped uses a status fill, which INFO-05 reserves for the main KPI; logged in questions.md. INFO-10: the row OEE uses the slide title role (Geist Bold 44), no table hero role exists. Not verified: INFO-19 (only Positive and Negative), A11Y-12, A11Y-18, A11Y-19.
+- Open questions: see questions.md.
+
+### Company update (not started)
+- Paused at the user's request after Shift dashboard. A draft (frameless Media frame, update name in the header, Landscape, Portrait, Multi-page PDF, No content and Loading stories) is saved outside the repo as a patch in the session notes folder; nothing of it is committed.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
