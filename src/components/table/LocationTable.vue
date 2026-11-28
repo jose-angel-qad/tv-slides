@@ -97,8 +97,8 @@ const tracks = () => [props.locationWidth, ...props.columns.map((c) => c.width ?
 }
 .row {
   min-height: var(--row-min);
-  padding-top: var(--rz-spacing-sm);
-  padding-bottom: var(--rz-spacing-sm);
+  padding-top: var(--rz-spacing-2xs);
+  padding-bottom: var(--rz-spacing-2xs);
   border: 1px solid var(--rz-color-border-subtle);
   border-radius: var(--rz-radius-lg);
   background: var(--rz-gradient-surface-default);

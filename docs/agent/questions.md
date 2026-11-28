@@ -12,6 +12,23 @@ Format per entry:
 - Where it shows: <story or file>
 ```
 
+## Round 2 shared pieces
+- Question: approve the new Foundations tokens `color/status/{positive, warning, negative, neutral}/subtle` and `/subtle-border`?
+- Assumption used: added in Dark and Light with contrast pairs. Light warning and negative tints are very light (content colors are close to 4.5:1 on white); the border carries the tint.
+- Where it shows: `tokens/tv-colors.json`, Run status badge.
+- Question: the Running badge is positive (green play icon). On a row whose OEE is on target, the row shows two green signals (check on the Metric cell, play on the badge). Is that acceptable under "at most one positive icon per row"?
+- Options: keep (run state is a separate dimension of the question); make Running neutral in rows and keep green for cards; drop the Metric cell check when on target.
+- Assumption used: keep, as the badge table specifies. Only the check counts as the positive status icon.
+- Where it shows: Shift dashboard Positive.
+- Question: Crew size indicator now has `quiet` (neutral when on target). Should Run throughput switch to it too?
+- Assumption used: Run throughput untouched (approved, out of scope); round 2 slides use `quiet`.
+- Question: should the chart bar cap of 104 px stay? It keeps Run throughput as approved; past it, the gap grows beyond 38%.
+- Assumption used: keep, documented in chartGeometry.ts.
+
+## Shift dashboard (round 2, pilot feedback)
+- Question: Light mode red OEE values on the Metric cell measure about 4:1 over the gradient top. Large text (32 px SemiBold) needs 3:1. OK?
+- Assumption used: OK as large text.
+
 ## Shift dashboard (round 2)
 - Question: when every location is on the same shift, should the shift name show once instead of on every row?
 - Options: per row always (consistent rows); once in the column header when shared, per row only when shifts differ.

@@ -76,6 +76,27 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS, no blocking. Minor kept: loading looks close to No content (static on purpose, A11Y-13; the icon and sentence differ), "Page 1 of 3" small and costs 48 px of page height, white PDF page edge soft in Light, the header repeats the artwork heading (it is the update's name), empty state heading in Geist (Empty state component, unchanged).
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-07, INFO-08, INFO-10, INFO-19 (no content and loading built), INFO-20, INFO-21, INFO-24; BRAND-01 to BRAND-08, BRAND-10 to BRAND-12. Not applicable: INFO-03 to INFO-06, INFO-09, INFO-11 to INFO-18, INFO-22, INFO-23, INFO-25. BRAND-09: changed component pending approval. Not verified: A11Y-12, A11Y-17 to A11Y-19.
 
+### Shift dashboard, pilot feedback applied (pending approval)
+- Question: how is each line's shift going, and is it running now? (kept)
+- Row hero: shift OEE in a Metric cell right after the location (value, "Target 80%", the row's one status icon). Run state as a Run status badge. Downtime plain. Last 12 hours: Mini hourly bars on the shared geometry.
+- Shift name: in the OEE header for the common shift ("Shift 2 OEE"); a row on another shift names it under the location.
+- Layout: shared Location table (headers on the sheet, row cards, one grid). Rows fill 112 to 184 px; bars 120 px up to four rows, 80 px for five or six.
+- Left out: the larger slide-title OEE (pilot), status on downtime, the Stopped fill pill (replaced by the badge).
+- Stories: Positive (four lines running on target), Negative (page 1 of 2, Stopped, Breakdown, Changeover, long name, a row on another shift).
+- Reused: Location table, Metric cell, Run status badge, Mini hourly bars. Changed: Location table row padding 8 px (six rows with a Metric cell fit the page).
+- Reviews: 1) FAIL, blocking: six rows overflowed the sheet. Minor: dead space with four rows, short current-hour bar reads as a nub, shift name as the location header, shift repeated per row. Fixed: row padding 8 px (all rows end at the table edge), shift in the OEE header and only on rows on another shift. 2) PASS. Minor kept: four rows leave space inside 184 px rows (a dead zone below was blocking in the pilot), hero value same size as other cells (the rule asks for a container, not size), "Page 1 of 2" in the hours header, mini bars without labels, Light red OEE value 3.97:1 on the Metric cell over the gradient top (32 px SemiBold is large text, 3:1), row 3 taller with its own shift.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
+### Shift throughput (pending approval)
+- Question: how many units has this shift made versus plan? (kept)
+- Hero: units produced "of" the shift plan, gap to plan in the Status band.
+- Layout: hero and one crew tile over the units per hour chart. The question and data are Run throughput's without an ETA, so the same form fits; the hero takes the ETA's width. Options: hero plus two tiles (second would be filler), hero alone with crew in the subtitle (no room for crew status).
+- Left out: "Average per hour" tile (round 1), "Current shift" tile (in the hero subtitle), estimated finish.
+- Stories: Positive, Negative (behind plan, crew short, long location), No crew target.
+- Reused: KPI tile large, Stat tile, Crew size indicator, Chart card, Hourly bar chart, Chart legend item. Changed: Crew size indicator, new `quiet` prop (neutral "Target 6.0" when on or above target).
+- Reviews: 1) PASS. Minor kept: No crew target value sits lower than the hero (Stat tile without footer), crew on target is neutral here and positive on Run throughput (question logged), no zero tick (same as Run throughput).
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

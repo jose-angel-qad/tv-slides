@@ -1,3 +1,5 @@
+import type { RunState } from '../../components/status/runState'
+
 export interface ShiftDashboardLocation {
   id: string
   location: string
@@ -5,7 +7,8 @@ export interface ShiftDashboardLocation {
   shift: string
   oee: number
   oeeTarget: number
-  running: boolean
+  /** Run state now (Run status badge). */
+  state: RunState
   /** Downtime so far this shift, in minutes. */
   downtimeMinutes: number
   /** OEE for each of the last 12 hours, oldest first; the last one is the current hour. */
