@@ -12,8 +12,20 @@ Add slides here when the user approves them; they become references for style an
 
 ## Round 2 order
 
-1. Pilot, then stop for review: Hourly OEE, Shift Dashboard, Company Update.
-2. After the pilot is approved: the rest of Single location, then Multiple location, then Other, then the slides whose definitions are pending.
+Pilot review (November 29): the approach works. Hourly OEE had no feedback. Shift Dashboard feedback became the rules in the agent's "Step 4b. System rules from the pilot review": row hierarchy with a metric cell instead of larger text, one status per element, a run status badge, and one chart geometry for every bar chart.
+
+Long run (overnight), every slide except Run Throughput:
+
+1. Foundations and shared pieces first: `chartGeometry.ts` applied to every existing bar chart; status subtle tokens; Run status badge; table row layout and metric cell.
+2. Shift Dashboard: apply the pilot feedback.
+3. Hourly OEE: keep the pilot design; apply the chart geometry only.
+4. Company Update (pilot slide not started).
+5. The rest of Single location: Shift Throughput, Hourly Counts, Units/Man Hour, Run Speed, Counts, Pareto, Discrete Location, Discrete Station, Line Balance, Cycles, Run (Fast Cycles), Shift (Fast Cycles), Operations, X-Bar R.
+6. Multiple location: Throughput Dashboard, Run Dashboard, Up/Down Stream, Scoreboard, Leaderboard.
+7. Other: News, Welcome.
+8. Definitions pending: Maintenance Status, SPC Dashboard, Company Inherited Highlight.
+
+Breadth first: every slide redesigned and passing the review gate before extra scenarios.
 
 ## Round 2 log (pilot)
 

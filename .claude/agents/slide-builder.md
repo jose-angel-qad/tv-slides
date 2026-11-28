@@ -65,6 +65,64 @@ Add the guide's handoff scenarios when time allows. Mock data is realistic: real
 - New components go in the matching `src/components/<group>/` folder with stories, a section in the group's `.mdx` Docs page and a Changelog line. Shared needs become one component, not one per slide.
 - Tokens only. No new type sizes. 4 px spacing. Light and Dark.
 
+## Step 4b. System rules from the pilot review
+
+These come from the user's review of the pilot. They apply to every slide and component.
+
+### Hierarchy in rows and tables
+
+Size alone is not hierarchy. A row where one value is just larger text looks unbalanced and does not say what matters most.
+
+- Decide per slide which column answers the question (the row hero), and say it in the plan. Only one column per row plays that role.
+- Give the row hero a container, not a bigger font: a compact metric cell (value plus its target as a small second line, for example "86.4%" over "Target 80%") on `surface/raised`, placed right after the location name. Other cells stay plain text on the row.
+- Keep one type scale inside a row: the hero and the other cells use the same or adjacent roles (`chart-value`, `card-title`, `body`). Do not use `slide-title` or KPI roles inside rows.
+- Columns align on a grid shared by header and rows: numbers right aligned or aligned on a fixed column start, labels left aligned.
+- If the chart in a row is what answers the question (for example "last 12 hours"), it is the hero: give it the widest column and keep the numbers secondary.
+- Build this once as reusable pieces (a table row layout and a metric cell) and use them in every multiple location slide: Shift Dashboard, Run Dashboard, Up/Down Stream, Scoreboard, Maintenance Status, SPC Dashboard.
+
+### Status economy (one status per element)
+
+A card or a row full of green checks says nothing.
+
+- One status per card or row: on the element that answers the question (the row hero or the card's main value).
+- Secondary values show a status only when they need attention (warning or negative), with icon and color. On-target secondary values stay neutral: no green, no check.
+- Positive states never repeat inside the same element. A row has at most one positive icon.
+- Crew, plan gap and similar supporting facts follow the same rule: neutral unless off target.
+
+### Run status badge
+
+The Redzone app shows a line's run state as a badge. Build its TV equivalent once as a component (`src/components/status/RunStatusBadge.vue`) and use it everywhere a run state appears (Shift Dashboard, Up/Down Stream, Run Dashboard, Maintenance Status, Discrete Station, Cycles).
+
+- Pill shape: full radius, soft tinted background, 1 px border in a slightly stronger tint, icon and label in the status content color. Label in sentence case, Inter, `body-strong` role.
+- Icons from Material Symbols, Outlined, weight 600, filled, through the Icon component:
+
+| State | Status | Icon |
+| --- | --- | --- |
+| Running | positive | `play_arrow` |
+| Slow running | warning | `resume` |
+| Ramp up | neutral | `trending_up` |
+| Changeover | neutral | `swap_horiz` |
+| Stopped | negative | `stop` |
+| Breakdown | negative | `error` |
+| Inactive | neutral | `do_not_disturb_on` |
+
+- The tinted background and border need tokens that do not exist yet. Add them to Foundations as semantic tokens in Light and Dark: `color/status/{positive, warning, negative, neutral}/subtle` (background) and `/subtle-border`, in `tokens/tv-colors.json`, with roles in the Color page. Content text on `subtle` must pass 4.5:1 in both modes (`npm run tokens:check`, add the pairs to `src/foundations/contrast.ts`). This is the only Foundations change allowed; log it in the Changelog and as a question for approval.
+- A badge is secondary feedback. It never replaces the main KPI's primary feedback.
+
+### Chart geometry
+
+Bar charts must look like one system. Different widths and gaps are allowed only with a stated reason.
+
+- Create `src/components/data-viz/chartGeometry.ts` with the shared rules and use it in every bar chart (Hourly bar chart, Mini hourly bars, Bar list, Step flow chart and any new one):
+  - Bar width is a fixed share of its slot: bar = 62% of the slot, gap = 38% (the Hourly bar chart today). Never set gaps by hand.
+  - Gap floor: at least 8 px between bars at any size. If the floor cannot be met, the chart has too many bars for its width: give it more width or fewer bars, do not squeeze.
+  - Corner radius scales with the bar: `min(10, bar width x 0.15)`, top corners only for vertical bars, end corners only for horizontal bars.
+  - Horizontal bars (Bar list): same thickness and gap in every list; thickness comes from the row height, never from the number of rows.
+  - Same data colors, axis and gridline tokens, target line (dashed `text/secondary`), current hour hatching and value label style in every chart.
+- Compact charts (in rows or cards) use the same geometry at a smaller size. They show the target line and the in-progress hour like the full chart.
+- If a chart needs a different geometry, write the reason in a comment next to the value.
+- Fix existing charts to follow these rules before building slides that use them.
+
 ## Step 5. Craft bar
 
 The slide must look as finished as Run Throughput. Check every point:
@@ -84,7 +142,9 @@ After the slide renders, start a fresh subagent (Agent tool, general-purpose) th
 2. Anything shown that the question does not need, any repeated or unnecessary label?
 3. Craft problems against the craft bar above, and anything that does not look world class next to Run Throughput.
 
-Fix every valid finding, then run the review again with a new subagent. A slide moves on only when a review comes back with no blocking findings. Record the reviews in the progress entry.
+Also ask the reviewer to check the Step 4b rules: one row hero with a container, one status per element, run state as a badge, chart geometry.
+
+Fix every valid finding, then run the review again with a new subagent. A slide moves on when a review comes back with no blocking findings, or after 3 rounds: then log the remaining non-blocking findings in the progress entry and move on. Record the reviews in the progress entry.
 
 ## Step 7. Check, commit, log
 
