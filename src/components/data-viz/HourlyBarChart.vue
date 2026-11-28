@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, useId } from 'vue'
 import dangerousSvg from '@material-symbols/svg-600/outlined/dangerous-fill.svg?raw'
 import { formatCount, formatHour } from '../../utils/format'
+import { AXIS_STROKE, HATCH_PERIOD, HATCH_STRIPE, HATCH_TINT, TARGET_DASH, TARGET_STROKE, barWidth, vBarPath } from './chartGeometry'
 
 // One metric over the shift's hours, drawn 1:1 in canvas pixels.
 // Visual language follows Tremor / shadcn bar charts: faint gridlines, y-axis ticks,
@@ -43,7 +44,6 @@ const fmt = (n: number) => props.format(n)
 const AXIS_W = 88 // y-axis labels
 const TICK_ROW = 56 // x-axis labels
 const TOP = 52 // room for value labels above the tallest bar
-const RADIUS = 10
 const LABEL_GAP = 16
 const TICK_CENTER = 36 // axis line to the center of the x-axis labels (Figma: 34 px label box, top 19 px below the axis)
 // Value label row: 36 px tall, 12 px above the bar (Figma uses 14, snapped to the 4 px grid).
@@ -101,14 +101,10 @@ function textWidth(text: string) {
 const y = (v: number) => baseline.value - (v / yMax.value) * plotH.value
 
 const slot = computed(() => plotW.value / props.points.length)
-const barW = computed(() => Math.min(104, slot.value * 0.62))
+// Bar width, radius, marks and hatching come from chartGeometry (shared by every bar chart).
+const barW = computed(() => barWidth(slot.value))
 const cx = (i: number) => plotX + i * slot.value + slot.value / 2
 
-// Bar with rounded top corners only.
-function barPath(x: number, top: number, w: number, bottom: number) {
-  const r = Math.min(RADIUS, (bottom - top) / 2, w / 2)
-  return `M${x},${bottom}V${top + r}Q${x},${top} ${x + r},${top}H${x + w - r}Q${x + w},${top} ${x + w},${top + r}V${bottom}Z`
-}
 
 const bars = computed(() =>
   props.points.map((p, i) => {
@@ -126,7 +122,7 @@ const bars = computed(() =>
       // Center of the value text: shifted right by half the icon when the icon is shown.
       valueX: below ? cx(i) + (ICON + ICON_GAP) / 2 : cx(i),
       iconX: below ? cx(i) - (ICON + ICON_GAP + textWidth(fmt(p.value))) / 2 : 0,
-      d: barPath(x, y(p.value), barW.value, baseline.value),
+      d: vBarPath(x, y(p.value), barW.value, baseline.value),
       top: y(p.value),
       plate: plateFor(i, p.value, below),
     }
@@ -157,14 +153,14 @@ function plateFor(i: number, value: number, below: boolean) {
   >
     <defs>
       <!-- In-progress fill: translucent data color with diagonal stripes -->
-      <pattern :id="stripeId" patternUnits="userSpaceOnUse" width="16" height="16" patternTransform="rotate(45)">
-        <rect width="16" height="16" fill="color-mix(in srgb, var(--rz-color-data-neutral) 22%, transparent)" />
-        <rect width="6" height="16" fill="var(--rz-color-data-neutral)" />
+      <pattern :id="stripeId" patternUnits="userSpaceOnUse" :width="HATCH_PERIOD" :height="HATCH_PERIOD" patternTransform="rotate(45)">
+        <rect :width="HATCH_PERIOD" :height="HATCH_PERIOD" :fill="`color-mix(in srgb, var(--rz-color-data-neutral) ${HATCH_TINT}%, transparent)`" />
+        <rect :width="HATCH_STRIPE" :height="HATCH_PERIOD" fill="var(--rz-color-data-neutral)" />
       </pattern>
     </defs>
 
     <!-- Grid and y-axis -->
-    <line :x1="plotX" :x2="plotX + plotW" :y1="baseline" :y2="baseline" stroke="var(--rz-color-data-axis)" stroke-width="2" />
+    <line :x1="plotX" :x2="plotX + plotW" :y1="baseline" :y2="baseline" stroke="var(--rz-color-data-axis)" :stroke-width="AXIS_STROKE" />
     <g v-for="t in labeledTicks" :key="t">
       <line
         :x1="plotX"
@@ -172,7 +168,7 @@ function plateFor(i: number, value: number, below: boolean) {
         :y1="y(t)"
         :y2="y(t)"
         stroke="var(--rz-color-data-axis)"
-        stroke-width="2"
+        :stroke-width="AXIS_STROKE"
       />
       <text :x="plotX - 20" :y="y(t)" text-anchor="end" class="axis">{{ (props.tickFormat ?? fmt)(t) }}</text>
     </g>
@@ -200,8 +196,8 @@ function plateFor(i: number, value: number, below: boolean) {
       :y1="y(props.target)"
       :y2="y(props.target)"
       stroke="var(--rz-color-text-secondary)"
-      stroke-width="3"
-      stroke-dasharray="12 8"
+      :stroke-width="TARGET_STROKE"
+      :stroke-dasharray="TARGET_DASH"
     />
     <g v-if="props.target != null" class="target-label">
       <text :x="plotX + plotW + LABEL_GAP" :y="labelY - 15" class="target-caption">Target</text>

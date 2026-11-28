@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import StatusIcon from '../status/StatusIcon.vue'
 import type { Status } from '../status/status'
+import { HATCH_CSS, HBAR_GAP, HBAR_THICKNESS, barRadius } from './chartGeometry'
 
 // Inventory: "Pareto row" / "Current Leader bar" (Data viz). One shared component for ranked or
 // ordered horizontal bars: Pareto problems, Leaderboard points, top problems, cycles per asset.
@@ -11,7 +12,9 @@ import type { Status } from '../status/status'
 // status/{status}/content and shows the status icon (secondary feedback, A11Y-10).
 // In-progress rows are hatched, like the current hour. An optional target draws one dashed
 // text/secondary line across every row (label it in the card legend, INFO-16).
-// Fixed geometry: bar 32 px tall; label column width from the `labelWidth` prop (default 520).
+// Geometry from chartGeometry: bar 32 px thick and 24 px between rows in every list (never from the
+// number of rows), end corners rounded min(10, thickness x 0.15), shared hatching.
+// Label column width from the `labelWidth` prop (default 520).
 export interface BarListRow {
   id: string
   label: string
@@ -30,10 +33,16 @@ const props = withDefaults(
 const max = computed(() => props.max ?? Math.max(...props.rows.map((r) => r.value), props.target ?? 0, 1))
 const pct = (n: number) => `${Math.max(0, Math.min(100, (n / max.value) * 100))}%`
 const attention = (s?: Status) => s === 'warning' || s === 'negative'
+const geometry = {
+  '--bar-h': `${HBAR_THICKNESS}px`,
+  '--bar-gap': `${HBAR_GAP}px`,
+  '--bar-r': `${barRadius(HBAR_THICKNESS)}px`,
+  '--bar-hatch': HATCH_CSS,
+}
 </script>
 
 <template>
-  <ul class="rz-bar-list" :style="{ '--label-w': `${props.labelWidth}px` }">
+  <ul class="rz-bar-list" :style="{ '--label-w': `${props.labelWidth}px`, ...geometry }">
     <li v-for="r in props.rows" :key="r.id" class="row">
       <div class="labels">
         <span class="label">{{ r.label }}</span>
@@ -59,7 +68,7 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
 .rz-bar-list {
   display: flex;
   flex-direction: column;
-  gap: var(--rz-spacing-md);
+  gap: var(--bar-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -85,12 +94,12 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
 }
 .track {
   position: relative;
-  height: 32px;
+  height: var(--bar-h);
 }
 .bar {
   height: 100%;
   min-width: 4px;
-  border-radius: 0 var(--rz-radius-sm) var(--rz-radius-sm) 0;
+  border-radius: 0 var(--bar-r) var(--bar-r) 0;
   background: var(--rz-color-data-neutral);
 }
 .bar.warning {
@@ -100,11 +109,7 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
   background: var(--rz-color-status-negative-content);
 }
 .bar.hatched {
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--rz-color-data-neutral) 0 6px,
-    color-mix(in srgb, var(--rz-color-data-neutral) 22%, transparent) 6px 12px
-  );
+  background: var(--bar-hatch);
 }
 .target {
   position: absolute;

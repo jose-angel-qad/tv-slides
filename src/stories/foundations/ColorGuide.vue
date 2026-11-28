@@ -24,6 +24,14 @@ const ROLES: Record<string, string> = {
   'color.status.negative.content': 'Negative icons and text on surfaces, below-target bars and legend swatch',
   'color.status.negative.fill': 'Negative Status band',
   'color.status.negative.on-fill': 'Text and icon on negative fill',
+  'color.status.positive.subtle': 'Run status badge background, positive',
+  'color.status.positive.subtle-border': 'Run status badge border, positive',
+  'color.status.warning.subtle': 'Run status badge background, warning',
+  'color.status.warning.subtle-border': 'Run status badge border, warning',
+  'color.status.negative.subtle': 'Run status badge background, negative',
+  'color.status.negative.subtle-border': 'Run status badge border, negative',
+  'color.status.neutral.subtle': 'Run status badge background, neutral (content is text/secondary)',
+  'color.status.neutral.subtle-border': 'Run status badge border, neutral',
   'color.brand.background': 'Footer brand bar, default tone',
   'color.brand.foreground': 'Footer text and logo',
   'color.brand.red': 'Footer brand bar, red tone',
@@ -50,12 +58,13 @@ const gray = (mode: 'dark' | 'light') =>
     title="Color variables"
     lead="TV color tokens for the Dark and Light modes. Every color in a TV component is a token. Components never use hex values."
   >
-    <h2>Status rule: content, fill, on-fill</h2>
-    <p>Each status (positive, warning, negative) has exactly these three tokens. Do not add a fourth.</p>
+    <h2>Status rule: content, fill, on-fill, subtle</h2>
+    <p>Each status (positive, warning, negative) has these tokens. Neutral has only <code>subtle</code> and <code>subtle-border</code>; its content is <code>text/secondary</code>. Do not add more.</p>
     <ul>
       <li><code>content</code>: text and icons on surfaces, including <code>surface/raised</code>. Used by the Status line, the Status icon and below-target bars.</li>
       <li><code>fill</code>: emphasis backgrounds. Used only by the Status band on the primary KPI.</li>
       <li><code>on-fill</code>: text and icons on top of <code>fill</code>. Never use it anywhere else.</li>
+      <li><code>subtle</code> and <code>subtle-border</code>: the soft tint and its 1 px border behind a Run status badge (secondary feedback). Text and icons on <code>subtle</code> use <code>content</code> and pass 4.5:1. Pending approval.</li>
     </ul>
 
     <h2>Translucent surface/raised</h2>

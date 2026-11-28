@@ -4,6 +4,17 @@ import DocPage from './DocPage.vue'
 
 <template>
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
+    <h2>November 29, 2026: Shared pieces from the pilot review (pending approval)</h2>
+    <ul>
+      <li>Foundations: added <code>color/status/{positive, warning, negative, neutral}/subtle</code> and <code>/subtle-border</code> in Dark and Light, for the Run status badge. Content text on subtle passes 4.5:1 in both modes.</li>
+      <li>Added Run status badge (Status): a line's run state as a tinted pill with its own filled icon (Running, Slow running, Ramp up, Changeover, Stopped, Breakdown, Inactive). Added the seven run state icons to Material icon.</li>
+      <li>Added <code>chartGeometry.ts</code> (Data viz): bar 62% of its slot up to 104 px, 8 px gap floor, radius <code>min(10, bar x 0.15)</code>, shared target line, axis and hatching. Applied to Hourly bar chart (no visible change), Mini hourly bars, Bar list and Step flow chart.</li>
+      <li>Mini hourly bars: redrawn in SVG with the shared geometry (62% bars instead of fixed 4 px gaps, scaled radius, the full chart's hatching and a data/axis baseline).</li>
+      <li>Bar list: end radius from the geometry (4.8 px instead of 8 px) and the shared hatching.</li>
+      <li>Location table (Table): now the shared row layout. Row cards on the sheet, headers on the sheet, location name with a detail line, rows that fill the page between 112 and 184 px.</li>
+      <li>Added Metric cell (Table): the row hero, value and target in a raised container instead of a larger font.</li>
+    </ul>
+
     <h2>November 29, 2026: Round 2 slides (pending approval)</h2>
     <ul>
       <li>Hourly bar chart: new optional <code>gridValues</code> prop for scales with meaningful steps. Hourly OEE passes 50% and 100%. Without it, the axis keeps every other nice step.</li>

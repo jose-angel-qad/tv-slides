@@ -7,18 +7,31 @@ import * as TableStories from './Table.stories'
 
 ## Location table
 
-One row per location for multiple location slides (Scoreboard, Shift dashboard, Run dashboard, Up/Down stream, Maintenance status). Pending approval.
+The shared row layout for multiple location slides (Shift dashboard, Run dashboard, Up/Down stream, Scoreboard, Maintenance status, SPC dashboard). Pending approval.
 
-- Fixed row order (INFO-11). Up to 8 rows and 4 metric columns per page (INFO-09); add pages instead of shrinking.
-- Column header: Inter Regular 28 in `text/secondary`, the unit on the same line ("Downtime, min").
-- Rows: min height 72 px, radius `radius/md`, `surface/raised` fill, separated by `spacing/2xs`. No lines (BRAND-08).
-- Location name: Inter SemiBold 28, wraps to two lines. Cells: Geist SemiBold 32 with tabular figures (A11Y-05).
-- Cells render from slots named `cell-<key>` with the row as a prop. Use Status value for a value with status.
+- Fixed row order (INFO-11). Up to 6 rows per page; add pages instead of shrinking (INFO-09).
+- Column headers sit on the sheet: Inter Regular 28 in `text/secondary`, the unit on the same line. The location column has no header by default.
+- One row card per location: surface gradient, 1 px `border/subtle`, `radius/lg`, `elevation/card`. Header and rows share one grid, so columns line up. Labels left aligned, numbers right aligned or on a fixed column start.
+- Location cell: Geist Medium 32 (card title), wraps to two lines, never cut. Optional detail line in Inter 28 `text/secondary`.
+- Plain cells: Geist Medium 32 with tabular figures (A11Y-05). Keep one type scale in a row: no slide title or KPI roles.
+- `fill` (default on): rows share the page height between `rowMin` (112) and `rowMax` (184) px.
+- Cells render from `cell-<key>` slots with the row as a prop; header cells from `head-<key>` slots.
 
 | Prop | Type | Notes |
 | --- | --- | --- |
 | `columns` | `{ key, label, width?, align? }[]` | `width` is a CSS grid track. |
-| `rows` | `{ id, location, ... }[]` | |
-| `locationLabel`, `locationWidth` | string | Defaults "Location", `minmax(0, 1.2fr)`. |
+| `rows` | `{ id, location, detail?, ... }[]` | |
+| `locationLabel`, `locationWidth` | string | Defaults: no label, `minmax(0, 1fr)`. |
+| `fill`, `rowMin`, `rowMax` | boolean, number | Defaults: true, 112, 184. |
+
+## Metric cell
+
+The row hero: the one value per row that answers the slide's question. Hierarchy comes from the container, not from a larger font. Pending approval.
+
+- `surface/raised`, `radius/md`, padding 12 / 16. It fills its column, so cells line up.
+- Line 1: the row's only status icon (32 px) and the value in Geist SemiBold 32 (chart value, tabular figures). Warning and negative values take `status/{status}/content`.
+- Line 2: the target ("Target 80%") in Inter 28, `text/secondary`.
+- Place it right after the location name. Other cells stay plain text and neutral unless they need attention.
+- Props: `value`, `target`, `status`, `label`.
 
 <Stories />

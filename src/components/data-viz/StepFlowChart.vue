@@ -9,7 +9,8 @@ import { formatCount } from '../../utils/format'
 // two steps as a labeled value ("12 WIP"), not an unlabeled triangle.
 // The bottleneck (the largest WIP at or above `wipLimit`) shows the negative status icon and
 // status/negative/content (secondary feedback; the slide's KPI carries the primary one).
-// Fixed geometry: WIP column 112 px, bar width 62% of its column up to 120 px.
+// Geometry from chartGeometry: bar 62% of its column up to 104 px, radius min(10, bar x 0.15).
+// The 112 px WIP column between steps is extra gap on purpose: the WIP value and label live there.
 export interface FlowStep {
   id: string
   name: string
@@ -83,6 +84,7 @@ const columns = computed(() => props.steps.map((_, i) => (i < props.steps.length
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  container-type: inline-size;
 }
 .value {
   position: absolute;
@@ -95,10 +97,10 @@ const columns = computed(() => props.steps.map((_, i) => (i < props.steps.length
 }
 .bar {
   position: relative;
-  width: 62%;
-  max-width: 120px;
+  /* chartGeometry: BAR_SHARE 62%, BAR_MAX 104 px, radius min(10, width x 0.15) = min(10 px, 9.3cqi). */
+  width: min(104px, 62cqi);
   min-height: 4px;
-  border-radius: var(--rz-radius-sm) var(--rz-radius-sm) 0 0;
+  border-radius: min(10px, 9.3cqi) min(10px, 9.3cqi) 0 0;
   background: var(--rz-color-data-neutral);
 }
 .name {

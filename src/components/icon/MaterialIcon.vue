@@ -16,6 +16,14 @@ import celebration from '@material-symbols/svg-600/outlined/celebration.svg?raw'
 import person from '@material-symbols/svg-600/outlined/person.svg?raw'
 import image from '@material-symbols/svg-600/outlined/image.svg?raw'
 import inbox from '@material-symbols/svg-600/outlined/inbox.svg?raw'
+// Run state icons (Run status badge): filled, like the status glyphs.
+import playArrowFill from '@material-symbols/svg-600/outlined/play_arrow-fill.svg?raw'
+import resumeFill from '@material-symbols/svg-600/outlined/resume-fill.svg?raw'
+import trendingUpFill from '@material-symbols/svg-600/outlined/trending_up-fill.svg?raw'
+import swapHorizFill from '@material-symbols/svg-600/outlined/swap_horiz-fill.svg?raw'
+import stopFill from '@material-symbols/svg-600/outlined/stop-fill.svg?raw'
+import errorFill from '@material-symbols/svg-600/outlined/error-fill.svg?raw'
+import doNotDisturbOnFill from '@material-symbols/svg-600/outlined/do_not_disturb_on-fill.svg?raw'
 
 // Inlined as SVG so they render crisply on TVs without a web font. Color is currentColor.
 const ICONS = {
@@ -32,6 +40,13 @@ const ICONS = {
   person,
   image,
   inbox,
+  play_arrow_fill: playArrowFill,
+  resume_fill: resumeFill,
+  trending_up_fill: trendingUpFill,
+  swap_horiz_fill: swapHorizFill,
+  stop_fill: stopFill,
+  error_fill: errorFill,
+  do_not_disturb_on_fill: doNotDisturbOnFill,
 } as const
 export type MaterialIconName = keyof typeof ICONS
 

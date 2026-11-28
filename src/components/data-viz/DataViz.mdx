@@ -5,6 +5,18 @@ import * as DataVizStories from './DataViz.stories'
 
 <Story of={DataVizStories.HourlyBarGuide} />
 
+## Chart geometry
+
+Every bar chart takes its geometry and marks from `chartGeometry.ts`, so the charts read as one system. Pending approval.
+
+- Vertical bars: bar 62% of its slot, gap 38%. The bar stops at 104 px; past that the gap grows. Never set gaps by hand.
+- Gap floor: at least 8 px between bars. If a chart cannot keep it, give it more width or fewer bars.
+- Corner radius: `min(10, bar width x 0.15)`, top corners only. Horizontal bars: same rule on the thickness, end corners only.
+- Horizontal bars (Bar list): 32 px thick, 24 px apart in every list.
+- Marks: `data/neutral` bars, `status/negative/content` below target, `data/axis` 2 px axis and gridlines, target line dashed 12 / 8 in `text/secondary` at 3 px, in-progress hatching 6 px stripes every 16 px over the data color at 22%.
+- Compact charts (rows and cards) use the same geometry at a smaller size, with the target line and the hatched current hour.
+- A chart that needs a different value writes the reason in a comment next to it.
+
 ## Line chart
 
 One metric over time, in the same language as the Hourly bar chart. Pending approval.
@@ -18,7 +30,7 @@ One metric over time, in the same language as the Hourly bar chart. Pending appr
 
 Ranked or ordered horizontal bars: Pareto problems, Leaderboard points, top problems, cycle time per asset. Pending approval.
 
-- Row: label (Inter SemiBold 28, wraps, never cut) with an optional detail line, a 32 px bar on one shared scale from zero, and the value outside the bar (Geist SemiBold 32).
+- Row: label (Inter SemiBold 28, wraps, never cut) with an optional detail line, a 32 px bar on one shared scale from zero, and the value outside the bar (Geist SemiBold 32). Rows 24 px apart; end corners from Chart geometry.
 - Bars `data/neutral`. Warning or negative rows color the bar and value with `status/{status}/content` and show the status icon (secondary feedback). In-progress rows are hatched.
 - Optional `target`: one dashed `text/secondary` line across every row; label it in the card legend.
 - Props: `rows` (`id`, `label`, `detail`, `value`, `valueText`, `status`, `inProgress`), `max`, `target`, `labelWidth`.
@@ -27,7 +39,7 @@ Ranked or ordered horizontal bars: Pareto problems, Leaderboard points, top prob
 
 Steps in process order with the WIP between them (Line balance). Pending approval.
 
-- One vertical `data/neutral` bar per step (steps completed, from zero), value above, step name below in horizontal text that wraps.
+- One vertical `data/neutral` bar per step (steps completed, from zero), value above, step name below in horizontal text that wraps. Bar width and radius from Chart geometry; the WIP column is extra gap on purpose.
 - WIP between two steps as a value with the label "WIP", never an unlabeled shape.
 - The bottleneck (largest WIP at or above `wipLimit`) shows the negative status icon in `status/negative/content`.
 - Props: `steps` (`id`, `name`, `completed`, `wipAfter`), `wipLimit`.
@@ -37,7 +49,7 @@ Steps in process order with the WIP between them (Line balance). Pending approva
 Compact hourly bars for a table cell or a location card. Pending approval.
 
 - No axis or value labels, so the slide names what it shows: a column header ("Last 12 hours") or a text summary ("8 of 11 on target").
-- `data/neutral` bars, below-target bars in `status/negative/content`, the current hour hatched, a dashed `text/secondary` target line. Bars start at zero.
+- Same geometry and marks as the Hourly bar chart (Chart geometry): bar 62% of its slot, scaled radius, `data/neutral` bars, below-target bars in `status/negative/content`, the current hour hatched, a dashed `text/secondary` target line, a `data/axis` baseline. Bars start at zero.
 - The current hour keeps a minimum height of 8 px, so a stopped line's hatch stays visible.
 - Props: `values`, `target`, `currentIndex`, `height` (px, default 56).
 

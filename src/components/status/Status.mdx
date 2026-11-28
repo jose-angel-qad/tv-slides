@@ -16,4 +16,23 @@ A value with its secondary status, for table cells and lists. Pending approval.
 - Tabular figures, so values line up in columns (A11Y-05). No fills.
 - Props: `status`, `text`, `size`, `label`.
 
+## Run status badge
+
+A line's run state, the TV version of the Redzone app badge. Use it everywhere a run state appears (Shift dashboard, Up/Down stream, Run dashboard, Maintenance status, Discrete station, Cycles). Pending approval.
+
+- Pill: full radius, `status/{status}/subtle` background, 1 px `status/{status}/subtle-border`, icon and label in `status/{status}/content` (neutral: `text/secondary`).
+- Label: Inter SemiBold 28 (`body-strong`), sentence case. Icon: Material Symbols Outlined, weight 600, filled, 32 px.
+- One badge per row or card. It is secondary feedback and never replaces the main KPI's Status band.
+- Props: `state`, `label` (optional override, for example "Stopped 12m").
+
+| State | Status | Icon |
+| --- | --- | --- |
+| Running | positive | `play_arrow` |
+| Slow running | warning | `resume` |
+| Ramp up | neutral | `trending_up` |
+| Changeover | neutral | `swap_horiz` |
+| Stopped | negative | `stop` |
+| Breakdown | negative | `error` |
+| Inactive | neutral | `do_not_disturb_on` |
+
 <Stories />

@@ -26,3 +26,19 @@ export const STATUS_ON_FILL_COLOR: Record<FillStatus, string> = {
   warning: 'var(--rz-color-status-warning-on-fill)',
   negative: 'var(--rz-color-status-negative-on-fill)',
 }
+
+// Soft tint and border for secondary feedback that needs a shape, such as the Run status badge.
+// Text and icons on subtle use STATUS_CONTENT_COLOR (neutral: text/secondary). Pending approval.
+export const STATUS_SUBTLE_COLOR: Record<Status, string> = {
+  positive: 'var(--rz-color-status-positive-subtle)',
+  warning: 'var(--rz-color-status-warning-subtle)',
+  negative: 'var(--rz-color-status-negative-subtle)',
+  neutral: 'var(--rz-color-status-neutral-subtle)',
+}
+
+export const STATUS_SUBTLE_BORDER_COLOR: Record<Status, string> = {
+  positive: 'var(--rz-color-status-positive-subtle-border)',
+  warning: 'var(--rz-color-status-warning-subtle-border)',
+  negative: 'var(--rz-color-status-negative-subtle-border)',
+  neutral: 'var(--rz-color-status-neutral-subtle-border)',
+}

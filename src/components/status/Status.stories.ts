@@ -5,6 +5,7 @@ import StatusIcon from './StatusIcon.vue'
 import StatusLine from './StatusLine.vue'
 import StatusBand from './StatusBand.vue'
 import StatusValue from './StatusValue.vue'
+import RunStatusBadge from './RunStatusBadge.vue'
 
 const meta: Meta = { title: 'Components/Status' }
 export default meta
@@ -77,6 +78,25 @@ export const Value: Story = {
         <StatusValue status="negative" text="Stopped" />
         <StatusValue status="warning" text="14m late" />
         <StatusValue text="1,240" />
+      </div>
+    </StoryFrame>`,
+  }),
+}
+
+// Run status badge: a line's run state, one per row or card. Secondary feedback.
+export const RunBadge: Story = {
+  name: 'Run status badge',
+  render: () => ({
+    components: { StoryFrame, RunStatusBadge },
+    template: `<StoryFrame>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+        <RunStatusBadge state="running" />
+        <RunStatusBadge state="slow" />
+        <RunStatusBadge state="ramp-up" />
+        <RunStatusBadge state="changeover" />
+        <RunStatusBadge state="stopped" />
+        <RunStatusBadge state="breakdown" />
+        <RunStatusBadge state="inactive" />
       </div>
     </StoryFrame>`,
   }),
