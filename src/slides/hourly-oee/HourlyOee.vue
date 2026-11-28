@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import ChartCard from '../../components/card/ChartCard.vue'
-import HourlyBarChart from '../../components/data-viz/HourlyBarChart.vue'
-import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
+import HourlyTargetChart from '../_shared/HourlyTargetChart.vue'
 import { formatPercent, formatPercentTick } from '../../utils/format'
-import { useElementSize } from '../../utils/useElementSize'
 import type { HourlyOeeData } from './types'
 
 // Design plan (round 2)
@@ -33,65 +29,19 @@ import type { HourlyOeeData } from './types'
 // c) Chart alone, full body, with the answer count as its title. Chosen: the question is a pattern
 //    over time, so the chart is the answer and gets all the room. Future hours of the shift stay as
 //    empty slots so the viewer sees how much of the shift is left.
+//
+// Round 2: the chart body lives in `_shared/HourlyTargetChart.vue` (shared with Hourly counts and
+// Units/man hour); the render is unchanged. Bar geometry comes from chartGeometry.
 const props = defineProps<{ data: HourlyOeeData }>()
-const d = computed(() => props.data)
-
-// Finished hours only: the current hour is still in progress (INFO-17).
-const finished = computed(() => d.value.hourly.filter((_, i) => i < d.value.currentHourIndex))
-const onTarget = computed(() => finished.value.filter((p) => p.value >= d.value.targetPerHour).length)
-const summary = computed(() => {
-  const n = finished.value.length
-  if (n === 0) return 'First hour in progress'
-  return `${onTarget.value} of ${n} ${n === 1 ? 'hour' : 'hours'} on target`
-})
-
-const chartEl = ref<HTMLElement | null>(null)
-const { width, height } = useElementSize(chartEl)
 </script>
 
 <template>
-  <div class="rz-hourly-oee">
-    <ChartCard :title="summary">
-      <template #actions>
-        <ul class="legend">
-          <ChartLegendItem type="on-target" label="On target" />
-          <ChartLegendItem type="below-target" label="Below target" />
-          <ChartLegendItem type="in-progress" label="In progress" />
-        </ul>
-      </template>
-      <div ref="chartEl" class="chart-area">
-        <HourlyBarChart
-          v-if="width && height"
-          :points="d.hourly"
-          :target="d.targetPerHour"
-          :current-index="d.currentHourIndex"
-          :width="width"
-          :height="height"
-          :format="formatPercent"
-          :tick-format="formatPercentTick"
-          :grid-values="[50, 100]"
-        />
-      </div>
-    </ChartCard>
-  </div>
+  <HourlyTargetChart
+    :hourly="props.data.hourly"
+    :target="props.data.targetPerHour"
+    :current-index="props.data.currentHourIndex"
+    :format="formatPercent"
+    :tick-format="formatPercentTick"
+    :grid-values="[50, 100]"
+  />
 </template>
-
-<style scoped>
-.rz-hourly-oee {
-  position: absolute;
-  inset: 0;
-  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
-  display: grid;
-}
-.chart-area {
-  flex: 1;
-  min-height: 0;
-}
-.legend {
-  display: flex;
-  gap: var(--rz-spacing-lg);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-</style>
