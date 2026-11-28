@@ -14,4 +14,10 @@ export const welcomePositive: WelcomeData = {
   ],
 }
 
+// One new hire.
+export const welcomeOne: WelcomeData = { location: 'All areas', hires: welcomePositive.hires.slice(0, 1) }
+
+// Many new hires: page 1 of 2.
+export const welcomeMany: WelcomeData = { ...welcomePositive, page: { index: 1, count: 2 } }
+
 export const welcomeNegative: WelcomeData = { location: 'All areas', hires: [] }
