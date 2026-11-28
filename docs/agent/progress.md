@@ -1,18 +1,21 @@
 # Slide builder progress
 
-One entry per slide, newest last.
+## Status
 
-## Order
+Round 1 (November 28, overnight) built all 27 slides as drafts. Review found that many copied the Run Throughput layout, added data the slides do not need, used unnecessary sub-headers, gave Other slides a negative state, and had weak craft outside the Run Throughput look. The agent was rewritten. Round 1 entries are kept below as history; every slide except Run Throughput is redesigned from its key question.
 
-1. Single location, close to Run Throughput: Shift Throughput, Hourly OEE, Hourly Counts, Units/Man Hour.
-2. Single location: Run Speed, Counts, Pareto, Discrete Location, Discrete Station, Line Balance, Cycles, Run (Fast Cycles), Shift (Fast Cycles), Operations, X-Bar R.
-3. Multiple location: Shift Dashboard, Throughput Dashboard, Run Dashboard, Up/Down Stream, Scoreboard, Leaderboard.
-4. Other: News, Company Update, Welcome.
-5. Definitions pending: Maintenance Status, SPC Dashboard, Company Inherited Highlight.
+## Approved examples
 
-Run Throughput is already built: mark it Pending approval in the audit at the start.
+- Run Throughput (`src/slides/run-throughput/`)
 
-## Log
+Add slides here when the user approves them; they become references for style and judgment.
+
+## Round 2 order
+
+1. Pilot, then stop for review: Hourly OEE, Shift Dashboard, Company Update.
+2. After the pilot is approved: the rest of Single location, then Multiple location, then Other, then the slides whose definitions are pending.
+
+## Round 1 log (drafts, superseded)
 
 ### Shift throughput
 - Stories: Positive, Negative, No crew target.

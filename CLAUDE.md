@@ -7,7 +7,7 @@ Figma: TV Component library, file `NdSZgV65miScsprBzqt38n`. Figma wins on visual
 
 1. Guidelines: `src/stories/docs/guidelines/` (Overview, Accessibility, Information design, Brand expression). Cite rules by ID (A11Y-04, INFO-05, BRAND-08).
 2. Foundations: `src/foundations/` (`foundations.css`, `tv-type.css`, `tokens.ts`, `tokens/tv-colors.json`) and the Foundations pages in Storybook.
-3. Reference slide: `src/slides/run-throughput/`. Every new slide must look like part of the same set.
+3. Style reference: `src/slides/run-throughput/`. Every new slide must look like part of the same set: same shell, tokens, type roles, card style and chart language. It is not a layout template: each slide's layout comes from its own key question.
 4. Slide definitions: `docs/agent/kb-definitions.md` (official) and `docs/agent/slide-design-guide.md` (key question, must show, scenarios).
 
 ## Design system rules
@@ -20,6 +20,7 @@ Figma: TV Component library, file `NdSZgV65miScsprBzqt38n`. Figma wins on visual
 - Status uses content, fill and on-fill tokens. Only the main KPI gets primary feedback (Status band). Color is never the only signal: every status has its icon.
 - Reuse before creating. Check `src/components/` and the Components docs before adding anything. A new component needs a story, a Docs entry and a Changelog line.
 - Every slide and component works in Light and Dark.
+- Show only what the slide must show. No filler tiles, no sub-headers that repeat the title, location or unit.
 
 ## Writing
 
