@@ -1,50 +1,89 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import T4Table from '../../templates/T4Table.vue'
-import ChartCard from '../../components/card/ChartCard.vue'
-import LocationTable, { type TableColumn, type TableRow } from '../../components/table/LocationTable.vue'
+import LocationTable from '../../components/table/LocationTable.vue'
+import RunStatusBadge from '../../components/status/RunStatusBadge.vue'
 import StatusValue from '../../components/status/StatusValue.vue'
 import { formatCount, formatDuration } from '../../utils/format'
 import type { MaintenanceLocation, MaintenanceStatusData } from './types'
 
-// Proposal (definition pending, not in the Knowledge Base).
-// Question: which lines need maintenance attention now?
-// One row per location: the current state (an active issue with its duration, negative, or the
-// running product) and four counts with their full names spelled out (design guide idea).
-// A count at or above its limit shows the negative status; others stay neutral (INFO-06).
+// Design plan (round 2). Proposal: the slide is not in the Knowledge Base; built from the captures
+// and the design guide.
+//
+// Question: which lines need maintenance attention now? (guide, kept)
+// Answer (row hero): what each line is doing now, right after the name: a Run status badge
+// (Breakdown with how long it has been down, or Running) on a raised cell with the issue or the
+// running product as its second line. Lines with an active issue read first because their badge is
+// the only negative one.
+//
+// Must show, mapped:
+// - Current status per line (active issue with its duration, or the running product): the hero cell.
+// - PM, WO, CL and OD counts, spelled out (guide idea; meanings assumed, questions.md): Preventive
+//   due, Work orders, Checklist items, Overdue.
+// - Which counts need attention: a count at or above its limit shows the negative icon and color;
+//   the others stay neutral.
+//
+// Not shown:
+// - Abbreviated headers without a legend (current product).
+// - Maintenance status bar colors without labels.
+//
+// Layout options:
+// a) A titled table in one card (round 1): five dense columns.
+// b) A card per line with the counts as tiles: counts do not line up.
+// c) Shared row layout, status hero first, four count columns right aligned. Chosen.
 const props = defineProps<{ data: MaintenanceStatusData }>()
 const d = computed(() => props.data)
-type CountKey = 'pm' | 'wo' | 'cl' | 'od'
-const columns: TableColumn[] = [
-  { key: 'now', label: 'Now', width: 'minmax(0, 1.4fr)' },
-  { key: 'pm', label: 'Preventive due', width: '220px', align: 'end' },
-  { key: 'wo', label: 'Work orders', width: '200px', align: 'end' },
-  { key: 'cl', label: 'Checklist items', width: '220px', align: 'end' },
-  { key: 'od', label: 'Overdue', width: '170px', align: 'end' },
+const rows = computed(() => d.value.locations.slice(0, 6).map((l) => ({ ...l })))
+const COUNTS = [
+  { key: 'pm', label: 'Preventive due' },
+  { key: 'wo', label: 'Work orders' },
+  { key: 'cl', label: 'Checklist items' },
+  { key: 'od', label: 'Overdue' },
+] as const
+const columns = [
+  { key: 'now', label: 'Now', width: 'minmax(0, 1.6fr)' },
+  ...COUNTS.map((c) => ({ key: c.key, label: c.label, width: '200px', align: 'end' as const })),
 ]
-const rows = computed(() => d.value.locations as unknown as TableRow[])
-const L = (r: TableRow) => r as unknown as MaintenanceLocation
-const over = (l: MaintenanceLocation, k: CountKey) => l[k] >= d.value.limits[k]
+const L = (r: unknown) => r as MaintenanceLocation
+const over = (l: MaintenanceLocation, k: (typeof COUNTS)[number]['key']) => l[k] >= d.value.limits[k]
 </script>
 
 <template>
-  <T4Table>
-    <ChartCard title="Maintenance by location">
-      <LocationTable :columns="columns" :rows="rows" location-width="minmax(0, 1fr)">
-        <template #cell-now="{ row }">
-          <StatusValue v-if="L(row).issue" status="negative" :text="`${L(row).issue!.name}, ${formatDuration(L(row).issue!.minutes)}`" />
-          <span v-else class="product">{{ L(row).product }}</span>
-        </template>
-        <template v-for="k in (['pm', 'wo', 'cl', 'od'] as CountKey[])" :key="k" #[`cell-${k}`]="{ row }">
-          <StatusValue :status="over(L(row), k) ? 'negative' : undefined" :text="formatCount(L(row)[k])" />
-        </template>
-      </LocationTable>
-    </ChartCard>
-  </T4Table>
+  <div class="rz-maintenance">
+    <LocationTable :columns="columns" :rows="rows" location-width="minmax(0, 0.8fr)">
+      <template #cell-now="{ row }">
+        <div class="now">
+          <RunStatusBadge v-if="L(row).issue" state="breakdown" :label="`Breakdown ${formatDuration(L(row).issue!.minutes)}`" />
+          <RunStatusBadge v-else state="running" />
+          <span class="detail">{{ L(row).issue?.name ?? L(row).product }}</span>
+        </div>
+      </template>
+      <template v-for="c in COUNTS" :key="c.key" #[`cell-${c.key}`]="{ row }">
+        <StatusValue v-if="over(L(row), c.key)" status="negative" label="Needs attention" :text="formatCount(L(row)[c.key])" />
+        <span v-else>{{ formatCount(L(row)[c.key]) }}</span>
+      </template>
+    </LocationTable>
+  </div>
 </template>
 
 <style scoped>
-.product {
+.rz-maintenance {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+}
+/* The hero cell: raised container like the Metric cell, badge on top, issue or product below. */
+.now {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--rz-spacing-2xs);
+  width: 100%;
+  min-width: 0;
+  padding: var(--rz-spacing-xs) var(--rz-spacing-sm);
+  border-radius: var(--rz-radius-md);
+  background: var(--rz-color-surface-raised);
+}
+.detail {
   font: var(--rz-tv-type-body);
   color: var(--rz-color-text-secondary);
 }

@@ -252,6 +252,23 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: one-line rows keep the shared height, small empty state, time at the end of the grey meta line, space under few items.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01, INFO-02, INFO-07, INFO-08, INFO-10, INFO-19 (empty built), INFO-20 to INFO-24; BRAND-01 to BRAND-12. Not applicable: INFO-03 to INFO-06, INFO-09, INFO-11 to INFO-18, INFO-25. Not verified: A11Y-12, A11Y-18, A11Y-19.
 
+### Welcome (pending approval)
+- Question: who joined us this week? (kept)
+- Hero: Person cards directly on the sheet, filling the height (up to three per page); one hire is a centered card two thirds wide.
+- Left out: "Welcome to the team" card title (round 1), older red wordmark.
+- Stories: One new hire, Several (one without a photo, a long name), Many (page 1 of 2), No new hires. Content container: no positive or negative state.
+- Changed: Person card (fills its height, content centered, 240 px photo).
+- Reviews: 1) PASS. Minor kept: portraits do not line up when a name wraps, the single card is sparse, the page label shifts the grid, three per page is low for many hires.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01, INFO-02, INFO-07, INFO-08, INFO-19 (empty built), INFO-20 to INFO-24; BRAND-01 to BRAND-12. INFO-10: the name uses the slide title role. Not applicable: INFO-03 to INFO-06, INFO-09, INFO-11 to INFO-18, INFO-25. Not verified: A11Y-12, A11Y-18, A11Y-19.
+
+### Maintenance status (pending approval, proposal)
+- Question: which lines need maintenance attention now? (kept)
+- Row hero: a raised cell after the name with the Run status badge (Breakdown with its duration, or Running) and the issue or product below. Four counts spelled out (Preventive due, Work orders, Checklist items, Overdue; assumed meanings and limits), status only at or above the limit.
+- Left out: abbreviations without a legend, status bar colors without labels.
+- Stories: Positive (all running, under limits), Negative (two active issues, counts over limits, long name).
+- Reviews: 1) PASS. Minor kept: long products make rows uneven, rows not sorted by attention (fixed order rule), limits not shown on the slide.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-23, INFO-25; BRAND-01 to BRAND-12. INFO-24 partly (assumed meanings). INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
