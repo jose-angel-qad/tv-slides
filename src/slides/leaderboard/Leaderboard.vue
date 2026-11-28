@@ -1,86 +1,85 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import T2ListSupport from '../../templates/T2ListSupport.vue'
 import ChartCard from '../../components/card/ChartCard.vue'
-import StatTile from '../../components/card/StatTile.vue'
 import BarList, { type BarListRow } from '../../components/data-viz/BarList.vue'
 import { formatCount } from '../../utils/format'
 import type { LeaderboardData } from './types'
 
-// Question: who is winning this shift, and by how much?
-// Locations ranked by Victory Points (the only slide that re-sorts, INFO-11) as horizontal bars on
-// one shared scale, with the points at the end of each bar (design guide idea). The leader is
-// marked with a word, not a red bar (BRAND-04). Gaps to the leader are written under each name.
-// Gamification has no target, so nothing carries status; zero points stays neutral (INFO-25).
-// Support: the lead in points and the points key (what each hour result is worth).
+// Design plan (round 2)
+//
+// Question: who is winning this shift, and by how much? (guide, kept)
+// Answer (hero): the ranked Bar list of points on one shared scale, full body (guide idea), with the
+// points at the end of each bar. The card title names the leader and the margin ("Line 8 leads by
+// 2 points"; "Line 1 and Bottling Line 4 tie for first").
+//
+// Must show, mapped:
+// - Locations ranked by points; points per location: Bar list, largest first.
+// - Gap to the leader: detail line under each name ("Leader", "6 behind").
+// - Hourly results that earned the points: second part of the detail line, one number per finished
+//   hour ("4 2 4 4 2 4"), oldest first.
+// - What each hour result is worth: the card header key ("Points per hour: 4, 2, 1 or 0").
+//
+// Not shown:
+// - Red leader bar and trophy (current product): red means negative in this system; the leader is
+//   named in the title and in its row.
+// - Status colors: points have no target (data without a target).
+//
+// Layout options:
+// a) Bar list plus a points key card (round 1): the key card took a third of the width for one line.
+// b) A table of hours by location: the ranking takes longer to read.
+// c) Ranked bars full body, key in the card header. Chosen: rank and margin read at a glance.
 const props = defineProps<{ data: LeaderboardData }>()
 const d = computed(() => props.data)
-const total = (h: number[]) => h.reduce((s, p) => s + p, 0)
-const pts = (n: number) => `${formatCount(n)} ${n === 1 ? 'pt' : 'pts'}`
-
 const ranked = computed(() =>
-  d.value.locations.map((l) => ({ ...l, points: total(l.hourlyPoints) })).sort((a, b) => b.points - a.points),
+  d.value.locations
+    .map((l) => ({ ...l, points: l.hourlyPoints.reduce((a, b) => a + b, 0) }))
+    .sort((a, b) => b.points - a.points)
+    .slice(0, 8),
 )
 const top = computed(() => ranked.value[0]?.points ?? 0)
-const leaders = computed(() => ranked.value.filter((l) => l.points === top.value && top.value > 0))
+const leaders = computed(() => ranked.value.filter((l) => l.points === top.value))
+const title = computed(() => {
+  if (!ranked.value.length || top.value === 0) return 'No points yet this shift'
+  if (leaders.value.length > 1) return `${leaders.value.map((l) => l.location).join(' and ')} tie for first`
+  const gap = top.value - (ranked.value[1]?.points ?? 0)
+  return `${leaders.value[0].location} leads by ${formatCount(gap)} ${gap === 1 ? 'point' : 'points'}`
+})
 const rows = computed<BarListRow[]>(() =>
   ranked.value.map((l) => {
-    const last = l.hourlyPoints[l.hourlyPoints.length - 1]
-    let detail = top.value === 0 ? 'No points yet' : l.points === top.value ? (leaders.value.length > 1 ? 'Tied for first' : 'Leader') : `${pts(top.value - l.points)} behind`
-    if (last != null) detail += ` · last hour ${pts(last)}`
-    return { id: l.id, label: l.location, detail, value: l.points, valueText: pts(l.points) }
+    const behind = top.value - l.points
+    const lead = top.value > 0 ? (behind === 0 ? 'Leader' : `${formatCount(behind)} behind`) : ''
+    const hours = l.hourlyPoints.length ? `hours ${l.hourlyPoints.join(' ')}` : ''
+    const detail = [lead, hours].filter(Boolean).join(' · ') || undefined
+    // Zero points draw no bar (a bar's length is its value).
+    return { id: l.id, label: l.location, detail, value: l.points, valueText: formatCount(l.points), noData: l.points === 0 }
   }),
 )
-const lead = computed(() => {
-  if (top.value === 0) return { value: '0', subtitle: 'No points yet this shift' }
-  if (leaders.value.length > 1) return { value: '0', subtitle: `${leaders.value.length} tied for first` }
-  const second = ranked.value[1]?.points ?? 0
-  return { value: formatCount(top.value - second), subtitle: `${ranked.value[0].location} over ${ranked.value[1]?.location ?? '-'}` }
-})
-const KEY = [
-  { pts: 4, text: 'Above target' },
-  { pts: 2, text: 'On target' },
-  { pts: 1, text: 'Close to target' },
-  { pts: 0, text: 'Below target' },
-]
 </script>
 
 <template>
-  <T2ListSupport>
-    <template #main>
-      <ChartCard :title="`Victory Points, ${d.shift}`">
+  <div class="rz-leaderboard">
+    <ChartCard :title="title">
+      <template #actions><span class="key">Points per hour: 4, 2, 1 or 0</span></template>
+      <div class="list">
         <BarList :rows="rows" :max="Math.max(top, 1)" :label-width="560" />
-      </ChartCard>
-    </template>
-    <template #support>
-      <StatTile title="Leading by" :subtitle="lead.subtitle" :value="lead.value" unit="pts" :show-status="false" />
-      <ChartCard title="Points per hour">
-        <ul class="key">
-          <li v-for="k in KEY" :key="k.pts"><span class="pts">{{ pts(k.pts) }}</span><span>{{ k.text }}</span></li>
-        </ul>
-      </ChartCard>
-    </template>
-  </T2ListSupport>
+      </div>
+    </ChartCard>
+  </div>
 </template>
 
 <style scoped>
+.rz-leaderboard {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+  display: grid;
+}
 .key {
-  display: flex;
-  flex-direction: column;
-  gap: var(--rz-spacing-xs);
-  margin: 0;
-  padding: 0;
-  list-style: none;
   font: var(--rz-tv-type-body);
   color: var(--rz-color-text-secondary);
 }
-.key li {
-  display: flex;
-  gap: var(--rz-spacing-md);
-}
-.pts {
-  min-width: 96px;
-  font: var(--rz-tv-type-chart-value);
-  color: var(--rz-color-text-primary);
+.list {
+  flex: 1;
+  min-height: 0;
 }
 </style>

@@ -269,6 +269,23 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: long products make rows uneven, rows not sorted by attention (fixed order rule), limits not shown on the slide.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-23, INFO-25; BRAND-01 to BRAND-12. INFO-24 partly (assumed meanings). INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### X-Bar R (pending approval)
+- Question: is this characteristic in control? (kept)
+- Hero: points outside the control limits (KPI tile) with "In control" or "Out of control" in the Status band. X-bar and range charts stacked on the left (55 / 45), limits labeled at the right end, outside points flagged. Fact card: Cpk (status only below 1.33), Cp, spec limits.
+- Layout: options were tiles over two half-width charts (round 1) and charts only with the status in the title.
+- Left out: sigma and x-double-bar, spec lines on the chart (written in the Fact card).
+- Stories: Positive (in control), Negative (out of control, Cpk below target, long names).
+- Reviews: 1) FAIL: range chart too short, labels overlapping. Fixed: 3 / 2 split, range not zero based. 2) FAIL: column gutters 62 px apart, range still tight. Fixed: both columns on a 55 / 45 split, the KPI tile stretches. 3) PASS. Minor kept: characteristic name only in the chart title, "Center" vs "R-bar" naming, no LCL on the range chart, last point close to the labels, empty space around "0".
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-17, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-18: control charts are not zero based, by design. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
+### Leaderboard (pending approval)
+- Question: who is winning this shift, and by how much? (kept)
+- Hero: ranked Bar list of points, full body; title names the leader and the margin ("Line 8 leads by 2 points", tie, "No points yet this shift"). Detail line: gap to the leader and the hourly results. Key in the card header: "Points per hour: 4, 2, 1 or 0".
+- Left out: red leader bar and trophy (red means negative), status colors (no target), the round 1 key card.
+- Stories: Default (clear leader), Tie for first, Start of shift.
+- Reviews: 1) FAIL: zero values drew a sliver bar, "No points yet" repeated. Fixed: no bar for zero, repetition removed. 2) PASS. Minor kept: hourly results as a digit string, space under short lists (fixed bar rule), short bars far from their values, sparse start of shift.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-03, INFO-06 to INFO-16, INFO-18 to INFO-25; BRAND-01 to BRAND-12. Not applicable: INFO-04, INFO-05, INFO-17. Not verified: A11Y-12, A11Y-17 to A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
