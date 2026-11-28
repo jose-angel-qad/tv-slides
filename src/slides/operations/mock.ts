@@ -36,3 +36,6 @@ export const operationsNegative: OperationsData = {
 
 // Reliability and Compliance off: only problems.
 export const operationsBasic: OperationsData = { ...operationsNegative, reliability: false, compliance: false }
+
+// Nothing open (guide handoff scenario).
+export const operationsNoItems: OperationsData = { ...operationsPositive, items: [] }

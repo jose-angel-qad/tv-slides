@@ -16,6 +16,7 @@ import celebration from '@material-symbols/svg-600/outlined/celebration.svg?raw'
 import person from '@material-symbols/svg-600/outlined/person.svg?raw'
 import image from '@material-symbols/svg-600/outlined/image.svg?raw'
 import inbox from '@material-symbols/svg-600/outlined/inbox.svg?raw'
+import checklist from '@material-symbols/svg-600/outlined/checklist.svg?raw'
 // Run state icons (Run status badge): filled, like the status glyphs.
 import playArrowFill from '@material-symbols/svg-600/outlined/play_arrow-fill.svg?raw'
 import resumeFill from '@material-symbols/svg-600/outlined/resume-fill.svg?raw'
@@ -40,6 +41,7 @@ const ICONS = {
   person,
   image,
   inbox,
+  checklist,
   play_arrow_fill: playArrowFill,
   resume_fill: resumeFill,
   trending_up_fill: trendingUpFill,
