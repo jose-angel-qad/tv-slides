@@ -6,6 +6,12 @@ import DocPage from './DocPage.vue'
   <DocPage title="Changelog" lead="Changes to Redzone TV foundations and components.">
     <h2>November 29, 2026: Shared pieces from the pilot review (pending approval)</h2>
     <ul>
+      <li>Crew size indicator: new <code>quiet</code> prop. On or above target it stays neutral ("Target 6.0"); only a short crew shows a status. Round 2 slides use it; Run throughput is unchanged.</li>
+      <li>Progress bar: new <code>lg</code> size (48 px track) for a slide's main progress view; hatching matches the charts.</li>
+      <li>Chart card: the title wraps instead of running past the card edge (long product names, INFO-23).</li>
+      <li>Added Fact card (Card): secondary facts as one group next to a hero tile. Used by Discrete location.</li>
+      <li>Chart geometry: <code>evenGrid()</code> gives even gridlines (500, 1,000, 1,500) for round 2 hourly charts.</li>
+      <li>Line chart: new <code>bands</code> prop marks stops (negative) and slowdowns (warning) as tinted periods with an icon and a label. Axis and target line come from Chart geometry.</li>
       <li>Foundations: added <code>color/status/{positive, warning, negative, neutral}/subtle</code> and <code>/subtle-border</code> in Dark and Light, for the Run status badge. Content text on subtle passes 4.5:1 in both modes.</li>
       <li>Added Run status badge (Status): a line's run state as a tinted pill with its own filled icon (Running, Slow running, Ramp up, Changeover, Stopped, Breakdown, Inactive). Added the seven run state icons to Material icon.</li>
       <li>Added <code>chartGeometry.ts</code> (Data viz): bar 62% of its slot up to 104 px, 8 px gap floor, radius <code>min(10, bar x 0.15)</code>, shared target line, axis and hatching. Applied to Hourly bar chart (no visible change), Mini hourly bars, Bar list and Step flow chart.</li>

@@ -7,4 +7,13 @@ import * as CardStories from './Card.stories'
 
 <Story of={CardStories.StatTileGuide} />
 
+## Fact card
+
+Two to four secondary facts in one card next to a hero tile, when each fact is a value plus one line of context. Used by Discrete location. Pending approval.
+
+- Same frame as the tiles: fills its grid cell (380 px in the tile row), gradient surface, 1 px `border/subtle`, `radius/lg`, `elevation/card`. Rows split the height, separated by space only.
+- Row: label in Inter 28 `text/secondary`; value in Geist Medium 44 (KPI primary unit role) with its context after it in Inter 28 `text/secondary`.
+- Status only when a fact needs attention (warning, negative): icon before the value, value in `status/{status}/content`. On-target facts stay neutral.
+- Props: `facts` (`label`, `value`, `detail`, `status`, `statusLabel`).
+
 <Stories />

@@ -1,20 +1,41 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import T3HeroSupport from '../../templates/T3HeroSupport.vue'
 import ChartCard from '../../components/card/ChartCard.vue'
 import KpiTile from '../../components/card/KpiTile.vue'
-import StatTile from '../../components/card/StatTile.vue'
+import FactCard, { type Fact } from '../../components/card/FactCard.vue'
 import HourlyBarChart from '../../components/data-viz/HourlyBarChart.vue'
 import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
-import type { FillStatus, Status } from '../../components/status/status'
-import { formatClock, formatCount, formatKpiCount, formatPercent, formatRate } from '../../utils/format'
+import type { FillStatus } from '../../components/status/status'
+import { formatClock, formatCount, formatKpiCount, formatPercent, formatPercentTick, formatRate } from '../../utils/format'
 import { useElementSize } from '../../utils/useElementSize'
+import { evenGrid } from '../../components/data-viz/chartGeometry'
 import type { DiscreteLocationData } from './types'
 
-// Question: how many units are finished, and is the line on pace?
-// Hero: units finished against plan (Status band). Support: OEE with its target (Status line) and
-// quality as one number (design guide idea, replaces the pie). Cycle time and units per hour sit in
-// the chart header as context. Hourly counts use the Hourly bar chart, like Run throughput.
+// Design plan (round 2)
+//
+// Question: how many units are finished, and is the line on pace? (guide, kept)
+// Answer (hero): units finished this shift, "of" the plan, with the pace in the Status band
+// ("9 ahead of plan"), the slide's one primary feedback.
+//
+// Must show, mapped:
+// - Units finished: hero value.
+// - Current OEE, above or below target: Fact card, "84.6%" with "Target 80%"; status only below target.
+// - Cycle time and units per hour: one fact, "1:42" with "35.3 units/h" (the same speed two ways).
+// - Quality and reworked units: one fact, "98.6%" with "3 reworked" (guide: one number, no pie).
+// - Hourly counts: Hourly bar chart with the target per hour, the current hour hatched.
+//
+// Not shown:
+// - OEE change ("+13.2%", current product): its baseline is unknown (questions.md).
+// - Quality pie: the percent and the reworked count say it.
+// - Separate tiles for OEE, cycle time and quality (round 1): three tiles left the hero 500 px wide
+//   and read as a row of equals.
+//
+// Layout options:
+// a) Hero plus three Stat tiles over the chart (round 1, Run throughput grid): the hero shrinks and
+//    the supporting facts compete with it.
+// b) Hero over the chart, facts as a strip under the hero: the facts lose their context lines.
+// c) Hero and one Fact card over the chart. Chosen: the hero keeps its width, the three supporting
+//    facts read as one group, and only an off-target fact draws attention.
 const props = defineProps<{ data: DiscreteLocationData }>()
 const d = computed(() => props.data)
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
@@ -24,78 +45,78 @@ const pace = computed<{ status: FillStatus; label: string }>(() => {
   const label = n > 0 ? `${formatCount(n)} ahead of plan` : n < 0 ? `${formatCount(-n)} behind plan` : 'On plan'
   return { status: d.value.status ?? (n < 0 ? 'negative' : 'positive'), label }
 })
-const oee = computed<{ status: Status; label: string }>(() =>
-  d.value.oee >= d.value.oeeTarget
-    ? { status: 'positive', label: `On target ${formatPercent(d.value.oeeTarget)}` }
-    : { status: 'negative', label: `Below target ${formatPercent(d.value.oeeTarget)}` },
-)
+const facts = computed<Fact[]>(() => {
+  const below = d.value.oee < d.value.oeeTarget
+  return [
+    {
+      label: 'OEE',
+      value: formatPercent(d.value.oee),
+      detail: `Target ${formatPercentTick(d.value.oeeTarget)}`,
+      status: below ? 'negative' : undefined,
+      statusLabel: below ? 'Below target' : undefined,
+    },
+    { label: 'Cycle time', value: formatClock(d.value.cycleSeconds), detail: `${formatRate(d.value.unitsPerHour)} ${d.value.unit.plural}/h` },
+    { label: 'Quality', value: formatPercent(d.value.quality), detail: `${formatCount(d.value.reworked)} reworked` },
+  ]
+})
 
 const chartEl = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(chartEl)
 </script>
 
 <template>
-  <T3HeroSupport>
-    <template #hero>
-      <KpiTile
-        :title="`${cap(d.unit.plural)} finished this shift`"
-        :subtitle="d.shift"
-        :value="formatKpiCount(d.finished)"
-        :unit="d.plannedTotal ? `of ${formatKpiCount(d.plannedTotal)}` : undefined"
-        :band-status="pace.status"
-        :band-text="pace.label"
-      />
-    </template>
-    <template #support>
-      <StatTile title="Current OEE" subtitle="This shift" :value="formatPercent(d.oee)" :status="oee.status" :status-text="oee.label" />
-      <StatTile
-        title="First-pass quality"
-        :subtitle="`${formatCount(d.reworked)} reworked`"
-        :value="formatPercent(d.quality)"
-        :show-status="false"
-      />
-    </template>
-    <template #chart>
-      <ChartCard :title="`${cap(d.unit.plural)} per hour`">
-        <template #actions>
-          <div class="actions">
-            <span class="context">Cycle time {{ formatClock(d.cycleSeconds) }} · {{ formatRate(d.unitsPerHour) }} {{ d.unit.plural }}/h</span>
-            <ul class="legend">
-              <ChartLegendItem type="on-target" label="On target" />
-              <ChartLegendItem type="below-target" label="Below target" />
-              <ChartLegendItem type="in-progress" label="In progress" />
-            </ul>
-          </div>
-        </template>
-        <div ref="chartEl" class="chart-area">
-          <HourlyBarChart
-            v-if="width && height"
-            :points="d.hourly"
-            :target="d.targetPerHour"
-            :current-index="d.currentHourIndex"
-            :width="width"
-            :height="height"
-          />
-        </div>
-      </ChartCard>
-    </template>
-  </T3HeroSupport>
+  <div class="rz-discrete-location">
+    <KpiTile
+      :title="`${cap(d.unit.plural)} finished this shift`"
+      :subtitle="d.shift"
+      :value="formatKpiCount(d.finished)"
+      :unit="d.plannedTotal ? `of ${formatKpiCount(d.plannedTotal)}` : undefined"
+      :band-status="pace.status"
+      :band-text="pace.label"
+    />
+    <FactCard :facts="facts" />
+    <ChartCard class="chart" :title="`${cap(d.unit.plural)} per hour`">
+      <template #actions>
+        <ul class="legend">
+          <ChartLegendItem type="on-target" label="On target" />
+          <ChartLegendItem type="below-target" label="Below target" />
+          <ChartLegendItem type="in-progress" label="In progress" />
+        </ul>
+      </template>
+      <div ref="chartEl" class="chart-area">
+        <HourlyBarChart
+          v-if="width && height"
+          :points="d.hourly"
+          :target="d.targetPerHour"
+          :current-index="d.currentHourIndex"
+          :width="width"
+          :height="height"
+          :grid-values="evenGrid(Math.max(...d.hourly.map((p) => p.value), d.targetPerHour))"
+        />
+      </div>
+    </ChartCard>
+  </div>
 </template>
 
 <style scoped>
+/* Same rhythm as Run throughput: 380 px tile row, spacing/md gaps. The Fact card is 560 px wide:
+   room for "98.6%  3 reworked" on one line at 44 px. */
+.rz-discrete-location {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 560px;
+  grid-template-rows: 380px minmax(0, 1fr);
+  gap: var(--rz-spacing-md);
+}
+.chart {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
 .chart-area {
   flex: 1;
   min-height: 0;
-}
-.actions {
-  display: flex;
-  align-items: center;
-  gap: var(--rz-spacing-2xl);
-}
-.context {
-  font: var(--rz-tv-type-body-strong);
-  color: var(--rz-color-text-primary);
-  white-space: nowrap;
 }
 .legend {
   display: flex;

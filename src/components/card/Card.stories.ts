@@ -3,6 +3,7 @@ import StoryFrame from '../_story/StoryFrame.vue'
 import { guideParameters, guideRender } from '../../stories/docs/guide'
 import KpiTile from './KpiTile.vue'
 import StatTile from './StatTile.vue'
+import FactCard from './FactCard.vue'
 
 const meta: Meta = { title: 'Components/Card' }
 export default meta
@@ -38,6 +39,22 @@ export const Stat: Story = {
         <StatTile title="Average crew" value="6.2" unit="people" :show-status="false" />
       </div>
     </StoryFrame>`,
+  }),
+}
+
+// Fact card: secondary facts as one group next to a hero tile. Status only when a fact needs attention.
+export const Facts: Story = {
+  name: 'Fact card',
+  render: () => ({
+    components: { StoryFrame, FactCard },
+    setup: () => ({
+      facts: [
+        { label: 'OEE', value: '66.2%', detail: 'Target 80%', status: 'negative', statusLabel: 'Below target' },
+        { label: 'Cycle time', value: '2:11', detail: '27.5 units/h' },
+        { label: 'Quality', value: '93.4%', detail: '11 reworked' },
+      ],
+    }),
+    template: `<StoryFrame :width="560"><FactCard :facts="facts" style="height: 380px" /></StoryFrame>`,
   }),
 }
 

@@ -144,6 +144,16 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) FAIL: ETA footer cut, speed too small, dead space in the bottom card, two statuses for one stop. Fixed: second bar for speed, hero title "Cases ahead of pace", shorter footer. 2) FAIL: stop shown twice (ETA footer and badge), unbalanced card padding. Fixed: badge on the speed row only, planned finish in the footer when stopped, speed pace label in the caption. 3) FAIL, blocking: Chart card title did not wrap (long products clipped). Fixed after round 3 (Chart card title wraps). Open, not re-reviewed: pace labels differ between the two bars (under the marker vs in the caption, for room), planned finish moves to the footer when stopped, the Completed row shifts about 3 px when the badge shows, speed fill stays neutral below pace (status on the value only), band repeats the hero title.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-17 not applicable. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
 
+### Discrete location (pending approval)
+- Question: how many units are finished, and is the line on pace? (kept)
+- Hero: units finished "of" the plan, pace in the Status band.
+- Layout: hero and one Fact card (OEE with target, cycle time with units per hour, quality with reworked) over the units per hour chart. Options: hero plus three Stat tiles (round 1; hero 500 px wide, facts compete), facts as a strip under the hero (context lines lost).
+- Left out: OEE change (+13.2%, baseline unknown), quality pie, separate tiles.
+- Stories: Positive, Negative (behind, OEE below target, long name).
+- Reused: KPI tile large, Chart card, Hourly bar chart (even gridlines), Chart legend item. Created: Fact card (Card), with story and Docs.
+- Reviews: 1) PASS. Minor kept: Fact card values (44 px) smaller than Stat tile values (104 px), OEE above target not stated (status economy), quality has no target so no status, "Shift 2" under "this shift", "On target" legend item when no bar is on target, tight rows in the Fact card.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-08, BRAND-10 to BRAND-12. BRAND-09: new component pending approval. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
