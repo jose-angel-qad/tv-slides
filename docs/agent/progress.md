@@ -97,6 +97,23 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: No crew target value sits lower than the hero (Stat tile without footer), crew on target is neutral here and positive on Run throughput (question logged), no zero tick (same as Run throughput).
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Hourly counts (pending approval)
+- Question: which hours met the count target? (kept)
+- Hero: the hourly bar chart, full body, same form as Hourly OEE (guide: same template). Title is the answer and names the unit: "Bottles per hour: 5 of 7 hours on target".
+- Left out: shift total and gap hero (round 1, Shift throughput answers it), hours on target and current hour tiles, shift name and times.
+- Stories: Positive (partial current hour), Negative (long location).
+- Reused: shared `_shared/HourlyTargetChart.vue` (new, extracted from Hourly OEE), Chart card, Hourly bar chart, Chart legend item. Removed: round 1 `_shared/HourlyMetric.vue`.
+- Reviews: 1) PASS. Minor fixed: uneven gridlines (500, 1,500); the shared body now passes about three even steps. 
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-05 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 not applicable. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
+
+### Units/man hour (pending approval)
+- Question: is labor productivity on target each hour? (kept)
+- Hero: the hourly chart, full body; title "Cases per man hour: 5 of 6 hours on target". Rate values, whole-number ticks.
+- Left out: shift average hero (round 1), tiles, shift name.
+- Stories: Positive, Negative (long location). The current hour carries the rate so far, so it compares with the target.
+- Reviews: 1) PASS. Minor fixed: uneven ticks, misleading partial-hour rate in the mock. Minor kept: the title lead "Cases per man hour" is close to the slide title (it adds the unit).
+- Checklists: as Hourly counts.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
