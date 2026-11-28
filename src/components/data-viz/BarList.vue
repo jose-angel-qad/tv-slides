@@ -24,6 +24,8 @@ export interface BarListRow {
   valueText: string
   status?: Status
   inProgress?: boolean
+  /** No value to draw (an asset that is not reporting): no bar, the value text in text/secondary. */
+  noData?: boolean
 }
 
 const props = withDefaults(
@@ -50,13 +52,14 @@ const geometry = {
       </div>
       <div class="track">
         <div
+          v-if="!r.noData"
           class="bar"
           :class="[{ hatched: r.inProgress }, attention(r.status) ? r.status : '']"
           :style="{ width: pct(r.value) }"
         />
         <div v-if="props.target != null" class="target" :style="{ left: pct(props.target) }" />
       </div>
-      <div class="value" :class="attention(r.status) ? r.status : ''">
+      <div class="value" :class="[attention(r.status) ? r.status : '', { 'no-data': r.noData }]">
         <StatusIcon v-if="attention(r.status)" :status="r.status!" :size="36" />
         <span>{{ r.valueText }}</span>
       </div>
@@ -127,6 +130,9 @@ const geometry = {
   font: var(--rz-tv-type-chart-value);
   color: var(--rz-color-text-primary);
   white-space: nowrap;
+}
+.value.no-data {
+  color: var(--rz-color-text-secondary);
 }
 .value.warning {
   color: var(--rz-color-status-warning-content);

@@ -1,71 +1,88 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import T2ListSupport from '../../templates/T2ListSupport.vue'
 import ChartCard from '../../components/card/ChartCard.vue'
 import KpiTile from '../../components/card/KpiTile.vue'
-import StatTile from '../../components/card/StatTile.vue'
-import BarList from '../../components/data-viz/BarList.vue'
-import ChartLegendItem from '../../components/data-viz/ChartLegendItem.vue'
+import ProgressBar from '../../components/data-display/ProgressBar.vue'
+import FastCycleAssets from '../_shared/FastCycleAssets.vue'
+import { averageBand, formatClock } from '../_shared/fastCycles'
 import { formatCount } from '../../utils/format'
-import { assetRows, averageBand, barMax, formatClock } from '../_shared/fastCycles'
 import type { RunFastCyclesData } from './types'
 
-// Question: is the current run on cycle time target?
-// Template T2, like Cycles: the asset list takes the main card (the empty panels of the current
-// slide are gone and the space goes to the assets, design guide idea), one Bar list row per asset
-// with its current cycle and a dashed target line. The average cycle against target is the KPI
-// with the Status band at the top of the support column; run progress below it.
+// Design plan (round 2)
+//
+// Question: is the current run on cycle time target? (guide, kept)
+// Answer (hero): the run's average cycle time against the target, with the gap in the Status band
+// ("3 s under target"), the slide's one primary feedback.
+//
+// Must show, mapped:
+// - Product: title of the run card (wraps, never cut).
+// - Average time against target: hero value, "target 0:45" as its unit, band.
+// - Current cycle time and status per asset: Bar list on the right, target as a dashed line, status
+//   only on assets over target.
+// - Completed of planned: progress bar in the run card.
+//
+// Not shown:
+// - "Avg. to target" (current product): its meaning is unclear (questions.md); the band gives the gap.
+// - Colored dashes under each bar and the green count badge: no legend, meaning unknown.
+// - Empty panels (current product): the space goes to the assets (guide idea).
+//
+// Layout options:
+// a) Hero and run card on top, assets below (Run throughput grid): six assets do not fit the lower card.
+// b) Assets only, with the average in the title: the run's answer turns into small text.
+// c) Hero and run card stacked on the left, assets full height on the right. Chosen: the answer
+//    leads, and every asset gets a full row.
 const props = defineProps<{ data: RunFastCyclesData }>()
 const d = computed(() => props.data)
-const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 const band = computed(() => averageBand(d.value.averageSeconds, d.value.targetSeconds))
-const rows = computed(() => assetRows(d.value.assets, d.value.targetSeconds))
 </script>
 
 <template>
-  <T2ListSupport>
-    <template #main>
-      <ChartCard title="Current cycle by asset">
-        <template #actions>
-          <ul class="legend">
-            <ChartLegendItem type="on-target" label="On target" />
-            <ChartLegendItem type="below-target" label="Over target" />
-            <ChartLegendItem type="target" :label="`Target ${formatClock(d.targetSeconds)}`" />
-          </ul>
-        </template>
-        <p class="product">{{ d.product }}</p>
-        <BarList :rows="rows" :target="d.targetSeconds" :max="barMax(d.assets, d.targetSeconds)" :label-width="420" />
-      </ChartCard>
-    </template>
-    <template #support>
+  <div class="rz-fast-cycles">
+    <div class="left">
       <KpiTile
         title="Average cycle this run"
-        :subtitle="`Target ${formatClock(d.targetSeconds)}`"
         :value="formatClock(d.averageSeconds)"
+        :unit="`target ${formatClock(d.targetSeconds)}`"
         :band-status="band.status"
         :band-text="band.label"
       />
-      <StatTile
-        :title="`${cap(d.unit.plural)} completed`"
-        :subtitle="`of ${formatCount(d.planned)} planned`"
-        :value="formatCount(d.completed)"
-        :show-status="false"
-      />
-    </template>
-  </T2ListSupport>
+      <ChartCard class="run" :title="d.product">
+        <div class="run-body">
+          <ProgressBar
+            :value="d.completed"
+            :max="d.planned"
+            label="Completed"
+            :value-text="`${formatCount(d.completed)} of ${formatCount(d.planned)} ${d.unit.plural}`"
+          />
+        </div>
+      </ChartCard>
+    </div>
+    <FastCycleAssets :assets="d.assets" :target-seconds="d.targetSeconds" />
+  </div>
 </template>
 
 <style scoped>
-.product {
-  margin: 0 0 var(--rz-spacing-sm);
-  font: var(--rz-tv-type-body);
-  color: var(--rz-color-text-secondary);
+.rz-fast-cycles {
+  position: absolute;
+  inset: 0;
+  padding: var(--rz-spacing-md) var(--rz-spacing-xl) var(--rz-spacing-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--rz-spacing-md);
 }
-.legend {
+.left {
+  display: grid;
+  grid-template-rows: 380px minmax(0, 1fr);
+  gap: var(--rz-spacing-md);
+  min-height: 0;
+}
+.run {
+  min-height: 0;
+}
+.run-body {
+  flex: 1;
   display: flex;
-  gap: var(--rz-spacing-lg);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
