@@ -184,6 +184,23 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) FAIL: averages larger than the row hero, overrun bar solid blue. Fixed: averages at 32 px, overrun stays hatched, no target on non-running rows. 2) FAIL: hero value same size as names (conflicts with the pilot rule: hierarchy from the container, one type scale per row; kept), dead zone under the run card. Fixed: card fills the column. 3) FAIL, blocking: space inside the run card. Fixed after round 3: card grouped at the top from the first row, as tall as its content. Open, not re-reviewed: metric cells shorter on non-running rows, overrun bar looks like a nearly done cycle, averages have little weight.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-16, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no main KPI (row heroes only). Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Run (Fast cycles) (pending approval)
+- Question: is the current run on cycle time target? (kept)
+- Hero: average cycle this run against the target, gap in the Status band. Left: hero over the run card (product title, completed progress). Right: current cycle by asset, full height (shared `_shared/FastCycleAssets.vue`, Bar list with the target line, status only over target, "Not reporting" with no bar).
+- Layout: options were the Run throughput grid (six assets do not fit the lower card) and assets only (answer turns small).
+- Left out: "Avg. to target", colored dashes and count badge (no legend), empty panels.
+- Stories: Positive, Negative (over target, an asset not reporting, long names).
+- Changed: Bar list (`noData` rows). Created: shared Fast cycle assets body.
+- Reviews: 1) FAIL: dead zone under a short list, not-reporting row drew a sliver bar. Fixed: list centered in its card, no bar for no data. 2) PASS. Minor kept: space below the progress bar in the run card, a short asset name wraps with an orphan word, "–" centered on a two-line label.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
+### Shift (Fast cycles) (pending approval)
+- Question: is the shift on cycle time target? (kept)
+- Same form as Run (Fast cycles); a Fact card (shift units in whole numbers, OEE with target, yield with problems) replaces the run card.
+- Stories: Positive, Negative (over target, OEE below target, an asset not reporting, long names).
+- Reviews: 1) FAIL (shared with Run): same fixes. 2) PASS. Minor kept: Fact card facts stacked left with the right half empty, tight subtitle above the hero value.
+- Checklists: as Run (Fast cycles).
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
