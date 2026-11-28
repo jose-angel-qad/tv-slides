@@ -134,6 +134,16 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) FAIL, blocking: a stop label overlapped the next icon. Minor: slowdowns without duration, weak amber tint, a stop in the Positive data. Fixed: label widths measured (20 px per character) with a 24 px gap, durations on every band, amber at 22%, steady Positive. 2) PASS. Minor kept: Positive line sits high on a zero-based axis, narrow slowdown labels shift right of their band, the ongoing stop is not hatched, icon widths differ (octagon and triangle glyphs), thin line in Light, no "target changes" story.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-05 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 not applicable, INFO-17 partly (the ongoing stop is not marked as in progress). Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
 
+### Run speed (pending approval)
+- Question: is the run ahead or behind, and when will it finish? (kept)
+- Hero: units ahead or behind pace with the Status band; Estimated finish tile next to it (warning only when late; early stays neutral).
+- Layout: hero and ETA tile over a progress card with two large bars read the same way (fill against marker): completed against the pace count, and speed against the pace speed (scale fixed at 125% of pace). Product is the card title. Options: three tiles in a row (round 1, speed became filler), one full progress view (answers turn into small labels).
+- Left out: run start, run average, unplanned downtime, planned and "on schedule" rates, race cars and flag, Running badge (shown only when stopped, on the speed row).
+- Stories: Positive, Negative (behind, late, below pace, long names), ETA not available (stopped).
+- Reused: KPI tile large, Stat tile, Chart card, Progress bar, Run status badge, Status icon. Changed: Progress bar (`lg` 48 px size, value slot, shared hatching), Chart card (title wraps).
+- Reviews: 1) FAIL: ETA footer cut, speed too small, dead space in the bottom card, two statuses for one stop. Fixed: second bar for speed, hero title "Cases ahead of pace", shorter footer. 2) FAIL: stop shown twice (ETA footer and badge), unbalanced card padding. Fixed: badge on the speed row only, planned finish in the footer when stopped, speed pace label in the caption. 3) FAIL, blocking: Chart card title did not wrap (long products clipped). Fixed after round 3 (Chart card title wraps). Open, not re-reviewed: pace labels differ between the two bars (under the marker vs in the caption, for room), planned finish moves to the footer when stopped, the Completed row shifts about 3 px when the badge shows, speed fill stays neutral below pace (status on the value only), band repeats the hero title.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-17 not applicable. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

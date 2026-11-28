@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Inventory: "Chart card" (Card). Holds a chart: title on the left, legend (actions slot) on the right.
 // Solid surface.default, padding 40, gap 24, radius 24, 1 px border.subtle, elevation/card.
+// The title wraps (a product name is never cut, INFO-23); short titles render as before.
 const props = defineProps<{ title: string }>()
 </script>
 
@@ -39,7 +40,7 @@ const props = defineProps<{ title: string }>()
   font: var(--rz-tv-type-chart-title);
   letter-spacing: var(--rz-tv-tracking-card-title);
   color: var(--rz-color-text-primary);
-  white-space: nowrap;
+  min-width: 0;
 }
 .actions {
   flex: none;

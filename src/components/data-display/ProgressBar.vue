@@ -7,7 +7,7 @@ import { computed } from 'vue'
 // Fill data/neutral; track surface/raised. An optional marker (pace, target) is a 4 px
 // text/primary line with its label below the track, so it never meets the caption. Status color is not used here: the status
 // of the run belongs to its KPI (INFO-05, INFO-06).
-// Fixed geometry: track 32 px (md) or 20 px (sm), marker 4 px wide.
+// Fixed geometry: track 48 px (lg, a slide's main progress view), 32 px (md) or 20 px (sm); marker 4 px wide.
 const props = withDefaults(
   defineProps<{
     value: number
@@ -17,7 +17,7 @@ const props = withDefaults(
     valueText?: string
     marker?: number
     markerLabel?: string
-    size?: 'md' | 'sm'
+    size?: 'lg' | 'md' | 'sm'
     /** Hatched fill, for something still in progress (like the current hour). */
     inProgress?: boolean
   }>(),
@@ -29,9 +29,9 @@ const fill = computed(() => pct(props.value))
 
 <template>
   <div class="rz-progress" :class="props.size">
-    <div v-if="props.label || props.valueText" class="caption">
+    <div v-if="props.label || props.valueText || $slots.value" class="caption">
       <span v-if="props.label" class="label">{{ props.label }}</span>
-      <span v-if="props.valueText" class="value">{{ props.valueText }}</span>
+      <span v-if="props.valueText || $slots.value" class="value"><slot name="value">{{ props.valueText }}</slot></span>
     </div>
     <div class="track-wrap">
       <div class="track">
@@ -83,16 +83,38 @@ const fill = computed(() => pct(props.value))
 .sm .track {
   height: 20px;
 }
+.lg .track {
+  height: 48px;
+  border-radius: var(--rz-radius-md);
+}
+.lg .fill {
+  border-radius: var(--rz-radius-md);
+}
+.lg .caption {
+  justify-content: flex-start;
+  align-items: center;
+}
+.lg .label {
+  flex: none;
+  font: var(--rz-tv-type-body);
+  color: var(--rz-color-text-secondary);
+}
+.lg .value {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rz-spacing-2xs);
+}
 .fill {
   height: 100%;
   border-radius: var(--rz-radius-sm);
   background: var(--rz-color-data-neutral);
 }
 .fill.hatched {
+  /* Same hatching as the charts (chartGeometry HATCH_CSS). */
   background: repeating-linear-gradient(
     -45deg,
     var(--rz-color-data-neutral) 0 6px,
-    color-mix(in srgb, var(--rz-color-data-neutral) 22%, transparent) 6px 12px
+    color-mix(in srgb, var(--rz-color-data-neutral) 22%, transparent) 6px 16px
   );
 }
 .marker {

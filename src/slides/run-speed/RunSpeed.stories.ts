@@ -4,18 +4,11 @@ import { slideRender } from '../_shared/slideStory'
 import { runSpeedNegative, runSpeedNoEta, runSpeedPositive } from './mock'
 import type { RunSpeedData } from './types'
 
-// Run speed (Single location): speed slide for the selected location.
-// Key question: is the run ahead or behind, and when will it finish? Kept.
-// Template T3 Hero + support. Reused: KPI tile large, Stat tile, Chart card.
-// Created: Progress bar (Data display), replacing the race track.
-//
-// Checklists (Light and Dark, 1920 x 1080)
-// Passed: A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-18, INFO-20 to INFO-25;
-//   BRAND-01 to BRAND-07, BRAND-09 to BRAND-12.
-// Failed or not verified:
-//   BRAND-09: new component (Progress bar), pending approval.
-//   INFO-19: only Positive, Negative and ETA not available are built.
-//   A11Y-12, A11Y-17 to A11Y-19: grayscale, tall scripts, Arabic and long languages not tested overnight.
+// Run speed (Single location). Status: Pending approval (round 2).
+// Key question: is the run ahead or behind, and when will it finish? Hero: units ahead or behind pace
+// (Status band); Estimated finish tile; progress bar with the pace marker and the speed under it.
+// Positive: ahead, finishing early. Negative: behind, late, below pace, long names. ETA not available:
+// the line is stopped. Design plan in RunSpeed.vue.
 const meta: Meta<{ data: RunSpeedData }> = {
   title: 'Slides/Single location/Run speed',
   ...slideRender<RunSpeedData>(RunSpeed, 'Run speed'),
