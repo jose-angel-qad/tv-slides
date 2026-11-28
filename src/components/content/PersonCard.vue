@@ -5,7 +5,7 @@ import MaterialIcon from '../icon/MaterialIcon.vue'
 // Inventory: "Welcome info bar" (Content). One new hire on the Welcome slide: photo (or a neutral
 // placeholder with the person icon when there is none), name, role and team, start date and a
 // short introduction. Text wraps; nothing is cut. Card frame like Chart card.
-// Fixed geometry: photo 200 px circle.
+// Fills the height it is given, content centered. Fixed geometry: photo 240 px circle.
 const props = defineProps<{ name: string; role: string; started: string; intro?: string; photo?: string }>()
 const failed = ref(false)
 </script>
@@ -13,7 +13,7 @@ const failed = ref(false)
 <template>
   <article class="rz-person-card">
     <img v-if="props.photo && !failed" class="photo" :src="props.photo" :alt="props.name" @error="failed = true" />
-    <div v-else class="photo placeholder" aria-hidden="true"><MaterialIcon name="person" :size="96" /></div>
+    <div v-else class="photo placeholder" aria-hidden="true"><MaterialIcon name="person" :size="112" /></div>
     <div class="text">
       <h2 class="name">{{ props.name }}</h2>
       <p class="role">{{ props.role }}</p>
@@ -28,6 +28,7 @@ const failed = ref(false)
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--rz-spacing-md);
   min-width: 0;
   padding: var(--rz-spacing-xl);
@@ -39,8 +40,8 @@ const failed = ref(false)
 }
 .photo {
   flex: none;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   border-radius: var(--rz-radius-full);
   object-fit: cover;
 }

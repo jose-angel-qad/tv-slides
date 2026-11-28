@@ -203,3 +203,12 @@ Format per entry:
 - Options: a company-level Company Update inherited by every site; a KPI highlight rolled up from the parent company; a recognition message.
 - Assumption used: a highlight shared by the company with every site (headline, short message, optional image). Proposed key question: "What is the company celebrating or asking of every site today?"
 - Where it shows: `src/slides/company-inherited-highlight/`
+
+## Round 2 proposals and remaining assumptions
+- Maintenance status: PM, WO, CL and OD are spelled out as Preventive due, Work orders, Checklist items and Overdue, with limits 5, 10, 50 and 1. Confirm the meanings and limits.
+- SPC dashboard: one row per characteristic (control status, latest value against the control limits, Cpk). The data has no spec limits or target, so they are not shown. Confirm the data and whether a full chart is wanted for the worst characteristic.
+- Company inherited highlight: assumed to be a company-wide highlight (headline, message, optional image) inherited by every site. Confirm what the slide is.
+- Leaderboard: what earns 4, 2, 1 or 0 points in an hour is not on the slide; the key only lists the values.
+- Scoreboard: ramp up, power hour, huddles and SKUs are left out (four columns). Confirm which columns plants need.
+- Up/Down stream: positive schedule minutes are read as ahead.
+- Run speed: a late finish is a warning (amber) while behind pace is negative on the hero.

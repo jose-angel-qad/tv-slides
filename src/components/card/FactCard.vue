@@ -43,6 +43,7 @@ const attention = (s?: Status) => s === 'warning' || s === 'negative'
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: var(--rz-spacing-sm);
   min-width: 0;
   min-height: 0;
   padding: var(--rz-spacing-md) var(--rz-spacing-xl);

@@ -9,7 +9,12 @@ import DocPage from './DocPage.vue'
       <li>Crew size indicator: new <code>quiet</code> prop. On or above target it stays neutral ("Target 6.0"); only a short crew shows a status. Round 2 slides use it; Run throughput is unchanged.</li>
       <li>Progress bar: new <code>lg</code> size (48 px track) for a slide's main progress view; hatching matches the charts.</li>
       <li>Chart card: the title wraps instead of running past the card edge (long product names, INFO-23).</li>
-      <li>Added Fact card (Card): secondary facts as one group next to a hero tile. Used by Discrete location.</li>
+      <li>Metric cell: the second line wraps inside the cell instead of running past it.</li>
+      <li>Bar list: new <code>noData</code> row flag (no bar, value in text/secondary), for assets that are not reporting and zero values.</li>
+      <li>Step flow chart: rebuilt for Line balance. The WIP between steps is the bar, the steps are labels with their completed count, and the WIP limit is a dashed labeled line.</li>
+      <li>Person card: fills the height it is given with content centered; photo 240 px.</li>
+      <li>Material icon: added <code>checklist</code> (outlined), for pending data sheets.</li>
+      <li>Added Fact card (Card): secondary facts as one group next to a hero tile. Used by Discrete location, Discrete station, Shift (Fast cycles), Operations and X-Bar R. Facts are 16 px apart.</li>
       <li>Chart geometry: <code>evenGrid()</code> gives even gridlines (500, 1,000, 1,500) for round 2 hourly charts.</li>
       <li>Line chart: new <code>bands</code> prop marks stops (negative) and slowdowns (warning) as tinted periods with an icon and a label. Axis and target line come from Chart geometry.</li>
       <li>Foundations: added <code>color/status/{positive, warning, negative, neutral}/subtle</code> and <code>/subtle-border</code> in Dark and Light, for the Run status badge. Content text on subtle passes 4.5:1 in both modes.</li>
