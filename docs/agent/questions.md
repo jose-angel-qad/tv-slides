@@ -12,7 +12,15 @@ Format per entry:
 - Where it shows: <story or file>
 ```
 
-## Hourly OEE, Hourly counts, Units/man hour
+## Hourly OEE (round 2)
+- Question: should the slide show the shift OEE as one large number (design guide Claude idea)?
+- Options: shift OEE as hero above the chart (round 1); chart only, with the count of hours on target as its title.
+- Assumption used: chart only. Shift OEE answers "how is the shift going", not "which hours met the target", and is already on the Shift dashboard. Easy to add back as a single number next to the count if plants ask for it.
+- Where it shows: `src/slides/hourly-oee/HourlyOee.vue`
+- Question: should future hours of the shift show as empty slots?
+- Assumption used: yes, like the current product, so viewers see how much of the shift is left. A reviewer flagged the empty slot as dead space; drop it if the shift span is not useful.
+
+## Hourly OEE, Hourly counts, Units/man hour (round 1)
 - Question: should the hero be the shift value (OEE, total count, average rate) or the number of hours on target?
 - Options: shift value as hero with the hourly chart below; hours on target as hero.
 - Assumption used: shift value as hero with the Status band; hours on target and the current hour as neutral support tiles. The key question "Which hours met the target?" is answered by the chart and the support tile.

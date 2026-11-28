@@ -15,6 +15,21 @@ Add slides here when the user approves them; they become references for style an
 1. Pilot, then stop for review: Hourly OEE, Shift Dashboard, Company Update.
 2. After the pilot is approved: the rest of Single location, then Multiple location, then Other, then the slides whose definitions are pending.
 
+## Round 2 log (pilot)
+
+### Hourly OEE (pending approval)
+- Question: which hours met the OEE target? (guide, kept)
+- Hero: the hourly OEE bar chart, full body. Its title is the answer count ("5 of 6 hours on target").
+- Layout: chart alone in one card. Options considered: hero number over the chart (round 1, splits attention), chart plus a per-hour side list (repeats the bar labels). The question is a pattern over time, so the chart gets all the room. Future hours of the shift stay as empty slots, like the current product, so the remaining shift is visible.
+- Left out: shift OEE hero and its Status band, Hours on target and Current hour tiles, chart title "OEE per hour" (repeats the header), shift name and times (the hour ticks show the span), side navigation of the current product.
+- Own body: Hourly OEE no longer uses `_shared/HourlyMetric.vue`, so Hourly counts and Units/man hour are untouched until they are redesigned.
+- Stories: Positive (an hour above 100%, partial current hour), Negative (long location name).
+- Reused: Chart card, Hourly bar chart, Chart legend item. Created: none.
+- Changed: Hourly bar chart. New optional `gridValues` prop (OEE gridlines at 50% and 100%, axis ends at 100% or the tallest bar). A surface plate behind any value label the target line crosses. Run throughput renders the same except the plate behind 402 and 408.
+- Reviews: 1) FAIL, blocking: the target line showed through value labels; minor: empty 9 PM slot, summary size. Fixed the blocking item with the label plate. 2) PASS, no blocking. Minor findings kept as is: the future 9 PM slot (shift span, as in the current product), 101.2% (guide handoff scenario), no status icon on the summary (the bars carry status; one primary feedback only on a main KPI, and this slide has none).
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01 to INFO-03, INFO-05 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04 not applicable (no main KPI). INFO-16 partly: labels near the target sit on a plate that hides the line instead of moving off it. Not verified: INFO-19 (only Positive and Negative), A11Y-12, A11Y-17 to A11Y-19.
+- Open questions: shift OEE left out, see questions.md.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

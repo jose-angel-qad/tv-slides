@@ -5,8 +5,8 @@ import { formatCount, formatHour } from '../../utils/format'
 
 // One metric over the shift's hours, drawn 1:1 in canvas pixels.
 // Visual language follows Tremor / shadcn bar charts: faint gridlines, y-axis ticks,
-// rounded bar tops, quiet axis labels. Values sit above each bar with a halo so the
-// target line never cuts through them. The current hour is filled with diagonal stripes.
+// rounded bar tops, quiet axis labels. Values sit above each bar with a halo, plus a surface
+// plate when the target line crosses the label, so the line never cuts through them. The current hour is filled with diagonal stripes.
 // The target line is labeled at its right end ("Target / 440"), not in the legend.
 // Below-target bars use status/negative/content, and their values carry the filled status icon
 // (dangerous, octagon) so color is never the only signal. On-target bars use data/neutral; the
@@ -28,6 +28,11 @@ const props = withDefaults(
     format?: (n: number) => string
     /** Formats y-axis ticks. Defaults to `format`. */
     tickFormat?: (n: number) => string
+    /**
+     * Values that get a gridline and an axis label, for scales with meaningful steps (OEE passes 50 and 100).
+     * The axis ends at the largest one, or at the tallest bar if higher. Defaults to every other nice step.
+     */
+    gridValues?: number[]
   }>(),
   { currentIndex: -1, format: (n: number) => formatCount(n) },
 )
@@ -64,9 +69,14 @@ const ticks = computed(() => {
   const n = Math.ceil(top / step)
   return Array.from({ length: n + 1 }, (_, i) => i * step)
 })
-const yMax = computed(() => ticks.value[ticks.value.length - 1])
+// With gridValues the axis ends at the largest grid value or the tallest bar, whichever is higher.
+const yMax = computed(() =>
+  props.gridValues?.length
+    ? Math.max(...props.gridValues, ...props.points.map((p) => p.value))
+    : ticks.value[ticks.value.length - 1],
+)
 // Label every other step (for example 100, 300, 500) so the axis stays quiet.
-const labeledTicks = computed(() => ticks.value.filter((_, i) => i % 2 === 1))
+const labeledTicks = computed(() => props.gridValues ?? ticks.value.filter((_, i) => i % 2 === 1))
 // Label center follows the target line but stays inside the plot (edge cases: target near 0 or the top).
 const labelY = computed(() =>
   props.target == null ? 0 : Math.min(Math.max(y(props.target), TOP), baseline.value - 24),
@@ -118,9 +128,23 @@ const bars = computed(() =>
       iconX: below ? cx(i) - (ICON + ICON_GAP + textWidth(fmt(p.value))) / 2 : 0,
       d: barPath(x, y(p.value), barW.value, baseline.value),
       top: y(p.value),
+      plate: plateFor(i, p.value, below),
     }
   }),
 )
+
+// A surface-colored plate behind a value label, only when the target line crosses the label's box.
+// The text halo alone lets the dashes show between glyphs.
+const PLATE_PAD = 8
+function plateFor(i: number, value: number, below: boolean) {
+  if (props.target == null || i === -1) return null
+  const top = y(value) - VALUE_GAP - VALUE_ROW
+  const bottom = y(value) - VALUE_GAP
+  const ty = y(props.target)
+  if (ty < top - PLATE_PAD || ty > bottom + PLATE_PAD) return null
+  const w = textWidth(fmt(value)) + (below ? ICON + ICON_GAP : 0)
+  return { x: cx(i) - w / 2 - PLATE_PAD, y: top - PLATE_PAD / 2, w: w + PLATE_PAD * 2, h: VALUE_ROW + PLATE_PAD }
+}
 </script>
 
 <template>
@@ -186,6 +210,15 @@ const bars = computed(() =>
 
     <!-- Value labels, on top of everything with a surface-colored halo -->
     <g v-for="b in bars" :key="'v' + b.i">
+      <rect
+        v-if="b.plate && !b.future"
+        :x="b.plate.x"
+        :y="b.plate.y"
+        :width="b.plate.w"
+        :height="b.plate.h"
+        rx="8"
+        fill="var(--rz-color-surface-default)"
+      />
       <svg
         v-if="b.below"
         :x="b.iconX"
