@@ -52,9 +52,11 @@ const color = () =>
   color: var(--rz-color-text-primary);
 }
 .target {
+  /* Wraps inside the cell instead of running past it. */
+  min-width: 0;
   font: var(--rz-tv-type-body);
   font-variant-numeric: var(--rz-tv-figures-table);
   color: var(--rz-color-text-secondary);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 </style>
