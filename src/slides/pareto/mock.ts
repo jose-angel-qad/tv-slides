@@ -12,6 +12,7 @@ export const paretoPositive: ParetoData = {
   ],
 }
 
+// Eight problems (seven shown, "1 more not shown"), a long name.
 export const paretoNegative: ParetoData = {
   ...paretoPositive,
   location: 'Packaging Line 3 West Mezzanine',
@@ -25,4 +26,10 @@ export const paretoNegative: ParetoData = {
     { id: 'n7', name: 'Case erector misfeed', type: 'Availability', minutesLost: 7, unitsLost: 51, occurrences: 3 },
     { id: 'n8', name: 'Sanitation break', type: 'Planned', minutesLost: 5, unitsLost: 37, occurrences: 1 },
   ],
+}
+
+// Only one problem this shift (guide handoff scenario).
+export const paretoOneProblem: ParetoData = {
+  ...paretoPositive,
+  problems: [{ id: 'o1', name: 'Label printer out of ribbon', type: 'Availability', minutesLost: 9, unitsLost: 66, occurrences: 2 }],
 }

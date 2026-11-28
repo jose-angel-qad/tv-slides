@@ -114,6 +114,16 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor fixed: uneven ticks, misleading partial-hour rate in the mock. Minor kept: the title lead "Cases per man hour" is close to the slide title (it adds the unit).
 - Checklists: as Hourly counts.
 
+### Pareto (pending approval)
+- Question: what is costing this line the most? (kept)
+- Hero: ranked Bar list of problems by time lost, top 7, full body; card title is the total lost ("3h 29m lost this shift · 1,537 cases").
+- Layout: options were list plus support tile (round 1, repeated the first row), vertical Pareto bars (names rotated or cut), horizontal ranked bars full body (chosen; names wrap outside the bars).
+- Left out: status colors (no target, INFO-03), type legend with swatches (type written per row), "1 x" occurrence prefix (moved to the detail line), support tile.
+- Stories: Default, Many problems (seven of eight shown, "1 more not shown, 5m", long name), One problem. Data without a target: no Positive or Negative.
+- Reused: Chart card, Bar list (shared geometry). Created: none.
+- Reviews: 1) PASS. Minor fixed: hidden rows now show their time. Minor kept: empty space under short lists (fixed bar thickness rule), total in the 32 px title has no hierarchy over row values, type is grey detail text, thin bars against two-line labels, no zero baseline, "No reason entered" next to "Unallocated".
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-16, A11Y-20; INFO-01, INFO-02, INFO-03, INFO-06 to INFO-16, INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. Not applicable: INFO-04, INFO-05, INFO-17. Not verified: INFO-19, A11Y-12, A11Y-17 to A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput
