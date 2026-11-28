@@ -14,5 +14,7 @@ export interface ScoreboardLocation {
 export interface ScoreboardData {
   location: string
   shift: string
+  /** Shown when the locations need more than one page (6 per page). */
+  page?: { index: number; count: number }
   locations: ScoreboardLocation[]
 }

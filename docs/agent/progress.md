@@ -210,6 +210,24 @@ Breadth first: every slide redesigned and passing the review gate before extra s
 - Reviews: 1) PASS. Minor kept: "Per hour" header does not name the window, no hour labels on the mini bars, crew without the unit.
 - Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-18, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
 
+### Operations (pending approval)
+- Question: what needs attention on this line right now? (kept)
+- Hero: "Needs attention", the number of open items, with the most severe in the Status band (breakdown negative, problem or data sheet warning, nothing open positive). Under it, the three most severe and oldest items with their icon, kind and age; the rest summarized by kind ("Also open: 2 data sheets pending").
+- Layout: attention on the left; Fact card (units against plan, OEE, product with ETA) and count trend on the right. Options: KPI tiles over the list (round 1), trend as hero (current product).
+- Left out: icon tiles without counts, sunrise time (meaning unknown), product image.
+- Stories: Positive (one data sheet), Negative (breakdown, problems, data sheets, behind plan), Reliability and Compliance off, No open items.
+- Reused: KPI tile large, Fact card, Chart card, Line chart, Empty state message, Status icon. Added the checklist icon (outlined) to Material icon. Changed: Fact card (fixed 16 px gap between facts).
+- Reviews: 1) FAIL: weak hero, dead zone (other findings applied table rules to cards; logged). Fixed: KPI tile with the count and band. 2) FAIL: list overflow, facts touching. Fixed: three items max, Fact card gap. 3) FAIL: data sheets hidden behind "more", summary line touching. Fixed after round 3: per-kind summary line with a gap, aligned with the item text. Open, not re-reviewed: breakdown shown in the band and the first row, a single item leaves the list card mostly empty.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-16, INFO-18 to INFO-25 (no open items built); BRAND-01 to BRAND-12. INFO-17 not applicable. Not verified: A11Y-12, A11Y-18, A11Y-19.
+
+### Scoreboard (pending approval)
+- Question: which lines are on track this shift? (kept)
+- Row hero: shift OEE Metric cell with target and status; start ("6m late", status only when late), changeover (average with target, status only when over), points. Six rows per page with a page indicator.
+- Left out (assumption, questions.md): ramp up, power hour, huddles, SKUs; counts sparkline; trophy.
+- Stories: Positive (five lines), Negative (page 1 of 2, below target, late starts, slow changeovers, dashes for no value, long name).
+- Reviews: 1) PASS. Minor kept: changeover values shift right when an icon shows, "Page 1 of 2" next to the Points header, uneven column spacing, "target 30m" on every row.
+- Checklists: passed A11Y-01 to A11Y-11, A11Y-13 to A11Y-17, A11Y-20; INFO-01 to INFO-03, INFO-06 to INFO-17, INFO-20 to INFO-25; BRAND-01 to BRAND-12. INFO-04, INFO-05: no single main KPI. Must show partial by design. Not verified: INFO-19, A11Y-12, A11Y-18, A11Y-19.
+
 ## Round 1 log (drafts, superseded)
 
 ### Shift throughput

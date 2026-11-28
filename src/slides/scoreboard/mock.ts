@@ -23,9 +23,11 @@ export const scoreboardPositive: ScoreboardData = {
   ],
 }
 
+// Page 1 of 2 (six rows per page), lines below target, a late start, slow changeovers, no values yet.
 export const scoreboardNegative: ScoreboardData = {
   location: 'Packaging area',
   shift: 'Shift 2',
+  page: { index: 1, count: 2 },
   locations: [
     L('l1', 'Line 1', 86.4, 0, 24, 21),
     L('l2', 'Line 2', 64.2, 12, 47, 4),
